@@ -1,0 +1,357 @@
+# [](#imageai--image-prediction-)ImageAI：图像预测
+
+**AI共享**项目[https://commons.specpal.science](https://commons.specpal.science)
+
+* * *
+
+### [](#table-of-contents)**目录**
+
+- [第一次预测](#firstprediction)
+- [预测速度](#predictionspeed)
+- [图像输入类型](#inputtype)
+- [多图像预测多线程](#multiprediction) 
+- [预测](#threadprediction)
+- [文档](#documentation)
+
+ImageAI提供4种不同的算法和模型类型来执行图像预测。要对任何图片执行图像预测，请执行以下简单步骤。提供用于图像预测的4种算法包括**SqueezeNet**，**ResNet**，**InceptionV3**和**DenseNet**。这些算法中的每一个都有单独的模型文件，您必须根据算法的使用选择这些模型文件。要下载所选算法的模型文件，请单击以下任意链接：
+
+**- [SqueezeNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/squeezenet_weights_tf_dim_ordering_tf_kernels.h5)（文件大小：4.82 MB，最快的预测时间和适中的准确度）**
+
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** **[ResNet50](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** by Microsoft Research**（文件大小：98 MB，快速预测时间和高精度）**
+
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)**  **[InceptionV3](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)** by Google Brain team**（文件大小：91.6 MB，预测时间慢，精度更高）**
+
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** **[DenseNet121](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** by Facebook AI Research**（文件大小：31.6 MB，预测时间较慢，精度最高）**
+
+很好！下载此模型文件后，启动一个新的python项目，然后将模型文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的图像，或者在计算机上拍摄任何图像并将其复制到python项目的文件夹中。然后创建一个python文件并为其命名; 例如**FirstPrediction.py**。然后将下面的代码写入python文件：
+
+### [](#firstpredictionpy)**FirstPrediction.py**
+
+```
+from imageai.Prediction import ImagePrediction
+import os
+execution_path = os.getcwd()
+
+prediction = ImagePrediction()
+prediction.setModelTypeAsResNet()
+prediction.setModelPath(os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
+prediction.loadModel()
+
+predictions, probabilities = prediction.predictImage(os.path.join(execution_path, "1.jpg"), result_count=5 )
+for eachPrediction, eachProbability in zip(predictions, probabilities):
+    print(eachPrediction + " : " + eachProbability)
+```
+
+示例结果：
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg)
+
+```
+convertible : 52.459555864334106
+sports_car : 37.61284649372101
+pickup : 3.1751200556755066
+car_wheel : 1.817505806684494
+minivan : 1.7487050965428352
+```
+
+我们来分析示例的代码如下：
+```
+from imageai.Prediction import ImagePrediction
+import os 
+```
+上面的代码导入了**ImageAI**库和python **os**类。
+```
+execution_path = os.getcwd()
+```
+上面的代码获取包含python文件的文件夹路径（在本例中python文件为FirstPrediction.py）。
+
+```
+prediction = ImagePrediction()
+prediction.setModelTypeAsResNet()
+prediction.setModelPath(os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
+```
+
+在上面的代码中，我们在第一行创建了**ImagePrediction（）**类的实例，然后我们通过 在第二行中调用**.setModelTypeAsResNet（）**将预测对象的模型类型设置为ResNet ，在第三行中设置模型文件的路径（**resnet50_weights_tf_dim_ordering_tf_kernels.h5**）。
+
+```
+predictions, probabilities = prediction.predictImage(os.path.join(execution_path, "1.jpg"), result_count=5 )
+```
+
+在上面的行中，我们定义了两个变量，它们将调用函数来赋值，即**.predictImage（）**函数，我们在其中解析了图像的路径，并说明了我们想要的预测结果的数量。**result_count = 5**（可选1 to 1000）。**.predictImage（）**函数将返回预测的对象名和相应的百分比概率（**percentage_probabilities**）。
+
+```
+for eachPrediction, eachProbability in zip(predictions, probabilities):
+    print(eachPrediction + " : " + eachProbability)
+```
+
+上面的行获取了**predictions**数组中的每个对象，并从**percentage_probabilities中**获得了相应的百分比概率，最后将两者的结果打印到console。
+
+### [](#multiple-images-prediction)**多图像预测**
+
+您可以使用单个函数（或多个**.predictMultipleImages（）** 函数**）**在多个图像上运行图像预测。
+
+它的工作原理如下：
+
+- 定义普通的**ImagePrediction**实例
+- 设置模型类型和模型路径
+- 调用**.loadModel（）**函数载入模型
+- 创建一个数组并将所有要预测的图像的字符串路径添加到阵列。
+- 然后通过调用**.predictMultipleImages（）**函数执行预测并解析图像数组，并通过解析**result_count_per_image = 5**（默认值为2）设置每个图像所需的数字预测值
+
+以下是示例代码：
+
+```
+from imageai.Prediction import ImagePrediction
+import os
+
+execution_path = os.getcwd()
+
+multiple_prediction = ImagePrediction()
+multiple_prediction.setModelTypeAsResNet()
+multiple_prediction.setModelPath(os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
+multiple_prediction.loadModel()
+
+all_images_array = []
+
+all_files = os.listdir(execution_path)
+for each_file in all_files:
+    if(each_file.endswith(".jpg") or each_file.endswith(".png")):
+        all_images_array.append(each_file)
+
+results_array = multiple_prediction.predictMultipleImages(all_images_array, result_count_per_image=5)
+
+for each_result in results_array:
+predictions, percentage_probabilities = each_result["predictions"], each_result["percentage_probabilities"]
+for index in range(len(predictions)):
+print(predictions[index] + " : " + percentage_probabilities[index])
+print("-----------------------")
+```
+
+在上面的代码中，**.predictMultipleImages（）**函数将返回一个数组，其中包含每个图像的字典。每个字典包含用于预测的图像名和每个预测的百分比概率。
+
+示例结果：
+
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg) [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/2.jpg) [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/3.jpg)
+
+```
+convertible : 52.459555864334106
+sports_car : 37.61284649372101
+pickup : 3.1751200556755066
+car_wheel : 1.817505806684494
+minivan : 1.7487050965428352
+-----------------------
+toilet_tissue : 13.99008333683014
+jeep : 6.842949986457825
+car_wheel : 6.71963095664978
+seat_belt : 6.704962253570557
+minivan : 5.861184373497963
+-----------------------
+bustard : 52.03368067741394
+vulture : 20.936034619808197
+crane : 10.620515048503876
+kite : 10.20539253950119
+white_stork : 1.6472270712256432
+-----------------------
+```
+
+### [](#prediction-speed)**预测速度**
+
+**ImageAI**现在为所有图像预测任务提供预测速度。预测速度允许您以20％到60％之间的速率减少预测时间，轻微的变化就能准确地预测结果。可用的预测速度是"normal", "fast", "faster" and "fastest" 。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
+
+```
+prediction.loadModel(prediction_speed="fast")
+```
+
+为了观察预测速度的差异，请查看下面应用于多个预测的每个速度以及给定的预测和预测所花费的时间。以下结果来自于采用Intel Celeron N2820 CPU的Windows 8笔记本电脑进行的预测，处理器速度为2.13GHz
+
+**_预测速度=“正常”，预测时间= 5.9秒_**
+
+```
+convertible : 52.459555864334106
+sports_car : 37.61284649372101
+pickup : 3.1751200556755066
+car_wheel : 1.817505806684494
+minivan : 1.7487050965428352
+-----------------------
+toilet_tissue : 13.99008333683014
+jeep : 6.842949986457825
+car_wheel : 6.71963095664978
+seat_belt : 6.704962253570557
+minivan : 5.861184373497963
+-----------------------
+bustard : 52.03368067741394
+vulture : 20.936034619808197
+crane : 10.620515048503876
+kite : 10.20539253950119
+white_stork : 1.6472270712256432
+-----------------------
+```
+
+**_预测速度=“快速”，预测时间= 3.4秒_**
+
+```
+sports_car : 55.5136501789093
+pickup : 19.860029220581055
+convertible : 17.88402795791626
+tow_truck : 2.357563190162182
+car_wheel : 1.8646160140633583
+-----------------------
+drum : 12.241223454475403
+toilet_tissue : 10.96322312951088
+car_wheel : 10.776633024215698
+dial_telephone : 9.840480983257294
+toilet_seat : 8.989936858415604
+-----------------------
+vulture : 52.81011462211609
+bustard : 45.628002285957336
+kite : 0.8065823465585709
+goose : 0.3629807382822037
+crane : 0.21266008261591196
+-----------------------
+```
+
+**_预测速度=“更快”，预测时间= 2.7秒_**
+
+```
+sports_car : 79.90474104881287
+tow_truck : 9.751049429178238
+convertible : 7.056044787168503
+racer : 1.8735893070697784
+car_wheel : 0.7379394955933094
+-----------------------
+oil_filter : 73.52778315544128
+jeep : 11.926891654729843
+reflex_camera : 7.9965077340602875
+Polaroid_camera : 0.9798810817301273
+barbell : 0.8661789819598198
+-----------------------
+vulture : 93.00530552864075
+bustard : 6.636220961809158
+kite : 0.15161558985710144
+bald_eagle : 0.10513027664273977
+crane : 0.05982434959150851
+-----------------------
+```
+
+**_预测速度=“最快”，预测时间= 2.2秒_**
+
+```
+tow_truck : 62.5033438205719
+sports_car : 31.26143217086792
+racer : 2.2139860317111015
+fire_engine : 1.7813067883253098
+ambulance : 0.8790366351604462
+-----------------------
+reflex_camera : 94.00787949562073
+racer : 2.345871739089489
+jeep : 1.6016140580177307
+oil_filter : 1.4121259562671185
+lens_cap : 0.1283118617720902
+-----------------------
+kite : 98.5377550125122
+vulture : 0.7469987496733665
+bustard : 0.36855682265013456
+bald_eagle : 0.2437378279864788
+great_grey_owl : 0.0699841941241175
+-----------------------
+```
+
+### [](#please-note)请注意：
+
+调整速度模式时，最好使用具有更高精度的模型，如DenseNet或InceptionV3模型，或者在预测图像具有标志性的情况下使用它。
+
+### [](#image-input-types)**图像输入类型**
+
+以前版本的**ImageAI**仅支持文件输入，并接受图像的文件路径以进行图像预测。现在，**ImageAI**支持3种输入类型，即**图像文件的文件路径**（默认），**图像numpy数组**和**图像文件流**。这意味着您现在可以在生产应用程序中执行图像预测，例如在Web服务器和以上述任何格式返回文件到系统上。
+
+要使用numpy数组或文件流输入执行图像预测，您只需要在**.predictImage（）**函数或**.predictMultipleImages（）**函数中声明输入类型。见下面的例子。
+
+```
+predictions, probabilities = prediction.predictImage(image_array, result_count=5 , input_type="array" ) # For numpy array input type
+predictions, probabilities = prediction.predictImage(image_stream, result_count=5 , input_type="stream" ) # For file stream input type
+```
+
+### [](#prediction-in-multithreading)**多线程预测**
+
+在开发像用户界面（UI）这样的deafult线程上运行繁重任务的程序时，您应该考虑在新线程中运行预测。在新线程中使用ImageAI运行图像预测时，必须注意以下事项：
+
+- 您可以创建预测对象，设置其模型类型，在新线程外设置模型路径和json路径。
+- **.loadModel（）**必须在新线程中，并且图像预测（**predictImage（）**）必须在新线程中进行。
+
+使用多线程查看下面的图像预测示例代码：
+
+```
+from imageai.Prediction import ImagePrediction
+import os
+import threading
+execution_path = os.getcwd()
+
+prediction = ImagePrediction()
+prediction.setModelTypeAsResNet()
+prediction.setModelPath( os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
+
+picturesfolder = os.environ["USERPROFILE"] + "\Pictures\"
+allfiles = os.listdir(picturesfolder)
+
+class PredictionThread(threading.Thread):
+    def init(self):
+        threading.Thread.init(self)
+    def run(self):
+        prediction.loadModel()
+    for eachPicture in allfiles:
+        if eachPicture.endswith(".png") or eachPicture.endswith(".jpg"):
+            predictions, percentage_probabilities = prediction.predictImage(picturesfolder + eachPicture, result_count=1)
+    for prediction, percentage_probability in zip(predictions, probabilities):
+        print(prediction + " : " + percentage_probability)
+
+predictionThread = PredictionThread ()
+predictionThread.start()
+```
+
+### [](#documentation)**文档**
+
+`imageai.Prediction.ImagePrediction` class
+
+* * *
+
+该`ImagePrediction`类可用于任何的Python应用程序通过实例化它并调用下面的可用功能进行图像预测：
+
+- `setModelTypeAsSqueezeNet()`如果您选择使用SqueezeNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
+- `setModelTypeAsResNet()`如果您选择使用ResNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
+- `setModelTypeAsInceptionV3()`如果您选择使用InceptionV3Net模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
+- `setModelTypeAsDenseNet()`如果您选择使用DenseNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
+- `setModelPath()` 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。
+- `loadModel()` 只有在尝试调用`predictImage()`函数之前，才需要调用此函数一次。
+该函数接收一个`prediction_speed`的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
+    - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
+
+- `predictImage()` 此函数用于通过接收以下参数来预测指定图像：
+    - `input_type`（可选），类型要解析的输入。可接受的值是“file”，“array”和“stream”
+    - `image_input`，文件路径/ numpy数组/图像文件流的图像。
+    - `result_count`（可选），要发送的预测数，必须是
+1到1000之间的整数。默认值为5.
+
+    此函数返回2个数组，即'prediction_results'和'prediction_probabilities'。'prediction_results'包含按百分比概率降序排列的可能对象类。'prediction_probabilities'包含每个对象类的概率百分比。
+    数组中每个对象类的位置对应于'prediction_probabilities' 数组中百分比可能性。
+
+    _**：param input_type:**_
+
+    _**：param image_input:**_
+
+    _**：param result_count:**_
+
+    _**：return prediction_results，prediction_probabilities:**_
+
+- `predictMultipleImages()`此函数用于通过接收以下参数来预测多个图像：
+    - input_type，解析数组中包含的输入类型。可接受的值是“file”，“array”和“stream”
+    - sent_images_array，图像文件路径数组，图像numpy数组或图像文件流
+    - result_count_per_image（可选），数量每个图像要发送的预测，必须是1到1000之间的整数。默认值为2。
+
+    此函数返回一个字典数组，每个字典包含2个数组，即'prediction_results'和'prediction_probabilities'。'prediction_results'包含按其百分比概率降序排列的可能对象类。'prediction_probabilities'包含每个对象类的概率百分比。'prediction_results'数组中每个对象类的位置对应于'prediction_probabilities'数组中百分比可能性。
+
+    **_:param input_type:_**
+
+    **_:param sent_images_array:_**
+
+    **_:param result_count_per_image:_**
+
+    **_:return output_array:_**
