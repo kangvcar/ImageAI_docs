@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ImageAI：对象检测 &mdash; ImageAI v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ImageAI
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ImageAI：对象检测</a><ul>
+<li><a class="reference internal" href="#"><strong>目录</strong></a></li>
+<li><a class="reference internal" href="#firstobjectdetection-py"><strong>FirstObjectDetection.py</strong></a></li>
+<li><a class="reference internal" href="#"><strong>物体检测，提取和微调</strong></a></li>
+<li><a class="reference internal" href="#"><strong>您需要知道的一个重要功能！</strong></a></li>
+<li><a class="reference internal" href="#"><strong>自定义对象检测</strong></a></li>
+<li><a class="reference internal" href="#"><strong>检测速度</strong></a></li>
+<li><a class="reference internal" href="#"><strong>图像输入和输出类型</strong></a></li>
+<li><a class="reference internal" href="#"><strong>文档</strong></a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ImageAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ImageAI：对象检测</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ImageAI_Object Detection.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="imageai">
+<span id="imageai"></span><h1><a class="reference external" href="#imageai--object-detection-"></a>ImageAI：对象检测<a class="headerlink" href="#imageai" title="永久链接至标题">¶</a></h1>
+<p><strong>AI共享</strong>项目<a class="reference external" href="https://commons.specpal.science">https://commons.specpal.science</a></p>
+<hr class="docutils" />
+<div class="section" id="">
+<span id="id1"></span><h2><a class="reference external" href="#table-of-contents"></a><strong>目录</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#firstdetection">第一个物体检测</a></li>
+<li><a class="reference external" href="#objectextraction">物体检测，提取和微调</a></li>
+<li><a class="reference external" href="#customdetection">自定义物体检测</a></li>
+<li><a class="reference external" href="#detectionspeed">检测速度</a></li>
+<li><a class="reference external" href="#inputoutputtype">图像输入和输出类型</a></li>
+<li><a class="reference external" href="#documentation">文档</a></li>
+</ul>
+<p>ImageAI提供了非常方便和强大的方法来对图像执行物体检测并从图像中提取每个物体。提供的对象检测类仅支持当前最先进的RetinaNet，而在最近的将来将支持其他对象检测网络。要开始执行对象检测，您必须通过以下链接下载RetinaNet模型文件：</p>
+<p><strong>- <a class="reference external" href="https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5">RetinaNet</a></strong> <strong>（文件大小= 145 MB）</strong></p>
+<p>下载RetinaNet模型文件后，应将模型文件复制到.py文件所在的项目文件夹中。然后创建一个python文件并为其命名; 以下是一个例子FirstObjectDetection.py。然后将下面的代码写入python文件：</p>
+</div>
+<div class="section" id="firstobjectdetection-py">
+<span id="firstobjectdetection-py"></span><h2><a class="reference external" href="#firstobjectdetectionpy"></a><strong>FirstObjectDetection.py</strong><a class="headerlink" href="#firstobjectdetection-py" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">ObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">ObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromImage</span><span class="p">(</span><span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image2.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image2new.jpg&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">eachObject</span> <span class="ow">in</span> <span class="n">detections</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;percentage_probability&quot;</span><span class="p">]</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>示例结果：</p>
+<p><strong><em>输入图像</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image2.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2.jpg" /></a></p>
+<p><strong><em>输出图像</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image2new.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2new.jpg" /></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">person</span> <span class="p">:</span> <span class="mf">91.946941614151</span>
+<span class="o">--------------------------------</span>
+<span class="n">person</span> <span class="p">:</span> <span class="mf">73.61021637916565</span>
+<span class="o">--------------------------------</span>
+<span class="n">laptop</span> <span class="p">:</span> <span class="mf">90.24320840835571</span>
+<span class="o">--------------------------------</span>
+<span class="n">laptop</span> <span class="p">:</span> <span class="mf">73.6881673336029</span>
+<span class="o">--------------------------------</span>
+<span class="n">laptop</span> <span class="p">:</span> <span class="mf">95.16398310661316</span>
+<span class="o">--------------------------------</span>
+<span class="n">person</span> <span class="p">:</span> <span class="mf">87.10319399833679</span>
+<span class="o">--------------------------------</span>
+</pre></div>
+</div>
+<p>让我们对上面使用的对象检测代码进行解读。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">ObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>在上面的3行中，我们在第一行导入<strong>ImageAI Object Detection</strong>类，在第二行导入<strong>os</strong>并获得运行python文件的文件夹的路径。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span> <span class="o">=</span> <span class="n">ObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>在上面的4行中，我们在第一行创建了<strong>ObjectDetection</strong>类的新实例，在第二行中将模型类型设置为RetinaNet，第三行将模型路径设置为我们下载的RetinaNet模型文件并复制到python文件夹中的路径，第四行加载模型。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detections</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromImage</span><span class="p">(</span><span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image2.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image2new.jpg&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">eachObject</span> <span class="ow">in</span> <span class="n">detections</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;percentage_probability&quot;</span><span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的2行中，我们运行了<code class="docutils literal notranslate"><span class="pre">detectObjectsFromImage()</span></code>函数并解析了我们图像的路径，以及该函数将保存的新图像的路径。然后该函数返回一个字典数组，每个字典对应于图像中检测到的对象。每个字典都有属性<strong>名称</strong>（对象名称）和 <strong>percentage_probability</strong>（检测概率百分比）</p>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2><a class="reference external" href="#object-detection-extraction-and-fine-tune"></a><strong>物体检测，提取和微调</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>在我们上面使用的示例中，我们在图像上运行对象检测，它将检测到的对象返回到数组中，并保存在每个对象上绘制矩形标记的新图像。在下面的示例中，我们将能够从输入图像中提取每个对象并单独保存。</p>
+<p>在下面的示例代码中，它与先前的对象检测代码非常相似，我们将检测到的每个对象保存为单独的图像。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">ObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">ObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+
+<span class="n">detections</span><span class="p">,</span> <span class="n">objects_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromImage</span><span class="p">(</span><span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3new.jpg&quot;</span><span class="p">),</span> <span class="n">extract_detected_objects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">eachObject</span><span class="p">,</span> <span class="n">eachObjectPath</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">detections</span><span class="p">,</span> <span class="n">objects_path</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;percentage_probability&quot;</span><span class="p">]</span> <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object&#39;s image saved in &quot;</span> <span class="o">+</span> <span class="n">eachObjectPath</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>示例结果：</p>
+<p><strong><em>输入图像</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3.jpg" /></a></p>
+<p><strong><em>输出图像</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg" /></a></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-1.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-1.jpg" /></a></p>
+<p><em>人</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-2.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-2.jpg" /></a></p>
+<p><em>人</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-3.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-3.jpg" /></a></p>
+<p><em>人</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-4.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-4.jpg" /></a></p>
+<p><em>人</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/motorcycle-5.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/motorcycle-5.jpg" /></a></p>
+<p><em>摩托车</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/dog-6.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/dog-6.jpg" /></a></p>
+<p><em>狗</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/car-7.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/car-7.jpg" /></a></p>
+<p><em>汽车</em></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-8.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-8.jpg" /></a></p>
+<p><em>人</em></p>
+<p>让我们回顾一下执行对象检测并提取图像的代码部分：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detections</span><span class="p">,</span> <span class="n">objects_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromImage</span><span class="p">(</span><span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3new.jpg&quot;</span><span class="p">),</span> <span class="n">extract_detected_objects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">eachObject</span><span class="p">,</span> <span class="n">eachObjectPath</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">detections</span><span class="p">,</span> <span class="n">objects_path</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;percentage_probability&quot;</span><span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object&#39;s image saved in &quot;</span> <span class="o">+</span> <span class="n">eachObjectPath</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的行中，我们调用了<code class="docutils literal notranslate"><span class="pre">detectObjectsFromImage()</span></code>，在输入图像路径，输出图像部分新增了参数<code class="docutils literal notranslate"><span class="pre">extract_detected_objects=True</span></code>。此参数指出该函数应提取从图像中检测到的每个对象，并保存它具有单独的图像。默认情况下该参数为false。设置为<strong>true后</strong>，该函数将创建一个目录，即<code class="docutils literal notranslate"><span class="pre">输出图像路径+&quot;-objects&quot;</span></code>。然后它将所有提取的图像保存到这个新目录中，每个图像的名称是<code class="docutils literal notranslate"><span class="pre">检测到的对象名称+&quot;-number&quot;</span></code>，它对应于<strong>检测到对象</strong>的顺序。</p>
+<p>我们设置的这个新参数将检测到的对象提取并保存为图像，这将使函数返回2个值。第一个是字典数组，每个字典对应一个检测到的对象。第二个是检测和提取的每个对象的保存图像的路径，并且它们按照对象在第一个阵列中的顺序排列。</p>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2><a class="reference external" href="#and-one-important-feature-you-need-to-know"></a><strong>您需要知道的一个重要功能！</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>您会记得<code class="docutils literal notranslate"><span class="pre">detectObjectsFromImage()</span></code>函数返回每个检测到的对象的百分比概率。该函数有一个参数 <code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>，其默认值为<strong>50</strong>（值范围介于0 - 100之间）。这意味着只有当百分比概率为<strong>50或更高时，</strong>该函数才会返回检测到的对象。该值保持在该数字以确保检测结果的完整性。但是，在此过程中可能会跳过许多对象。因此，您可以通过将<code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>设置为较小的值来检测对象检测，以检测更多的对象或更高的值来检测更少的对象。</p>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2><a class="reference external" href="#custom-object-detection"></a><strong>自定义对象检测</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>对象检测模型（由<strong>RetinaNet</strong>支持）<strong>ImageAI</strong>可以检测80种不同类型的对象。他们包括：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">person</span><span class="p">,</span>   <span class="n">bicycle</span><span class="p">,</span>   <span class="n">car</span><span class="p">,</span>   <span class="n">motorcycle</span><span class="p">,</span>   <span class="n">airplane</span><span class="p">,</span>
+          <span class="n">bus</span><span class="p">,</span>   <span class="n">train</span><span class="p">,</span>   <span class="n">truck</span><span class="p">,</span>   <span class="n">boat</span><span class="p">,</span>   <span class="n">traffic</span> <span class="n">light</span><span class="p">,</span>   <span class="n">fire</span> <span class="n">hydrant</span><span class="p">,</span>   <span class="n">stop_sign</span><span class="p">,</span>
+          <span class="n">parking</span> <span class="n">meter</span><span class="p">,</span>   <span class="n">bench</span><span class="p">,</span>   <span class="n">bird</span><span class="p">,</span>   <span class="n">cat</span><span class="p">,</span>   <span class="n">dog</span><span class="p">,</span>   <span class="n">horse</span><span class="p">,</span>   <span class="n">sheep</span><span class="p">,</span>   <span class="n">cow</span><span class="p">,</span>   <span class="n">elephant</span><span class="p">,</span>   <span class="n">bear</span><span class="p">,</span>   <span class="n">zebra</span><span class="p">,</span>
+          <span class="n">giraffe</span><span class="p">,</span>   <span class="n">backpack</span><span class="p">,</span>   <span class="n">umbrella</span><span class="p">,</span>   <span class="n">handbag</span><span class="p">,</span>   <span class="n">tie</span><span class="p">,</span>   <span class="n">suitcase</span><span class="p">,</span>   <span class="n">frisbee</span><span class="p">,</span>   <span class="n">skis</span><span class="p">,</span>   <span class="n">snowboard</span><span class="p">,</span>
+          <span class="n">sports</span> <span class="n">ball</span><span class="p">,</span>   <span class="n">kite</span><span class="p">,</span>   <span class="n">baseball</span> <span class="n">bat</span><span class="p">,</span>   <span class="n">baseball</span> <span class="n">glove</span><span class="p">,</span>   <span class="n">skateboard</span><span class="p">,</span>   <span class="n">surfboard</span><span class="p">,</span>   <span class="n">tennis</span> <span class="n">racket</span><span class="p">,</span>
+          <span class="n">bottle</span><span class="p">,</span>   <span class="n">wine</span> <span class="n">glass</span><span class="p">,</span>   <span class="n">cup</span><span class="p">,</span>   <span class="n">fork</span><span class="p">,</span>   <span class="n">knife</span><span class="p">,</span>   <span class="n">spoon</span><span class="p">,</span>   <span class="n">bowl</span><span class="p">,</span>   <span class="n">banana</span><span class="p">,</span>   <span class="n">apple</span><span class="p">,</span>   <span class="n">sandwich</span><span class="p">,</span>   <span class="n">orange</span><span class="p">,</span>
+          <span class="n">broccoli</span><span class="p">,</span>   <span class="n">carrot</span><span class="p">,</span>   <span class="n">hot</span> <span class="n">dog</span><span class="p">,</span>   <span class="n">pizza</span><span class="p">,</span>   <span class="n">donot</span><span class="p">,</span>   <span class="n">cake</span><span class="p">,</span>   <span class="n">chair</span><span class="p">,</span>   <span class="n">couch</span><span class="p">,</span>   <span class="n">potted</span> <span class="n">plant</span><span class="p">,</span>   <span class="n">bed</span><span class="p">,</span>
+          <span class="n">dining</span> <span class="n">table</span><span class="p">,</span>   <span class="n">toilet</span><span class="p">,</span>   <span class="n">tv</span><span class="p">,</span>   <span class="n">laptop</span><span class="p">,</span>   <span class="n">mouse</span><span class="p">,</span>   <span class="n">remote</span><span class="p">,</span>   <span class="n">keyboard</span><span class="p">,</span>   <span class="n">cell</span> <span class="n">phone</span><span class="p">,</span>   <span class="n">microwave</span><span class="p">,</span>
+          <span class="n">oven</span><span class="p">,</span>   <span class="n">toaster</span><span class="p">,</span>   <span class="n">sink</span><span class="p">,</span>   <span class="n">refrigerator</span><span class="p">,</span>   <span class="n">book</span><span class="p">,</span>   <span class="n">clock</span><span class="p">,</span>   <span class="n">vase</span><span class="p">,</span>   <span class="n">scissors</span><span class="p">,</span>   <span class="n">teddy</span> <span class="n">bear</span><span class="p">,</span>   <span class="n">hair</span> <span class="n">dryer</span><span class="p">,</span>
+          <span class="n">toothbrush</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>有趣的是，<strong>ImageAI</strong>允许您对上面的一个或多个项目执行检测。这意味着您可以自定义要在图像中检测到的对象类型。我们来看看下面的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">ObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">ObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+
+<span class="n">custom_objects</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">CustomObjects</span><span class="p">(</span><span class="n">car</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">motorcycle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectCustomObjectsFromImage</span><span class="p">(</span><span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3custom.jpg&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">eachObject</span> <span class="ow">in</span> <span class="n">detections</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachObject</span><span class="p">[</span><span class="s2">&quot;percentage_probability&quot;</span><span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>结果：</p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/image3custom.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3custom.jpg" /></a></p>
+<p>让我们看一下使这成为可能的代码</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_objects</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">CustomObjects</span><span class="p">(</span><span class="n">car</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">motorcycle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectCustomObjectsFromImage</span><span class="p">(</span><span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="n">input_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3.jpg&quot;</span><span class="p">),</span> <span class="n">output_image_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;image3custom.jpg&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>在上面的代码中，在加载模型之后（也可以在加载模型之前完成），我们定义了一个新变量<code class="docutils literal notranslate"><span class="pre">custom_objects</span> <span class="pre">=</span> <span class="pre">detector.CustomObjects()</span></code>，其中我们将其car和motorcycle属性设置为等于<strong>True</strong>。这是为了告诉模型只检测我们设置为True的对象。然后我们调用<code class="docutils literal notranslate"><span class="pre">detector.detectCustomObjectsFromImage()</span></code>，这是允许我们执行自定义对象检测的函数。然后我们将<code class="docutils literal notranslate"><span class="pre">custom_objects</span></code>值设置为我们定义的自定义对象变量。</p>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2><a class="reference external" href="#detection-speed"></a><strong>检测速度</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p><strong>ImageAI</strong>现在为所有对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但对检测结果准确性影响不大。结合降低<code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>参数，检测可以匹配normal速度，但却大大缩短了检测时间。可用的检测速度是 “normal”(default), “fast”, “faster” , “fastest” and “flash”。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">(</span><span class="n">detection_speed</span><span class="o">=</span><span class="s2">&quot;fast&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>要观察检测速度的差异，请查看下面的不同速度应用于物体检测的结果，同时调整检测时间<code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>。下面的结果来自在Intel Celeron N2820 CPU的Windows 8笔记本电脑上执行的检测，处理器速度为2.13GHz</p>
+<p><strong><em>检测速度=”normal”，最小百分比概率= 50（默认值），检测时间= 63.5秒</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/5normal.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5normal.jpg" /></a></p>
+<p><strong><em>检测速度=”fast”，最小百分比概率= 40（默认值），检测时间= 20.8秒</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/5fast.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5fast.jpg" /></a></p>
+<p><strong><em>检测速度=”faster”，最小百分比概率= 30（默认值），检测时间= 11.2秒</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/5faster.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5faster.jpg" /></a></p>
+<p><strong><em>检测速度=”fastest”，最小百分比概率= 30（默认值），检测时间= 7.6秒</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/5fastest.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5fastest.jpg" /></a></p>
+<p><strong><em>检测速度=”flash”，最小百分比概率= 10（默认值），检测时间= 3.67秒</em></strong></p>
+<p><a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/5flash.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5flash.jpg" /></a></p>
+<p>您会注意到，在”flash”检测速度下，检测速度最快但准确度最低。那是因为图片中没有任何标志性的对象。”flash”检测速度下，其中输入图像是代表性的（包含一个标志性图像）模式是最适合的。请查看下面的示例，以便在标志性图像中进行检测。</p>
+<p><strong><em>检测速度=”flash”，最小百分比概率= 30（默认值），检测时间= 3.85秒</em></strong>
+<a class="reference external" href="/OlafenwaMoses/ImageAI/blob/master/images/6flash.jpg"><img alt="" src="https://github.com/OlafenwaMoses/ImageAI/raw/master/images/6flash.jpg" /></a></p>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h2><a class="reference external" href="#image-input--output-types"></a><strong>图像输入和输出类型</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>以前版本的<strong>ImageAI</strong>仅支持文件输入，并接受图像的文件路径以进行图像检测。现在，<strong>ImageAI</strong>支持3种输入类型的输入，它们是<strong>图像文件的文件路径</strong>（默认），<strong>图像numpy数组</strong>和<strong>图像文件流</strong> ，以及2种类型的输出，它们是图像<strong>文件</strong>（默认）和numpy <strong>数组</strong>。这意味着您现在可以在生产应用程序中执行对象检测，例如在Web服务器以上述格式返回文件到系统上。</p>
+<p>要使用numpy数组或文件流输入执行对象检测，您只需要在<code class="docutils literal notranslate"><span class="pre">.detectObjectsFromImage()</span></code>或<code class="docutils literal notranslate"><span class="pre">.detectCustomObjectsFromImage()</span></code>函数中声明输入类型函数。见下面的例子。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>detections = detector.detectObjectsFromImage(input_type=&quot;array&quot;, input_image=image_array , output_image_path=os.path.join(execution_path , &quot;image.jpg&quot;)) ＃对于numpy数组输入类型
+detections = detector.detectObjectsFromImage(input_type=&quot;stream&quot;, input_image=image_stream , output_image_path=os.path.join(execution_path , &quot;test2new.jpg&quot;)) ＃对于文件流输入类型
+</pre></div>
+</div>
+<p>要使用numpy数组输出执行对象检测，您只需要在<code class="docutils literal notranslate"><span class="pre">.detectObjectsFromImage()</span></code>或<code class="docutils literal notranslate"><span class="pre">.detectCustomObjectsFromImage()</span></code>函数中声明输出类型。见下面的例子。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>detected_image_array, detections = detector.detectObjectsFromImage(output_type=&quot;array&quot;, input_image=&quot;image.jpg&quot; )   ＃对于numpy数组输出类型
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h2><a class="reference external" href="#documentation"></a><strong>文档</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">imageai.Detection.ObjectDetection</span></code> class</p>
+<hr class="docutils" />
+<p>所述<strong>ObjectDetection</strong>类可用于通过实例化它并调用下面的可用功能来执行图像上，对象提取和多个对象检测：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">setModelTypeAsRetinaNet()</span></code> 如果您选择使用RetinaNet 模型文件来预测图像，你需要调用这个函数。你只需要调用一次。</li>
+<li><code class="docutils literal notranslate"><span class="pre">setModelPath()</span></code> 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。</li>
+<li><code class="docutils literal notranslate"><span class="pre">loadModel()</span></code> 此函数是必需的，用于从<code class="docutils literal notranslate"><span class="pre">setModelPath()</span></code>定义的文件路径将模型结构加载到程序中
+。该函数接收一个<code class="docutils literal notranslate"><span class="pre">detection_speed</span></code>的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。<ul>
+<li><code class="docutils literal notranslate"><span class="pre">detection_speed</span></code>（可选）; 可接受的值是”normal”, “fast”, “faster” and “fastest”</li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">detectObjectsFromImage()</span></code>此函数用于检测给定图像路径中可观察的对象：<ul>
+<li><code class="docutils literal notranslate"><span class="pre">input_image</span></code>，可以是文件路径，图像numpy数组或图像文件流</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>（仅当output_type = file），如果output_type = file ，输出图像的文件路径，包含检测框和标签。</li>
+<li><code class="docutils literal notranslate"><span class="pre">input_type</span></code>（可选），文件路径/ 图像numpy数组/图像文件流。可接受的值是“文件”，“数组”和“流”</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_type</span></code>（可选），文件路径/ numpy数组/图像文件流的图像。可接受的值是”file” and “array”</li>
+<li><code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span></code>（可选），用于将每个检测到的对象单独保存为图像并返回对象图像路径的数组。</li>
+<li><code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。</li>
+</ul>
+</li>
+</ul>
+<p>此函数返回的值取决于解析的参数。可返回的值如下所示</p>
+<ul class="simple">
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">False</span></code>或其默认值和<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='file'</span></code>或其
+默认值，则必须将<code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>作为字符串解析为您希望
+检测到的图像的路径然,该函数将返回：<ol>
+<li>一个字典数组，每个字典对应于在图像中检测到的对象。每个字典包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">False</span></code>或其默认值并且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='array'</span></code>，则该函数将返回：<ol>
+<li>检测到的图像的numpy数组</li>
+<li>字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">True</span></code>且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='file'</span></code>或
+在默认值，您必须将<code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>解析为您想要保存检测到的图像的路径的字符串。然后该函数将返回：<ol>
+<li>一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+<li>从图像中提取的每个对象的图像的字符串路径数组</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">True</span></code>且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='array'</span></code>，则该函数将返回：<ol>
+<li>numpy检测到的图像的数组</li>
+<li>一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+<li>图像中检测到的每个对象的numpy数组数组</li>
+</ol>
+</li>
+</ul>
+<p><em>::param input_image::</em></p>
+<p><em>::param output_image_path::</em></p>
+<p><em>::param input_type::</em></p>
+<p><em>::param output_type::</em></p>
+<p><em>::param extract_detected_objects::</em></p>
+<p><em>::param minimum_percentage_probability::</em></p>
+<p><em>::return output_objects_array::</em></p>
+<p><em>::return detected_copy::</em></p>
+<p><em>::return detected_detected_objects_image_array::</em></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">CustomObjecs()</span></code>可以选择调用此函数来<strong>手动</strong>选择
+要从图像中检测的对象类型。这些对象在函数变量中预先创建，并预定义为“False”，
+对于任意数量的可用对象，您可以轻松地将其设置为true。此函数
+返回一个字典，必须将其解析用于为<code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromImage()</span></code>。
+检测自定义对象发生在调用函数<code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromImage()</span></code>时。</li>
+<li><code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromImage</span></code>此函数用于检测给定图像路径中可观察的预定义对象：<ul>
+<li><code class="docutils literal notranslate"><span class="pre">custom_objects</span></code>，一个CustomObject类的实例，用于过滤要检测的对象</li>
+<li><code class="docutils literal notranslate"><span class="pre">input_image</span></code>，可以将文件转换为path，image numpy array或image file stream</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>，包含检测框和标签的输出图像的文件路径，如果<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">=&quot;file&quot;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">input_type</span></code>（可选），file path/numpy array/image file stream of the image. 可选值为 “file” and “array”</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_type</span></code>（可选）， file path/numpy array/image file stream of the image. 可选值为 “file” and “array”</li>
+<li><code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span></code>（可选，默认为False），选项可以将每个检测到的对象单独保存为图像，并返回对象图像路径的数组。</li>
+<li><code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。</li>
+</ul>
+</li>
+</ul>
+<p>此函数返回的值取决于解析的参数。可返回的可能值如下所示</p>
+<ul class="simple">
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">False</span></code>或其默认值并且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='file'</span></code>或
+在默认值下，您必须将<code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>解析为您想要
+保存检测到的图像的路径的字符串。然后该函数将返回：<ol>
+<li>一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">False</span></code>或其默认值并且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='array'</span></code>，则该函数将返回：<ol>
+<li>检测到的图像的numpy数组</li>
+<li>一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">True</span></code>且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='file'</span></code>或其
+默认值，则必须将<code class="docutils literal notranslate"><span class="pre">output_image_path</span></code>解析为要保存检测到的图像的路径的字符串。然后该函数将返回：<ol>
+<li>一个字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+<li>从图像中提取的每个对象的图像的字符串路径数组</li>
+</ol>
+</li>
+<li>如果<code class="docutils literal notranslate"><span class="pre">extract_detected_objects</span> <span class="pre">=</span> <span class="pre">True</span></code>且<code class="docutils literal notranslate"><span class="pre">output_type</span> <span class="pre">='array'</span></code>，则该函数将返回：<ol>
+<li>检测到的图像的numpy数组</li>
+<li>字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：<ul>
+<li>name</li>
+<li>percentage_probability</li>
+</ul>
+</li>
+<li>图像中检测到的每个对象的numpy数组</li>
+</ol>
+</li>
+</ul>
+<p><em>::param input_image::</em></p>
+<p><em>::param output_image_path::</em></p>
+<p><em>::param input_type::</em></p>
+<p><em>::param output_type::</em></p>
+<p><em>::param extract_detected_objects::</em></p>
+<p><em>::param minimum_percentage_probability::</em></p>
+<p><em>::return output_objects_array::</em></p>
+<p><em>::return detected_copy::</em></p>
+<p><em>::return detected_detected_objects_image_array::</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kangvcar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ImageAI：视频对象检测和跟踪（预览版） &mdash; ImageAI v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ImageAI
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ImageAI：视频对象检测和跟踪（预览版）</a><ul>
+<li><a class="reference internal" href="#"><strong>目录</strong></a></li>
+<li><a class="reference internal" href="#firstvideoobjectdetection-py"><strong>FirstVideoObjectDetection.py</strong></a></li>
+<li><a class="reference internal" href="#"><strong>自定义视频对象检测</strong></a></li>
+<li><a class="reference internal" href="#"><strong>视频检测速度</strong></a></li>
+<li><a class="reference internal" href="#"><strong>帧检测间隔</strong></a></li>
+<li><a class="reference internal" href="#"><strong>文档</strong></a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ImageAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ImageAI：视频对象检测和跟踪（预览版）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ImageAI_Video_Object_Detection_and_Tracking.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="imageai">
+<span id="imageai"></span><h1>ImageAI：视频对象检测和跟踪（预览版）<a class="headerlink" href="#imageai" title="永久链接至标题">¶</a></h1>
+<p><strong>AI 共享</strong>项目 <a class="reference external" href="https://commons.specpal.science">https://commons.specpal.science</a></p>
+<hr class="docutils" />
+<div class="section" id="">
+<span id="id1"></span><h2><strong>目录</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#videodetection">第一视频对象检测</a></li>
+<li><a class="reference external" href="#customvideodetection">自定义视频对象检测（对象跟踪）</a></li>
+<li><a class="reference external" href="#videodetectionspeed">检测速度</a></li>
+<li><a class="reference external" href="#videodetectionintervals">帧检测间隔</a></li>
+<li><a class="reference external" href="#documentation">文档</a></li>
+</ul>
+<p>ImageAI 提供方便，灵活和强大的方法来对视频进行对象检测。提供的视频对象检测类仅支持当前最先进的 RetinaNet，而在最近将支持其他对象检测网络。这是一个预览版本，但有很多令人难以置信的选择。要开始执行对象检测，您必须通过以下链接下载 RetinaNet 对象检测：</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5">RetinaNet</a> <strong>（文件大小=145MB）</strong></li>
+</ul>
+<p>由于视频对象检测是计算密集型任务，因此我们建议您使用安装了 NVIDIA GPU 和 GPU 版 Tensorflow 的计算机执行此实验。使用CPU进行视频对象检测将比使用 NVIDIA GPU 驱动的计算机慢。您也可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。</p>
+<p>下载 RetinaNet 模型文件后，应将模型文件复制到<code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件所在的项目文件夹中。然后创建一个 python 文件并为其命名; 以下是一个例子<code class="docutils literal notranslate"><span class="pre">FirstVideoObjectDetection.py</span></code>。然后将下面的代码写入 python 文件：</p>
+</div>
+<div class="section" id="firstvideoobjectdetection-py">
+<span id="firstvideoobjectdetection-py"></span><h2><strong>FirstVideoObjectDetection.py</strong><a class="headerlink" href="#firstvideoobjectdetection-py" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">VideoObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">VideoObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+
+<span class="n">video_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromVideo</span><span class="p">(</span><span class="n">input_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic.mp4&quot;</span><span class="p">),</span> <span class="n">output_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic_detected&quot;</span><span class="p">),</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">log_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong><em>输入视频（1 分钟 24 秒视频）</em></strong></p>
+<p><a class="reference external" href="https://github.com/OlafenwaMoses/ImageAI/blob/master/videos/traffic.mp4"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/video--1.jpg" /></a></p>
+<p><strong><em>输出视频</em></strong></p>
+<p><a class="reference external" href="https://www.youtube.com/embed/qplVDqOmElI?rel=0"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/video-2.jpg" /></a></p>
+<p>C:\Users\User\PycharmProjects\ImageAITest\traffic_detected.avi</p>
+<p>让我们对上面使用的对象检测代码进行分析。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">VideoObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>在上面的 3 行中，我们在第一行导入 <strong>ImageAI video object detection</strong>类，在第二行导入 <strong>os</strong> 并获取运行 python 文件的文件夹的路径。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span> <span class="o">=</span> <span class="n">VideoObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>在上面的 4 行中，我们在第一行创建了一个 <strong>VideoObjectDetection</strong> 类的新实例，在第二行中将模型类型设置为 RetinaNet，第三行将模型路径设置为我们下载的 RetinaNet 模型文件并复制到 python 文件夹后的路径，第四行加载模型。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">video_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectObjectsFromVideo</span><span class="p">(</span><span class="n">input_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic.mp4&quot;</span><span class="p">),</span>
+<span class="n">output_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic_detected&quot;</span><span class="p">)</span>
+<span class="p">,</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">log_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的 2 行中，我们运行了 <strong>detectObjectsFromVideo()</strong>函数并解析了我们视频的路径<code class="docutils literal notranslate"><span class="pre">input_file_path</span></code>，新视频将保存为<code class="docutils literal notranslate"><span class="pre">output_file_path</span></code>所指定的路径（没有扩展名，默认保存. avi 视频），<code class="docutils literal notranslate"><span class="pre">frames_per_second</span></code>的值表示我们希望输出视频具有的每秒帧数（fps），<code class="docutils literal notranslate"><span class="pre">log_progress</span></code>表示在控制台中记录检测进度的选项。然后，该函数返回已保存视频的路径，该视频包含在视频中检测到的对象上呈现的框和百分比概率。</p>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2><strong>自定义视频对象检测</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>该视频对象检测模型（由<strong>RetinaNet</strong>支持）<strong>ImageAI</strong> 可以检测 80 种不同类型的对象。他们包括：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">person</span><span class="p">,</span>   <span class="n">bicycle</span><span class="p">,</span>   <span class="n">car</span><span class="p">,</span>   <span class="n">motorcycle</span><span class="p">,</span>   <span class="n">airplane</span><span class="p">,</span>
+          <span class="n">bus</span><span class="p">,</span>   <span class="n">train</span><span class="p">,</span>   <span class="n">truck</span><span class="p">,</span>   <span class="n">boat</span><span class="p">,</span>   <span class="n">traffic</span> <span class="n">light</span><span class="p">,</span>   <span class="n">fire</span> <span class="n">hydrant</span><span class="p">,</span>   <span class="n">stop_sign</span><span class="p">,</span>
+          <span class="n">parking</span> <span class="n">meter</span><span class="p">,</span>   <span class="n">bench</span><span class="p">,</span>   <span class="n">bird</span><span class="p">,</span>   <span class="n">cat</span><span class="p">,</span>   <span class="n">dog</span><span class="p">,</span>   <span class="n">horse</span><span class="p">,</span>   <span class="n">sheep</span><span class="p">,</span>   <span class="n">cow</span><span class="p">,</span>   <span class="n">elephant</span><span class="p">,</span>   <span class="n">bear</span><span class="p">,</span>   <span class="n">zebra</span><span class="p">,</span>
+          <span class="n">giraffe</span><span class="p">,</span>   <span class="n">backpack</span><span class="p">,</span>   <span class="n">umbrella</span><span class="p">,</span>   <span class="n">handbag</span><span class="p">,</span>   <span class="n">tie</span><span class="p">,</span>   <span class="n">suitcase</span><span class="p">,</span>   <span class="n">frisbee</span><span class="p">,</span>   <span class="n">skis</span><span class="p">,</span>   <span class="n">snowboard</span><span class="p">,</span>
+          <span class="n">sports</span> <span class="n">ball</span><span class="p">,</span>   <span class="n">kite</span><span class="p">,</span>   <span class="n">baseball</span> <span class="n">bat</span><span class="p">,</span>   <span class="n">baseball</span> <span class="n">glove</span><span class="p">,</span>   <span class="n">skateboard</span><span class="p">,</span>   <span class="n">surfboard</span><span class="p">,</span>   <span class="n">tennis</span> <span class="n">racket</span><span class="p">,</span>
+          <span class="n">bottle</span><span class="p">,</span>   <span class="n">wine</span> <span class="n">glass</span><span class="p">,</span>   <span class="n">cup</span><span class="p">,</span>   <span class="n">fork</span><span class="p">,</span>   <span class="n">knife</span><span class="p">,</span>   <span class="n">spoon</span><span class="p">,</span>   <span class="n">bowl</span><span class="p">,</span>   <span class="n">banana</span><span class="p">,</span>   <span class="n">apple</span><span class="p">,</span>   <span class="n">sandwich</span><span class="p">,</span>   <span class="n">orange</span><span class="p">,</span>
+          <span class="n">broccoli</span><span class="p">,</span>   <span class="n">carrot</span><span class="p">,</span>   <span class="n">hot</span> <span class="n">dog</span><span class="p">,</span>   <span class="n">pizza</span><span class="p">,</span>   <span class="n">donot</span><span class="p">,</span>   <span class="n">cake</span><span class="p">,</span>   <span class="n">chair</span><span class="p">,</span>   <span class="n">couch</span><span class="p">,</span>   <span class="n">potted</span> <span class="n">plant</span><span class="p">,</span>   <span class="n">bed</span><span class="p">,</span>
+          <span class="n">dining</span> <span class="n">table</span><span class="p">,</span>   <span class="n">toilet</span><span class="p">,</span>   <span class="n">tv</span><span class="p">,</span>   <span class="n">laptop</span><span class="p">,</span>   <span class="n">mouse</span><span class="p">,</span>   <span class="n">remote</span><span class="p">,</span>   <span class="n">keyboard</span><span class="p">,</span>   <span class="n">cell</span> <span class="n">phone</span><span class="p">,</span>   <span class="n">microwave</span><span class="p">,</span>
+          <span class="n">oven</span><span class="p">,</span>   <span class="n">toaster</span><span class="p">,</span>   <span class="n">sink</span><span class="p">,</span>   <span class="n">refrigerator</span><span class="p">,</span>   <span class="n">book</span><span class="p">,</span>   <span class="n">clock</span><span class="p">,</span>   <span class="n">vase</span><span class="p">,</span>   <span class="n">scissors</span><span class="p">,</span>   <span class="n">teddy</span> <span class="n">bear</span><span class="p">,</span>   <span class="n">hair</span> <span class="n">dryer</span><span class="p">,</span>
+          <span class="n">toothbrush</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>有趣的是，<strong>ImageAI</strong> 允许您对上面的一个或多个项目执行检测。这意味着您可以自定义要在视频中检测到的对象类型。我们来看看下面的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Detection</span> <span class="k">import</span> <span class="n">VideoObjectDetection</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">VideoObjectDetection</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelTypeAsRetinaNet</span><span class="p">()</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span> <span class="p">,</span> <span class="s2">&quot;resnet50_coco_best_v2.0.1.h5&quot;</span><span class="p">))</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">()</span>
+
+<span class="n">custom_objects</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">CustomObjects</span><span class="p">(</span><span class="n">person</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bicycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">motorcycle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">video_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectCustomObjectsFromVideo</span><span class="p">(</span><span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="n">input_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic.mp4&quot;</span><span class="p">),</span> <span class="n">output_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic_custom_detected&quot;</span><span class="p">),</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">log_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>让我们看一下使这成为可能的代码部分。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_objects</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">CustomObjects</span><span class="p">(</span><span class="n">person</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bicycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">motorcycle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">video_path</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectCustomObjectsFromVideo</span><span class="p">(</span><span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span> <span class="n">input_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic.mp4&quot;</span><span class="p">),</span> <span class="n">output_file_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;traffic_custom_detected&quot;</span><span class="p">),</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">log_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的代码中，在加载模型之后（也可以在加载模型之前完成），我们定义了一个新变量<code class="docutils literal notranslate"><span class="pre">custom_objects</span> <span class="pre">=</span> <span class="pre">detector.CustomObjects()</span></code>，其中我们将person,car,motorcycle属性设置为<strong>True</strong>。这是为了告诉模型只检测我们设置为True的对象。然后我们调用允许我们执行自定义对象检测的函数<code class="docutils literal notranslate"><span class="pre">detector.detectCustomObjectsFromVideo()</span></code>。然后我们将<code class="docutils literal notranslate"><span class="pre">custom_objects</span></code>值设置为我们定义的自定义对象变量。</p>
+<p><strong><em>输出视频</em></strong></p>
+<p><a class="reference external" href="https://www.youtube.com/embed/YfAycAzkwPM?rel=0"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg" /></a></p>
+<p>C:\Users\User\PycharmProjects\ImageAITest\traffic_custom_detected.avi</p>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2><strong>视频检测速度</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p><strong>ImageAI</strong>现在为所有视频对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但只需稍微改变但检测结果依然准确。与降低<code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>参数相结合，检测可以与正常速度紧密匹配，但却大大缩短了检测时间。可用的检测速度是”normal”(default), “fast”, “faster” , “fastest” and “flash”. 。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">detector</span><span class="o">.</span><span class="n">loadModel</span><span class="p">(</span><span class="n">detection_speed</span><span class="o">=</span><span class="s2">&quot;fast&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>要观察检测速度的差异，请查看下面的不同速度应用于物体检测的示例，同时调整<code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>所需要的检测时间。以下结果来自在NVIDIA K80 GPU上执行的检测。下面提供链接以下载应用的每个检测速度的视频。</p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”normal”，最小百分比概率= 50（默认值），检测时间= 29分钟3秒</em></strong></p>
+<p><a class="reference external" href="https://www.youtube.com/embed/qplVDqOmElI?rel=0"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/video-4.jpg" /></a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”fast”，最小百分比概率= 40，检测时间= 11分钟6秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=118m6UnEG7aFdzxO7uhO_6C-981LJ3Gpf">&gt;&gt;&gt;下载以速度”fast”检测的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”faster”，最小百分比概率= 30，检测时间= 7分47秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=1s1FQWFsEX1Yf4FvUPVleK7vRxaQ6pgUy">&gt;&gt;&gt;下载以速度”faster”检测的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”fastest”，最小百分比概率= 20，检测时间= 6分钟20秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=1Wlt0DTGxl-JX7otd30MH4qhURv0rG9rw">&gt;&gt;&gt;下载以速度”fastest”检测的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”flash”，最小百分比概率= 10，检测时间= 3分55</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=1V3irCpP49bEUtpjG7Vuk6vEQQAZI-4PI">&gt;&gt;&gt;下载以速度”flash”检测的视频</a></p>
+<p>如果您使用功能更强大的NVIDIA GPU ，您肯定会有更快的检测时间比。</p>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2><strong>帧检测间隔</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>上述视频对象检测任务针对帧实时对象检测进行了优化，以确保检测到视频的每个帧中的对象<strong>.ImageAI</strong>为您提供了调整视频帧检测的选项，可以加快视频检测过程。调用<code class="docutils literal notranslate"><span class="pre">.detectObjectsFromVideo()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.detectCustomObjectsFromVideo()</span></code>时，可以指定检测的帧间隔。通过将<code class="docutils literal notranslate"><span class="pre">frame_detection_interval</span></code>参数设置为等于5或20，这意味着视频中的对象检测将在5帧或20帧之后更新。如果输出视频<code class="docutils literal notranslate"><span class="pre">frames_per_second</span></code>设置为20，意味着视频中的对象检测将在每四分之一秒或每秒更新一次。如果可检测的对象较模糊且移动对象的速度较低，那此功能非常有用。这可确保您可以将对象检测为每两秒，每半秒或以适合您需求的方式。我们通过应用等于5的<strong>frame_detection_interval</strong>值对我们之前使用的输入视频进行了视频对象检测。下面的结果是从NVIDIA K80 GPU上执行的检测中获得的。点击链接下载对应视频：</p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”normal” ，最小百分比概率= 50（默认值），帧检测间隔= 5，检测时间= 15分49秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=10m6kXlXWGOGc-IPw6TsKxBi-SXXOH9xK">&gt;&gt;&gt;以速度”normal” 和间隔= 5检测对象的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”fast”，最小百分比概率= 40，帧检测间隔= 5，检测时间= 5分钟6秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=17934YONVSXvd4uuJE0KwenEFks7fFYe4">&gt;&gt;&gt;以速度”fast” 和间隔= 5检测对象的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”faster”，最小百分比概率= 30，帧检测间隔= 5，检测时间= 3分钟18秒</em></strong></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=1cs_06CuhXDvZp3fHJWFpam-31eclOhc-">&gt;&gt;&gt;以速度”faster” 和间隔= 5检测对象的视频</a></p>
+<p><strong><em>视频长度= 1分钟24秒，检测速度=”fastest”，最小百分比概率= 20，帧检测间隔= 5，检测时间= 2分钟18秒</em></strong></p>
+<p><a class="reference external" href="https://www.youtube.com/embed/S-jgBTQgbd4?rel=0"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg" /></a></p>
+<p><a class="reference external" href="https://www.youtube.com/embed/S-jgBTQgbd4?rel=0"><strong><em>视频长度= 1分钟24秒，检测速度=”flash”，最小百分比概率= 10，帧检测间隔= 5，检测时间= 1分27秒</em></strong></a> <a class="reference external" href="https://www.youtube.com/embed/S-jgBTQgbd4?rel=0"></a></p>
+<p><a class="reference external" href="https://drive.google.com/open?id=1aN2nnVoFjhUWpcz2Und3dsCT9OKrakM0">&gt;&gt;&gt;以速度”flash” 和间隔= 5检测对象的视频</a></p>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2><strong>文档</strong><a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">imageai.Detection.VideoObjectDetection</span></code> class</p>
+<hr class="docutils" />
+<p>该<code class="docutils literal notranslate"><span class="pre">VideoObjectDetection</span></code>类可以用来对视频目标检测，通过实例化，并调用下面的功能函数：</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">setModelTypeAsRetinaNet()</span></code> 如果您选择使用RetinaNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。</li>
+<li><code class="docutils literal notranslate"><span class="pre">setModelPath()</span></code> 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。</li>
+<li><code class="docutils literal notranslate"><span class="pre">loadModel()</span></code> 此函数是必需的，用于从<code class="docutils literal notranslate"><span class="pre">setModelPath()</span></code>定义的文件路径将模型结构加载到程序中
+。该函数接收一个<code class="docutils literal notranslate"><span class="pre">prediction_speed</span></code>的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。<ul>
+<li><code class="docutils literal notranslate"><span class="pre">prediction_speed</span></code>（可选）; 可接受的值是”normal”, “fast”, “faster” and “fastest”</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">detectObjectsFromVideo()</span></code> 此函数用于检测给定视频路径中可观察的对象：<ul>
+<li><code class="docutils literal notranslate"><span class="pre">input_file_path</span></code>，它是输入视频的文件路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_file_path</span></code>，它是输出视频的路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">frames_per_second</span></code> 它是输出视频中使用的帧数fps</li>
+<li><code class="docutils literal notranslate"><span class="pre">frame_detection_interval</span></code>（可选，默认为1）），这是检测视频的帧间隔，即间隔多少帧检测一次。</li>
+<li><code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。</li>
+<li><code class="docutils literal notranslate"><span class="pre">log_progress</span></code>（任选），指出是否要将处理帧的进度输出到控制台</li>
+</ul>
+</li>
+</ul>
+<p><em>::param input_file_path::</em></p>
+<p><em>::param output_file_path::</em></p>
+<p><em>::param frames_per_second::</em></p>
+<p><em>::param frame_detection_interval::</em></p>
+<p><em>::param minimum_percentage_probability::</em></p>
+<p><em>::param log_progress::</em></p>
+<p><em>::return output_video_filepath::</em></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">CustomObjecs()</span></code> 可以选择调用此函数来<strong>手动</strong>指定
+要从视频中检测的对象类型。这些对象在函数变量中预先创建，并预定义为“False”，
+对于任意数量的可用对象，您可以轻松地将其设置为True。此函数
+返回一个字典，必须将其解析用于为<code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromVideo()</span></code>。检测
+自定义对象仅在调用函数<code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromVideo()</span></code>时。</li>
+<li><code class="docutils literal notranslate"><span class="pre">detectCustomObjectsFromVideo()</span></code> 此函数用于检测给定视频路径中可观察的特定对象：<ul>
+<li><code class="docutils literal notranslate"><span class="pre">custom_objects</span></code>，指定要检测的对象</li>
+<li><code class="docutils literal notranslate"><span class="pre">input_file_path</span></code> 指定输入视频的文件路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_file_path</span></code> 指定输出视频的路径</li>
+<li><code class="docutils literal notranslate"><span class="pre">frames_per_second</span></code> 它是输出视频中使用的帧数fps</li>
+<li><code class="docutils literal notranslate"><span class="pre">frame_detection_interval</span></code>（可选，默认为1）），这是检测视频的帧间隔，即间隔多少帧检测一次。</li>
+<li><code class="docutils literal notranslate"><span class="pre">minimum_percentage_probability</span></code>（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。</li>
+<li><code class="docutils literal notranslate"><span class="pre">log_progress</span></code>（任选），指出是否要将处理帧的进度输出到控制台</li>
+</ul>
+</li>
+</ul>
+<p><em>::param custom_objects::</em></p>
+<p><em>::param input_file_path::</em></p>
+<p><em>::param output_file_path::</em></p>
+<p><em>::param frames_per_second::</em></p>
+<p><em>::param frame_detection_interval::</em></p>
+<p><em>::param minimum_percentage_probability::</em></p>
+<p><em>::param log_progress::</em></p>
+<p><em>::return output_video_filepath::</em></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kangvcar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

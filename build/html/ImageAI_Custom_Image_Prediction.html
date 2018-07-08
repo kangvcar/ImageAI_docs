@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ImageAI：自定义图像预测 &mdash; ImageAI v1.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ImageAI
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ImageAI：自定义图像预测</a><ul>
+<li><a class="reference internal" href="#firstcustomprediction-py"><strong>FirstCustomPrediction.py</strong></a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ImageAI</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>ImageAI：自定义图像预测</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ImageAI_Custom_Image_Prediction.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="imageai">
+<span id="imageai"></span><h1>ImageAI：自定义图像预测<a class="headerlink" href="#imageai" title="永久链接至标题">¶</a></h1>
+<p><strong>AI共享</strong>项目<a class="reference external" href="https://commons.specpal.science">https://commons.specpal.science</a></p>
+<hr class="docutils" />
+<p>ImageAI提供4种不同的算法和模型，使你可以使用您自定义的模型执行自定义图像预测。您将能够使用<strong>ImageAI</strong>已训练的模型和相应的model_class JSON文件来预测您已训练模型的自定义对象。在这个例子中，我们将使用在<strong>IdenProf</strong>上进行20次实验训练的模型，<strong>IdenProf</strong>是统一专业人员的数据集，在测试数据集上达到65.17％的准确度（您可以使用自己训练的模型并生成JSON文件。此”CLASS”主要的目的是使你可以使用自己定制的模型。）下载以下链接中的ResNet模型和JSON文件：
+<strong>- <a class="reference external" href="https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/resnet_model_ex-020_acc-0.651714.h5">ResNet</a></strong>（文件大小= 90.4MB）
+<strong>- <a class="reference external" href="https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/model_class.json">IdenProf model_class.json file</a></strong>
+很好！下载此模型文件和JSON文件后，启动一个新的python项目，然后将模型文件和JSON文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的图像，或者在您的计算机上拍摄任何包含以下任何专业人员（厨师，医生，工程师 ，农民，消防员，法官，机械师，飞行员，警察和服务员）的图像，并将其复制到您的python项目文件夹中。然后创建一个python文件并为其命名; 以下是一个例子<strong>FirstCustomPrediction.py</strong>。然后将下面的代码写入python文件：</p>
+<div class="section" id="firstcustomprediction-py">
+<span id="firstcustomprediction-py"></span><h2><strong>FirstCustomPrediction.py</strong><a class="headerlink" href="#firstcustomprediction-py" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Prediction.Custom</span> <span class="k">import</span> <span class="n">CustomImagePrediction</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">CustomImagePrediction</span><span class="p">()</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setModelTypeAsResNet</span><span class="p">()</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;resnet_model_ex-020_acc-0.651714.h5&quot;</span><span class="p">))</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setJsonPath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;model_class.json&quot;</span><span class="p">))</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">loadModel</span><span class="p">(</span><span class="n">num_objects</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+<span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">predictImage</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;4.jpg&quot;</span><span class="p">),</span> <span class="n">result_count</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">eachPrediction</span><span class="p">,</span> <span class="n">eachProbability</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eachPrediction</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachProbability</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>示例结果：</p>
+<p><a class="reference external" href="/kangvcar/ImageAI/blob/master/images/4.jpg"><img alt="" src="https://github.com/kangvcar/ImageAI/raw/master/images/4.jpg" /></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mechanic</span> <span class="p">:</span> <span class="mf">76.82620286941528</span>
+<span class="n">chef</span> <span class="p">:</span> <span class="mf">10.106072574853897</span>
+<span class="n">waiter</span> <span class="p">:</span> <span class="mf">4.036874696612358</span>
+<span class="n">police</span> <span class="p">:</span> <span class="mf">2.6663416996598244</span>
+<span class="n">pilot</span> <span class="p">:</span> <span class="mf">2.239348366856575</span>
+</pre></div>
+</div>
+<p>上面的代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imageai.Prediction.Custom</span> <span class="k">import</span> <span class="n">CustomImagePrediction</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+<p>上面的代码导入<strong>ImageAI</strong>库以进行自定义图像预测和python <strong>os</strong>类。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execution_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>上面的行获取包含python文件（在本例中为FirstCustomPrediction.py）的文件夹的路径。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">CustomImagePrediction</span><span class="p">()</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setModelTypeAsResNet</span><span class="p">()</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setModelPath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;resnet_model_ex-020_acc-0.651714.h5&quot;</span><span class="p">))</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">setJsonPath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;model_class.json&quot;</span><span class="p">))</span>
+<span class="n">prediction</span><span class="o">.</span><span class="n">loadModel</span><span class="p">(</span><span class="n">num_objects</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的行中，我们在第一行创建了<code class="docutils literal notranslate"><span class="pre">CustomImagePrediction()</span></code>类的实例，我们然后通过 在第二行中调用<code class="docutils literal notranslate"><span class="pre">.setModelTypeAsResNet()</span></code>来将预测对象的模型类型设置为ResNet  ，在第三行总我们设置模型路径为（<strong>resnet_model_ex-020_acc-0.651714.h5</strong>）文件所在的路径，第四行我们设置JSON文件（** model_class.json**）的路径，第五行我们加载模型和解析模型中可以预测的对象数。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="n">prediction</span><span class="o">.</span><span class="n">predictImage</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">execution_path</span><span class="p">,</span> <span class="s2">&quot;4.jpg&quot;</span><span class="p">),</span> <span class="n">result_count</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上面的行中，我们定义了两个变量，它们由<code class="docutils literal notranslate"><span class="pre">.predictImage()</span></code>函数返回，我们在其中解析了图像的路径，并说明了我们想要的预测结果的数量。<code class="docutils literal notranslate"><span class="pre">result_count=5</span></code>(可选值为1到10)。<code class="docutils literal notranslate"><span class="pre">.predictImage()</span></code>函数将返回预测的对象名和相应的百分比概率（<strong>percentage_probabilities</strong>）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">eachPrediction</span><span class="p">,</span> <span class="n">eachProbability</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">eachPrediction</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">eachProbability</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上面的行获取了<strong>predictions</strong>数组中的每个对象，并从<strong>percentage_probabilities中</strong>获得了相应的百分比概率，最后将两者的结果打印到控制台。</p>
+<p><strong>CustomImagePrediction</strong>类还支持<strong>ImagePrediction</strong>类中包含的多个预测，输入类型和预测速度。点击此<a class="reference external" href="/kangvcar/ImageAI/blob/master/imageai/Prediction/README.md">链接</a>查看所有详细信息。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kangvcar.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v1.0',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
