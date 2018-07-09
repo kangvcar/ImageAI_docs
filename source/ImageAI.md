@@ -75,13 +75,13 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 `pip3 install https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl`
 
-或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl)安装文件并在命令行中指定安装文件的路径来安装**ImageAI**：
+或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl) 安装文件并在命令行中指定安装文件的路径来安装**ImageAI**：
 
 `pip3 install C:\User\MyUser\Downloads\imageai-2.0.1-py3-none-any.whl`
 
 ## 图像预测
 
-**ImageAI**提供4种不同的算法和模型类型来执行图像预测，并在ImageNet-1000数据集上进行训练。提供用于图像预测的4种算法包括**SqueezeNet**，**ResNet**，**InceptionV3**和**DenseNet**。您将在下面找到使用ResNet50模型的示例预测结果，以及图像下方的“教程和文档”链接。单击链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
+**ImageAI**提供4种不同的算法及模型来执行图像预测，并在ImageNet-1000数据集上进行训练。提供用于图像预测的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。您将在下面看到的示例是使用ResNet50模型进行图像预测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg)
 
@@ -93,11 +93,11 @@ car_wheel : 1.817505806684494
 minivan : 1.7487050965428352
 ```
 
-[>>>教程和文档](/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Image_Prediction.html)
 
-## 物体检测
+## 对象检测
 
-**ImageAI**提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。提供的物体检测类仅支持当前最先进的RetinaNet，但具有可调整最佳性能或实时处理的选项。您将在下面找到使用RetinaNet模型的示例对象检测结果，以及图像下方的“教程和文档”链接。单击链接以查看完整的示例代码，相关说明，最佳实践指南和文档。 
+**ImageAI** 提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。用于对象检测的类仅支持当前最先进的RetinaNet目标检测算法，但提供了性能调整和实时处理选项。您将在下面看到的示例是使用RetinaNet模型进行对象检测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
 **_输入图像_** 
 
@@ -116,7 +116,7 @@ laptop : 95.16398310661316
 person : 87.10319399833679
 ```
 
-[>>>教程和文档](/OlafenwaMoses/ImageAI/blob/master/imageai/Detection)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Object_Detection.html)
 
 ## 视频对象检测和跟踪
 
@@ -134,7 +134,7 @@ _以下是仅检测到人，自行车和摩托车的视频的快照。_
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/video2.jpg)
 
-[>>>教程和文档](/OlafenwaMoses/ImageAI/blob/master/imageai/Detection/VIDEO.md)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Video_Object_Detection_and_Tracking.html)
 
 ## 定制模型训练
 
@@ -144,7 +144,7 @@ _来自IdenProf数据集的样本用于训练模型以预测专业人员。_
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/idenprof.jpg)
 
-[>>>教程和文档](/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMTRAINING.md)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Custom_Prediction_Model_Training.html)
 
 ## 自定义图像预测
 
@@ -162,7 +162,7 @@ police : 2.6663416996598244
 pilot : 2.239348366856575
 ```
 
-[>>>教程和文档](/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMPREDICTION.md)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Custom_Image_Prediction.html)
 
 ## 实时和高性能实施
 

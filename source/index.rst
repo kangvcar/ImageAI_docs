@@ -11,7 +11,7 @@ ImageAI 中文文档
 
    ImageAI
    ImageAI_Image_Prediction
-   ImageAI_Object Detection
+   ImageAI_Object_Detection
    ImageAI_Video_Object_Detection_and_Tracking
    ImageAI_Custom_Prediction_Model_Training
    ImageAI_Custom_Image_Prediction
