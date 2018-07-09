@@ -29,57 +29,43 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 - 引入帧检测率，允许开发人员调整视频中的检测间隔`frame_detection_interval`，有利于达到特定效果。
 
-## 目录
+## 依赖
 
-- [依赖性](#dependencies)
-- [安装](#installation)
-- [图像预测](#prediction)
-- [物体检测](#detection)
-- [视频物体检测和跟踪](#videodetection)
-- [自定义模型训练](#customtraining)
-- [自定义图像预测](#customprediction)
-- [样本应用](#sample)
-- [人工智能实践建议](#recommendation)
-- [联系开发人员](#contact)
-- [参考文献](#ref)
+要在应用程序开发中使用**ImageAI**，必须在安装**ImageAI**之前安装以下依赖项：
 
-## 依赖性
+- Python 3.5.1（及更高版本） [下载](https://www.python.org/downloads/)（即将推出支持Python 2.7）
 
-要在应用程序开发中使用**ImageAI**，必须在安装**ImageAI**之前安装以下依赖**项**：
+- pip3 [安装](https://pypi.python.org/pypi/pip)
 
-**- Python 3.5.1（及更高版本）** [下载](https://www.python.org/downloads/)（即将推出支持Python 2.7）
-
-**- pip3** [安装](https://pypi.python.org/pypi/pip)
-
-**- Tensorflow 1.4.0（及更高版本）**  [安装](https://www.tensorflow.org/install/install_windows) 或 通过pip安装
+- Tensorflow 1.4.0（及更高版本）  [安装](https://www.tensorflow.org/install/install_windows) 或 通过pip安装
 
 ` pip3 install --upgrade tensorflow `
 
-**- Numpy 1.13.1（及更高版本）** [安装](https://www.scipy.org/install.html)或 通过pip安装
+- Numpy 1.13.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装
 
 ` pip3 install numpy `
 
-**- SciPy 0.19.1（及更高版本）** [安装](https://www.scipy.org/install.html)或 通过pip安装
+- SciPy 0.19.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装
 
 ` pip3 install scipy `
 
-**- OpenCV** [安装](https://pypi.python.org/pypi/opencv-python)或 通过pip安装
+- OpenCV [安装](https://pypi.python.org/pypi/opencv-python)或 通过pip安装
 
 ` pip3 install opencv-python `
 
-**- pillow ** [安装](https://pypi.org/project/Pillow/2.2.1/)或 通过pip安装
+- pillow  [安装](https://pypi.org/project/Pillow/2.2.1/)或 通过pip安装
 
 ` pip3 install pillow  `
 
-**- Matplotlib** [安装](https://matplotlib.org/users/installing.html)或 通过pip安装
+- Matplotlib [安装](https://matplotlib.org/users/installing.html)或 通过pip安装
 
 ` pip3 install matplotlib `
 
-**- h5py** [安装](http://docs.h5py.org/en/latest/build.html)或 通过pip安装
+- h5py [安装](http://docs.h5py.org/en/latest/build.html)或 通过pip安装
 
 ` pip3 install h5py `
 
-**- Keras 2.x** [安装](https://keras.io/#installation)或 通过pip安装
+- Keras 2.x [安装](https://keras.io/#installation)或 通过pip安装
 
 ` pip3 install keras `
 
