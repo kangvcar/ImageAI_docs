@@ -31,7 +31,7 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 ## 依赖
 
-要在应用程序开发中使用**ImageAI**，必须在安装**ImageAI**之前安装以下依赖项：
+在应用程序开发中使用**ImageAI**之前必须安装以下依赖项：
 
 - Python 3.5.1（及更高版本） [下载](https://www.python.org/downloads/)（即将推出支持Python 2.7）
 
@@ -39,43 +39,43 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 - Tensorflow 1.4.0（及更高版本）  [安装](https://www.tensorflow.org/install/install_windows) 或 通过pip安装
 
-` pip3 install --upgrade tensorflow `
+    ` pip3 install --upgrade tensorflow `
 
 - Numpy 1.13.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装
 
-` pip3 install numpy `
+    ` pip3 install numpy `
 
 - SciPy 0.19.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装
 
-` pip3 install scipy `
+    ` pip3 install scipy `
 
 - OpenCV [安装](https://pypi.python.org/pypi/opencv-python)或 通过pip安装
 
-` pip3 install opencv-python `
+    ` pip3 install opencv-python `
 
 - pillow  [安装](https://pypi.org/project/Pillow/2.2.1/)或 通过pip安装
 
-` pip3 install pillow  `
+    ` pip3 install pillow  `
 
 - Matplotlib [安装](https://matplotlib.org/users/installing.html)或 通过pip安装
 
-` pip3 install matplotlib `
+    ` pip3 install matplotlib `
 
 - h5py [安装](http://docs.h5py.org/en/latest/build.html)或 通过pip安装
 
-` pip3 install h5py `
+    ` pip3 install h5py `
 
 - Keras 2.x [安装](https://keras.io/#installation)或 通过pip安装
 
-` pip3 install keras `
+    ` pip3 install keras `
 
 ## 安装
 
-要安装ImageAI，请在命令行中运行下面的命令：
+请在命令行中运行如下命令来安装 **ImageAI**：
 
 `pip3 install https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl`
 
-或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl)并在命令行中指定python安装文件的路径，如下所示：
+或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl)安装文件并在命令行中指定安装文件的路径来安装**ImageAI**：
 
 `pip3 install C:\User\MyUser\Downloads\imageai-2.0.1-py3-none-any.whl`
 
