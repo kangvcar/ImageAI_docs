@@ -81,9 +81,9 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 ## 图像预测
 
-**ImageAI**提供4种不同的算法及模型来执行图像预测，并在ImageNet-1000数据集上进行训练。提供用于图像预测的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。您将在下面看到的示例是使用ResNet50模型进行图像预测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
+**ImageAI** 提供4种不同的算法及模型来执行图像预测，并在ImageNet-1000数据集上进行训练。提供用于图像预测的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。您将在下面看到的示例是使用ResNet50模型进行图像预测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)
 
 ```
 convertible : 52.459555864334106
@@ -97,15 +97,15 @@ minivan : 1.7487050965428352
 
 ## 对象检测
 
-**ImageAI** 提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。用于对象检测的类仅支持当前最先进的RetinaNet目标检测算法，但提供了性能调整和实时处理选项。您将在下面看到的示例是使用RetinaNet模型进行对象检测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
+**ImageAI** 提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。用于对象检测的类仅支持当前最先进的RetinaNet目标检测算法，但提供了性能调整和实时处理参数。您将在下面看到的示例是使用RetinaNet模型进行对象检测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
 **_输入图像_** 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image2.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2.jpg)
 
  **_输出图像_** 
 
- [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2new.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image2new.jpg)
+ [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2new.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2new.jpg)
 
 ```
 person : 91.946941614151
@@ -120,39 +120,39 @@ person : 87.10319399833679
 
 ## 视频对象检测和跟踪
 
-**ImageAI**提供了非常方便和强大的方法来在视频中执行对象检测并跟踪特定对象。提供的视频对象检测类仅支持当前最先进的RetinaNet，但具有可调整最佳性能或实时处理的选项。您将在下面找到使用RetinaNet模型的示例对象检测结果，以及图像下方的“教程和文档”链接。单击链接可查看完整视频，示例代码，相关说明，最佳实践指南和文档。
+**ImageAI** 提供了非常方便和强大的方法来在视频中执行对象检测并跟踪特定对象。用于视频对象检测的类仅支持当前最先进的RetinaNet目标检测算法，但提供了性能调整和实时处理参数。您将在下面看到的示例是使用RetinaNet模型进行对象检测的结果。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
 _**视频对象检测**_
 
-_下面是检测到对象的视频的快照。_
+_下面是检测到对象的视频快照。_
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/video1.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video1.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video1.jpg)
 
 _**视频自定义对象检测（对象跟踪）**_
 
-_以下是仅检测到人，自行车和摩托车的视频的快照。_
+_以下是仅检测到人，自行车和摩托车的视频快照。_
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/video2.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)
 
 [>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Video_Object_Detection_and_Tracking.html)
 
 ## 定制模型训练
 
-**ImageAI**为您提供了一些类和方法，用于训练可用于对您自己自定义对象执行预测的新模型。您可以使用SqueezeNet，ResNet50，InceptionV3和DenseNet在不到**12**行代码中训练您自定义的模型。单击图像下方的“教程和文档”链接可查看完整视频，示例代码，相关说明，最佳实践指南和文档。
+**ImageAI** 为您提供了一些类和方法，用于训练可以对您自定义对象执行预测的新模型。您可以使用 SqueezeNet，ResNet50，InceptionV3 或 DenseNet 算法在不到12行代码中训练您自定义的模型。单击图像下方的“教程和文档”链接可查看完整视频，示例代码，相关说明，最佳实践指南和文档。
 
-_来自IdenProf数据集的样本用于训练模型以预测专业人员。_
+_在 IdenProf 数据集中训练模型用于预测专业人员。_
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/idenprof.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)
 
 [>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Custom_Prediction_Model_Training.html)
 
 ## 自定义图像预测
 
-**ImageAI**提供了类和方法，您可以自己使用**ImageAI** Model Training类训练的模型预测您自定义的对象。您可以使用SqueezeNet，ResNet50，InceptionV3和DenseNet的自定义模型以及包含自定义对象名称映射的JSON文件。您将在图像下方找到“教程和文档”链接。单击链接可查看示例代码，相关说明，最佳实践指南和文档示例指南。
+**ImageAI** 为您提供了类和方法，您可以使用 **ImageAI** 模型训练类训练您自定义的模型并在图像中预测您自定义的对象。您可以使用使用 SqueezeNet，ResNet50，InceptionV3 或 DenseNet 训练自定义模型和包含自定义对象名称映射的JSON文件。单击图像下方的“教程和文档”链接以查看完整的示例代码，相关说明，最佳实践指南和文档。
 
-_从IdenProf训练的样本模型预测，用于预测专业人员_
+_在 IdenProf 数据集中训练模型用于预测专业人员。_
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/4.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/4.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/4.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/4.jpg)
 
 ```
 mechanic : 76.82620286941528
@@ -166,9 +166,9 @@ pilot : 2.239348366856575
 
 ## 实时和高性能实施
 
-**ImageAI**提供了最先进的计算机视觉技术的抽象和方便的实现。所有**ImageAI**实现和代码都可以在具有中等CPU核心数的计算机系统上运行。但是，CPU上的图像预测，对象检测等操作的处理速度很慢，不适合实时应用。要以高性能执行实时计算机视觉操作，您需要使用支持GPU的技术。
+**ImageAI** 提供了先进计算机视觉技术的抽象和方便的实现。所有 **ImageAI** 代码都可以在中等CPU核心数的计算机系统上运行。但是，CPU上的图像预测、对象检测等操作的处理速度很慢，不适合实时应用。要以高性能执行实时计算机视觉操作，您需要使用支持GPU的技术。
 
-**ImageAI**使用Tensorflow进行计算机视觉操作。Tensorflow支持CPU和GPU（特别是NVIDIA GPU），用于机器学习和人工智能算法的实施。要使用支持GPU的Tensorflow，请点击以下链接：
+**ImageAI** 基于 Tensorflow 进行计算机视觉操作。Tensorflow 支持 CPU 和 GPU（特别是NVIDIA GPU），要使用支持 GPU 的 Tensorflow，请点击以下链接进行安装：
 
 - FOR WINDOWS
 
@@ -184,17 +184,17 @@ pilot : 2.239348366856575
 
 ## 样本应用
 
-作为使用ImageAI可以做什么的演示，我们使用**ImageAI**和UI框架**Kivy**为Windows构建了一个完整的人工智能照片库，名为**IntelliP**。点击此 [链接](https://github.com/OlafenwaMoses/IntelliP)下载应用程序页面及其源代码。[](https://github.com/OlafenwaMoses/IntelliP)
+如果您需要用 **ImageAI** 进行演示，可以使用我们在Windows平台上基于 **ImageAI** 和 **Kivy** 构建的人工智能照片库 **IntelliP** 。点击此 [链接](https://github.com/OlafenwaMoses/IntelliP)下载应用程序页面及其源代码。
 
-我们也欢迎您提交应用程序和系统构建，并由ImageAI提供在此的列表。如果您需要此处列出的ImageAI驱动开发，您可以通过下面的[联系方式](#contact)与我们[联系](#contact)。
+我们也欢迎您提交任何基于ImageAI构建的应用程序和系统。如果你需要获得开发者的支持，你可以通过下面的联系方式联系开发者。
 
 ## AI实践建议 
 
-对于任何有兴趣建立人工智能系统并将其用于商业，经济，社会和研究目的的人来说，至关重要的是该人员知道这些技术的使用可能产生的积极，消极和前所未有的影响。他们还必须了解经验丰富的行业专家建议的方法和实践，以确保人工智能的每次使用都为人类带来整体利益。因此，我们建议所有希望使用ImageAI和其他人工智能工具和资源的人阅读微软2018年1月出版的题为“未来计算：人工智能及其在社会中的作用”的出版物。请点击以下链接下载该出版物。
+对于任何有兴趣建立人工智能系统并将其用于商业，经济，社会和研究目的的人来说，至关重要的是该人员知道这些技术的使用所产生的积极和消极影响。他们还需要听从那些具有经验丰富的行业专家们的实践建议和方法，以确保人工智能的每次使用都为人类带来整体利益。因此，我们建议所有希望使用ImageAI和其他人工智能工具的人阅读微软2018年1月出版的题为“未来计算：人工智能及其在社会中的作用”的出版物。请点击以下链接下载该出版物。
 
-[](https://blogs.microsoft.com/blog/2018/01/17/future-computed-artificial-intelligence-role-society/)[https://blogs.microsoft.com/blog/2018/01/17/future-computed-artificial-intelligence-role-society/](https://blogs.microsoft.com/blog/2018/01/17/future-computed-artificial-intelligence-role-society/)
+[https://blogs.microsoft.com/blog/2018/01/17/future-computed-artificial-intelligence-role-society](https://blogs.microsoft.com/blog/2018/01/17/future-computed-artificial-intelligence-role-society/)
 
-## 联系开发人员 
+## 联系开发者
 
 **Moses Olafenwa**
 
