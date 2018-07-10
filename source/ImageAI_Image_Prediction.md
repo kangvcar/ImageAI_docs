@@ -303,15 +303,15 @@ predictionThread.start()
 
 * * *
 
-通过实例化`ImagePrediction`类并调用下面的函数即可用于任何的Python应用程序进行图像预测：
+在任何的Python程序中通过实例化`ImagePrediction`类并调用下面的函数即进行图像预测：
 
-- `setModelTypeAsSqueezeNet()`如果您选择使用SqueezeNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
-- `setModelTypeAsResNet()`如果您选择使用ResNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
-- `setModelTypeAsInceptionV3()`如果您选择使用InceptionV3Net模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
-- `setModelTypeAsDenseNet()`如果您选择使用DenseNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
-- `setModelPath()` 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。
-- `loadModel()` 只有在尝试调用`predictImage()`函数之前，才需要调用此函数一次。
-该函数接收一个`prediction_speed`的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
+- `setModelTypeAsSqueezeNet()`如果您选择使用 SqueezeNet 模型文件来预测图像，你只需调用一次该函数。
+- `setModelTypeAsResNet()`如果您选择使用 ResNet 模型文件来预测图像，你只需调用一次该函数。
+- `setModelTypeAsInceptionV3()`如果您选择使用 InceptionV3Net 模型文件来预测图像，你只需调用一次该函数。
+- `setModelTypeAsDenseNet()`如果您选择使用 DenseNet 模型文件来预测图像，你只需调用一次该函数。
+- `setModelPath()` 该函数用于设定模型文件的路径。模型文件必须与您设置的模型类型相对应。
+- `loadModel()` 该函数用于载入模型，在调用`predictImage()`函数之前需要调用此函数一次。
+该函数接收一个`prediction_speed`参数。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
     - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
 
 - `predictImage()` 此函数用于通过接收以下参数来预测指定图像：

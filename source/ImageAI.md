@@ -259,13 +259,11 @@ _Facebook :_ [olafenwajohn](https://facebook.com/olafenwajohn)
     [https://arxiv.org/abs/1708.02002](https://arxiv.org/abs/1708.02002)
 
 10.  O Russakovsky et al, ImageNet Large Scale Visual Recognition Challenge
-
+ 
     [https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)
 
 11.  TY Lin et al, Microsoft COCO: Common Objects in Context
-
     [https://arxiv.org/abs/1405.0312](https://arxiv.org/abs/1405.0312)
 
 12.  Moses & John Olafenwa, A collection of images of identifiable professionals.
-
     [https://github.com/OlafenwaMoses/IdenProf](https://github.com/OlafenwaMoses/IdenProf)
