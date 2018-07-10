@@ -314,10 +314,10 @@ predictionThread.start()
 该函数接收一个`prediction_speed`参数。该参数用于指定图像预测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
     - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster", "fastest" 
 - `predictImage()` 此函数用于通过接收以下参数来预测指定图像：
-    - `input_type`（可选），类型要解析的输入。可接受的值是“file”，“array”和“stream”
-    - `image_input`，文件路径/ numpy数组/图像文件流的图像。
-    - `result_count`（可选），要发送的预测数，必须是
-1到1000之间的整数。默认值为5.
+    - `input_type`（可选），指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。
+    - `image_input`，指定图像的 file path/numpy array/image file stream 。
+    - `result_count`（可选），指定要预测出多少种可能的对象（默认预测出5中可能的对象），可接受的值是
+1到1000之间的整数。
 
     此函数返回2个数组，即'prediction_results'和'prediction_probabilities'。'prediction_results'包含按百分比概率降序排列的可能对象类。'prediction_probabilities'包含每个对象类的概率百分比。
     数组中每个对象类的位置对应于'prediction_probabilities' 数组中百分比可能性。
