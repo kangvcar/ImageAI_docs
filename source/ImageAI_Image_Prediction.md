@@ -1,31 +1,22 @@
-# [](#imageai--image-prediction-)ImageAI：图像预测
+# ImageAI：图像预测
 
 **AI共享**项目[https://commons.specpal.science](https://commons.specpal.science)
 
 * * *
 
-### [](#table-of-contents)**目录**
+ImageAI 提供4种不同的算法及模型来执行图像预测，通过以下简单几个步骤即可对任何图片执行图像预测。提供用于图像预测的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。这些算法中的每一个都有单独的模型文件，您必须根据所选算法使用相对应的模型文件，请单击以下链接下载所选算法的模型文件：
 
-- [第一次预测](#firstprediction)
-- [预测速度](#predictionspeed)
-- [图像输入类型](#inputtype)
-- [多图像预测多线程](#multiprediction) 
-- [预测](#threadprediction)
-- [文档](#documentation)
+**- [SqueezeNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/squeezenet_weights_tf_dim_ordering_tf_kernels.h5)（文件大小：4.82 MB，预测时间最短，精准度适中）**
 
-ImageAI提供4种不同的算法和模型类型来执行图像预测。要对任何图片执行图像预测，请执行以下简单步骤。提供用于图像预测的4种算法包括**SqueezeNet**，**ResNet**，**InceptionV3**和**DenseNet**。这些算法中的每一个都有单独的模型文件，您必须根据算法的使用选择这些模型文件。要下载所选算法的模型文件，请单击以下任意链接：
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** **[ResNet50](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** by Microsoft Research **（文件大小：98 MB，预测时间较快，精准度高）**
 
-**- [SqueezeNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/squeezenet_weights_tf_dim_ordering_tf_kernels.h5)（文件大小：4.82 MB，最快的预测时间和适中的准确度）**
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)**  **[InceptionV3](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)** by Google Brain team **（文件大小：91.6 MB，预测时间慢，精度更高）**
 
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** **[ResNet50](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** by Microsoft Research**（文件大小：98 MB，快速预测时间和高精度）**
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** **[DenseNet121](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** by Facebook AI Research **（文件大小：31.6 MB，预测时间较慢，精度最高）**
 
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)**  **[InceptionV3](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)** by Google Brain team**（文件大小：91.6 MB，预测时间慢，精度更高）**
+很好！下载对应模型文件后，启动一个新的python项目，然后将模型文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的[图像](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)，或者您所拍摄的任何图像并将其复制到python项目的文件夹中。然后创建一个python文件并为其命名; 例如**FirstPrediction.py**。然后将下面的代码写入python文件中：
 
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** **[DenseNet121](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** by Facebook AI Research**（文件大小：31.6 MB，预测时间较慢，精度最高）**
-
-很好！下载此模型文件后，启动一个新的python项目，然后将模型文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的图像，或者在计算机上拍摄任何图像并将其复制到python项目的文件夹中。然后创建一个python文件并为其命名; 例如**FirstPrediction.py**。然后将下面的代码写入python文件：
-
-### [](#firstpredictionpy)**FirstPrediction.py**
+### FirstPrediction.py
 
 ```
 from imageai.Prediction import ImagePrediction
@@ -53,49 +44,46 @@ car_wheel : 1.817505806684494
 minivan : 1.7487050965428352
 ```
 
-我们来分析示例的代码如下：
+我们对示例代码进行分析：
 ```
 from imageai.Prediction import ImagePrediction
 import os 
 ```
-上面的代码导入了**ImageAI**库和python **os**类。
+上面的代码导入了**ImageAI**库和 python **os** 类。
 ```
 execution_path = os.getcwd()
 ```
-上面的代码获取包含python文件的文件夹路径（在本例中python文件为FirstPrediction.py）。
-
+上面的代码获取包含python文件的文件夹路径（在本例中python文件为`FirstPrediction.py`）。
 ```
 prediction = ImagePrediction()
 prediction.setModelTypeAsResNet()
 prediction.setModelPath(os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
 ```
 
-在上面的代码中，我们在第一行创建了**ImagePrediction（）**类的实例，然后我们通过 在第二行中调用**.setModelTypeAsResNet（）**将预测对象的模型类型设置为ResNet ，在第三行中设置模型文件的路径（**resnet50_weights_tf_dim_ordering_tf_kernels.h5**）。
+在上面的代码中，我们对`ImagePrediction()`类进行了实例化，然后调用了`.setModelTypeAsResNet()`函数将预测对象的模型类型设置为ResNet，并在第三行设置了模型文件（**resnet50_weights_tf_dim_ordering_tf_kernels.h5**）的路径。
 
 ```
 predictions, probabilities = prediction.predictImage(os.path.join(execution_path, "1.jpg"), result_count=5 )
 ```
 
-在上面的行中，我们定义了两个变量，它们将调用函数来赋值，即**.predictImage（）**函数，我们在其中解析了图像的路径，并说明了我们想要的预测结果的数量。**result_count = 5**（可选1 to 1000）。**.predictImage（）**函数将返回预测的对象名和相应的百分比概率（**percentage_probabilities**）。
+在上面的代码中，我们定义了两个变量，他们的值将由所调用的函数`predictImage()`返回，其中`predictImage()`函数接受了两个参数，一个是指定要进行图像预测的图像文件路径，另一个参数`result_count`用于设置我们想要预测结果的数量（该参数的值可选1 to 100）。最后，`predictImage()`函数将返回预测的对象名和相应的百分比概率（`percentage_probabilities`）。
 
 ```
 for eachPrediction, eachProbability in zip(predictions, probabilities):
     print(eachPrediction + " : " + eachProbability)
 ```
 
-上面的行获取了**predictions**数组中的每个对象，并从**percentage_probabilities中**获得了相应的百分比概率，最后将两者的结果打印到console。
+在上面的代码获取了`predictions`变量中的每个对象名，并从`probabilities`变量中获取相应的百分比概率，最后将两者的结果打印到终端。
 
-### [](#multiple-images-prediction)**多图像预测**
+### 多图像预测
 
-您可以使用单个函数（或多个**.predictMultipleImages（）** 函数**）**在多个图像上运行图像预测。
+您可以多次调用`.predictImage()`函数来对多张图像进行预测，但是我们提供了一个简单的方法，您只需调用一次`.predictMultipleImages()`函数即可对多张图像进行预测。它的工作原理如下：
 
-它的工作原理如下：
-
-- 定义普通的**ImagePrediction**实例
-- 设置模型类型和模型路径
-- 调用**.loadModel（）**函数载入模型
-- 创建一个数组并将所有要预测的图像的字符串路径添加到阵列。
-- 然后通过调用**.predictMultipleImages（）**函数执行预测并解析图像数组，并通过解析**result_count_per_image = 5**（默认值为2）设置每个图像所需的数字预测值
+- 定义普通的`ImagePrediction`实例
+- 通过`.setModelTypeAsResNet()`设置模型类型和`.setModelPath()`模型路径
+- 调用`.loadModel()`函数载入模型
+- 创建一个数组并将所有要预测的图像的路径添加到数组中。
+- 然后通过调用`.predictMultipleImages()`函数解析包含图像路径的数组并执行图像预测，通过解析`result_count_per_image`（默认值为2）的值来设定每个图像需要预测多少种可能的结果
 
 以下是示例代码：
 
@@ -120,17 +108,19 @@ for each_file in all_files:
 results_array = multiple_prediction.predictMultipleImages(all_images_array, result_count_per_image=5)
 
 for each_result in results_array:
-predictions, percentage_probabilities = each_result["predictions"], each_result["percentage_probabilities"]
-for index in range(len(predictions)):
-print(predictions[index] + " : " + percentage_probabilities[index])
-print("-----------------------")
+    predictions, percentage_probabilities = each_result["predictions"], each_result["percentage_probabilities"]
+    for index in range(len(predictions)):
+        print(predictions[index] + " : " + percentage_probabilities[index])
+    print("-----------------------")
 ```
 
-在上面的代码中，**.predictMultipleImages（）**函数将返回一个数组，其中包含每个图像的字典。每个字典包含用于预测的图像名和每个预测的百分比概率。
+在上面的代码中，`.predictMultipleImages()`函数将返回一个由dict组成的array，每个dict包含了每张图像所预测出的可能图像名list和相应的百分比概率list，并把所有可能的对象名和概率打印到终端。
 
 示例结果：
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg) [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/2.jpg) [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/3.jpg)
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg) 
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/2.jpg) 
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/3.jpg)
 
 ```
 convertible : 52.459555864334106
