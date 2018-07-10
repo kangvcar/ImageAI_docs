@@ -143,17 +143,17 @@ white_stork : 1.6472270712256432
 -----------------------
 ```
 
-### [](#prediction-speed)**预测速度**
+### 预测速度
 
-**ImageAI**现在为所有图像预测任务提供预测速度。预测速度允许您以20％到60％之间的速率减少预测时间，轻微的变化就能准确地预测结果。可用的预测速度是"normal", "fast", "faster" and "fastest" 。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
+**ImageAI** 为图像预测任务添加了预测速度调节功能，最多可使预测时间减少60％。可选的速度模式有`normal`(default), `fast`, `faster` , `fastest` 。您只需要在调用`loadModel()`函数是指定参数`prediction_speed`的值为你想要的速度模式即可，如下所示。
 
 ```
 prediction.loadModel(prediction_speed="fast")
 ```
 
-为了观察预测速度的差异，请查看下面应用于多个预测的每个速度以及给定的预测和预测所花费的时间。以下结果来自于采用Intel Celeron N2820 CPU的Windows 8笔记本电脑进行的预测，处理器速度为2.13GHz
+为了观察不同速度模式间的差异，请查看下面不同速度模式下相同图像预测所花费的时间。(实验环境 OS:Windows 8, CPU:Intel Celeron N2820 2.13GHz)
 
-**_预测速度=“正常”，预测时间= 5.9秒_**
+**_速度模式="normal"，花费时间= 5.9秒_**
 
 ```
 convertible : 52.459555864334106
@@ -176,7 +176,7 @@ white_stork : 1.6472270712256432
 -----------------------
 ```
 
-**_预测速度=“快速”，预测时间= 3.4秒_**
+**_速度模式="fast"，花费时间= 3.4秒_**
 
 ```
 sports_car : 55.5136501789093
@@ -199,7 +199,7 @@ crane : 0.21266008261591196
 -----------------------
 ```
 
-**_预测速度=“更快”，预测时间= 2.7秒_**
+**_速度模式="faster"，花费时间= 2.7秒_**
 
 ```
 sports_car : 79.90474104881287
@@ -222,7 +222,7 @@ crane : 0.05982434959150851
 -----------------------
 ```
 
-**_预测速度=“最快”，预测时间= 2.2秒_**
+**_速度模式="fastest"，花费时间= 2.2秒_**
 
 ```
 tow_truck : 62.5033438205719
@@ -245,26 +245,26 @@ great_grey_owl : 0.0699841941241175
 -----------------------
 ```
 
-### [](#please-note)请注意：
+### 请注意：
 
-调整速度模式时，最好使用具有更高精度的模型，如DenseNet或InceptionV3模型，或者在预测图像具有标志性的情况下使用它。
+在需要调整速度模式时，最好使用具有更高精度的模型（DenseNet or InceptionV3），或者预测图像是标志性的（明显的）；这样更能确保预测的精准度。
 
-### [](#image-input-types)**图像输入类型**
+### 图像输入类型
 
-以前版本的**ImageAI**仅支持文件输入，并接受图像的文件路径以进行图像预测。现在，**ImageAI**支持3种输入类型，即**图像文件的文件路径**（默认），**图像numpy数组**和**图像文件流**。这意味着您现在可以在生产应用程序中执行图像预测，例如在Web服务器和以上述任何格式返回文件到系统上。
+旧版本 **ImageAI** 图像预测功能仅支持指定图像文件路径的文件输入方式。新版本 **ImageAI** 图像预测功能支持3种输入类型，即 **file path to image file**（默认），**numpy array of image** 和 **image file stream**。这意味着您在进行图像预测是可以使用上述3种类型之一进行文件输入，并以上述3种类型之一进行文件输出。
 
-要使用numpy数组或文件流输入执行图像预测，您只需要在**.predictImage（）**函数或**.predictMultipleImages（）**函数中声明输入类型。见下面的例子。
+要使用 **numpy array** 或 **file stream** 类型进行文件输入时，您只需要在`.predictImage()`或`.predictMultipleImages()`函数中声明`input_type`为`array`或`stream`即可，示例如下。
 
 ```
 predictions, probabilities = prediction.predictImage(image_array, result_count=5 , input_type="array" ) # For numpy array input type
 predictions, probabilities = prediction.predictImage(image_stream, result_count=5 , input_type="stream" ) # For file stream input type
 ```
 
-### [](#prediction-in-multithreading)**多线程预测**
+### 多线程预测
 
-在开发像用户界面（UI）这样的deafult线程上运行繁重任务的程序时，您应该考虑在新线程中运行预测。在新线程中使用ImageAI运行图像预测时，必须注意以下事项：
+当您在默认线程上开发像用户界面(UI)这样任务繁重的程序时，您应该考虑在新线程中运行图像预测。在新线程中使用ImageAI运行图像预测时注意以下事项：
 
-- 您可以创建预测对象，设置其模型类型，在新线程外设置模型路径和json路径。
+- 您可以创建`ImagePrediction`类的实例，设置其模型类型`setModelTypeAsResNet()`，在新线程外设置模型路径和json路径。
 - **.loadModel（）**必须在新线程中，并且图像预测（**predictImage（）**）必须在新线程中进行。
 
 使用多线程查看下面的图像预测示例代码：
