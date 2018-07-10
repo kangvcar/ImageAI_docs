@@ -196,24 +196,19 @@ pilot : 2.239348366856575
 
 ## 联系开发者
 
-**Moses Olafenwa**
-
+**Moses Olafenwa**<br/>
 _Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)<br/>
 _Website:_ [https://moses.specpal.science](https://moses.specpal.science)<br/>
 _Twitter:_ [@OlafenwaMoses](https://twitter.com/OlafenwaMoses)<br/>
 _Medium :_ [@guymodscientist](https://medium.com/@guymodscientist)<br/>
 _Facebook :_ [moses.olafenwa](https://facebook.com/moses.olafenwa)<br/>
-**John Olafenwa**
 
-_Email:_ [johnolafenwa@gmail.com](mailto:johnolafenwa@gmail.com)
-
-_Website:_ [https://john.specpal.science](https://john.specpal.science)
-
-_Twitter:_ [@johnolafenwa](https://twitter.com/johnolafenwa)
-
-_Medium :_ [@johnolafenwa](https://medium.com/@johnolafenwa)
-
-_Facebook :_ [olafenwajohn](https://facebook.com/olafenwajohn)
+**John Olafenwa**<br/>
+_Email:_ [johnolafenwa@gmail.com](mailto:johnolafenwa@gmail.com)<br/>
+_Website:_ [https://john.specpal.science](https://john.specpal.science)<br/>
+_Twitter:_ [@johnolafenwa](https://twitter.com/johnolafenwa)<br/>
+_Medium :_ [@johnolafenwa](https://medium.com/@johnolafenwa)<br/>
+_Facebook :_ [olafenwajohn](https://facebook.com/olafenwajohn)<br/>
 
 ## 参考文献 
 
