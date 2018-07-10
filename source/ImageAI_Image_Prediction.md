@@ -311,7 +311,7 @@ predictionThread.start()
 - `setModelTypeAsDenseNet()`如果您选择使用 DenseNet 模型文件来预测图像，你只需调用一次该函数。
 - `setModelPath()` 该函数用于设定模型文件的路径。模型文件必须与您设置的模型类型相对应。
 - `loadModel()` 该函数用于载入模型，在调用`predictImage()`函数之前需要调用此函数一次。
-该函数接收一个`prediction_speed`参数。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
+该函数接收一个`prediction_speed`参数。该参数用于指定图像预测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
     - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
 
 - `predictImage()` 此函数用于通过接收以下参数来预测指定图像：

@@ -198,16 +198,11 @@ pilot : 2.239348366856575
 
 **Moses Olafenwa**
 
-_Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)
-
-_Website:_ [https://moses.specpal.science](https://moses.specpal.science)
-
-_Twitter:_ [@OlafenwaMoses](https://twitter.com/OlafenwaMoses)
-
-_Medium :_ [@guymodscientist](https://medium.com/@guymodscientist)
-
-_Facebook :_ [moses.olafenwa](https://facebook.com/moses.olafenwa)
-
+_Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)<br/>
+_Website:_ [https://moses.specpal.science](https://moses.specpal.science)<br/>
+_Twitter:_ [@OlafenwaMoses](https://twitter.com/OlafenwaMoses)<br/>
+_Medium :_ [@guymodscientist](https://medium.com/@guymodscientist)<br/>
+_Facebook :_ [moses.olafenwa](https://facebook.com/moses.olafenwa)<br/>
 **John Olafenwa**
 
 _Email:_ [johnolafenwa@gmail.com](mailto:johnolafenwa@gmail.com)
@@ -222,48 +217,38 @@ _Facebook :_ [olafenwajohn](https://facebook.com/olafenwajohn)
 
 ## 参考文献 
 
-1.  Somshubra Majumdar, DenseNet Implementation of the paper, Densely Connected Convolutional Networks in Keras
-
+1. Somshubra Majumdar, DenseNet Implementation of the paper, Densely Connected Convolutional Networks in Keras
     [https://github.com/titu1994/DenseNet/](https://github.com/titu1994/DenseNet/)
 
-2.  Broad Institute of MIT and Harvard, Keras package for deep residual networks
-
+2. Broad Institute of MIT and Harvard, Keras package for deep residual networks
     [https://github.com/broadinstitute/keras-resnet](https://github.com/broadinstitute/keras-resnet)
 
-3.  Fizyr, Keras implementation of RetinaNet object detection
-
+3. Fizyr, Keras implementation of RetinaNet object detection
     [https://github.com/fizyr/keras-retinanet](https://github.com/fizyr/keras-retinanet)
 
-4.  Francois Chollet, Keras code and weights files for popular deeplearning models
-
+4. Francois Chollet, Keras code and weights files for popular deeplearning models
     [https://github.com/fchollet/deep-learning-models](https://github.com/fchollet/deep-learning-models)
 
-5.  Forrest N. et al, SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size
-
+5. Forrest N. et al, SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size
     [https://arxiv.org/abs/1602.07360](https://arxiv.org/abs/1602.07360)
 
-6.  Kaiming H. et al, Deep Residual Learning for Image Recognition
-
+6. Kaiming H. et al, Deep Residual Learning for Image Recognition
     [https://arxiv.org/abs/1512.03385](https://arxiv.org/abs/1512.03385)
 
-7.  Szegedy. et al, Rethinking the Inception Architecture for Computer Vision
-
+7. Szegedy. et al, Rethinking the Inception Architecture for Computer Vision
     [https://arxiv.org/abs/1512.00567](https://arxiv.org/abs/1512.00567)
 
-8.  Gao. et al, Densely Connected Convolutional Networks
-
+8. Gao. et al, Densely Connected Convolutional Networks
     [https://arxiv.org/abs/1608.06993](https://arxiv.org/abs/1608.06993)
 
-9.  Tsung-Yi. et al, Focal Loss for Dense Object Detection
-
+9. Tsung-Yi. et al, Focal Loss for Dense Object Detection
     [https://arxiv.org/abs/1708.02002](https://arxiv.org/abs/1708.02002)
 
-10.  O Russakovsky et al, ImageNet Large Scale Visual Recognition Challenge
- 
+10. O Russakovsky et al, ImageNet Large Scale Visual Recognition Challenge
     [https://arxiv.org/abs/1409.0575](https://arxiv.org/abs/1409.0575)
 
-11.  TY Lin et al, Microsoft COCO: Common Objects in Context
+11. TY Lin et al, Microsoft COCO: Common Objects in Context
     [https://arxiv.org/abs/1405.0312](https://arxiv.org/abs/1405.0312)
 
-12.  Moses & John Olafenwa, A collection of images of identifiable professionals.
+12. Moses & John Olafenwa, A collection of images of identifiable professionals.
     [https://github.com/OlafenwaMoses/IdenProf](https://github.com/OlafenwaMoses/IdenProf)
