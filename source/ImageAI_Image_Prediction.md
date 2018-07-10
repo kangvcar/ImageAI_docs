@@ -264,10 +264,10 @@ predictions, probabilities = prediction.predictImage(image_stream, result_count=
 
 当您在默认线程上开发像用户界面(UI)这样任务繁重的程序时，您应该考虑在新线程中运行图像预测。在新线程中使用ImageAI运行图像预测时注意以下事项：
 
-- 您可以创建`ImagePrediction`类的实例，设置其模型类型`setModelTypeAsResNet()`，在新线程外设置模型路径和json路径。
-- **.loadModel（）**必须在新线程中，并且图像预测（**predictImage（）**）必须在新线程中进行。
+- 您可以创建`ImagePrediction`类的实例，设置其模型类型`setModelTypeAsResNet()`和模型文件路径`setModelPath()`。
+- `loadModel()` 和 `predictImage()` 函数必须在新线程中调用。
 
-使用多线程查看下面的图像预测示例代码：
+以下是使用多线程进行图像预测的示例代码：
 
 ```
 from imageai.Prediction import ImagePrediction
@@ -289,21 +289,21 @@ class PredictionThread(threading.Thread):
         prediction.loadModel()
     for eachPicture in allfiles:
         if eachPicture.endswith(".png") or eachPicture.endswith(".jpg"):
-            predictions, percentage_probabilities = prediction.predictImage(picturesfolder + eachPicture, result_count=1)
-    for prediction, percentage_probability in zip(predictions, probabilities):
-        print(prediction + " : " + percentage_probability)
+            predictions, probabilities = prediction.predictImage(picturesfolder + eachPicture, result_count=1)
+            for prediction, percentage_probability in zip(predictions, probabilities):
+                print(prediction + " : " + percentage_probability)
 
-predictionThread = PredictionThread ()
+predictionThread = PredictionThread()
 predictionThread.start()
 ```
 
-### [](#documentation)**文档**
+### 文档
 
 `imageai.Prediction.ImagePrediction` class
 
 * * *
 
-该`ImagePrediction`类可用于任何的Python应用程序通过实例化它并调用下面的可用功能进行图像预测：
+通过实例化`ImagePrediction`类并调用下面的函数即可用于任何的Python应用程序进行图像预测：
 
 - `setModelTypeAsSqueezeNet()`如果您选择使用SqueezeNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
 - `setModelTypeAsResNet()`如果您选择使用ResNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
