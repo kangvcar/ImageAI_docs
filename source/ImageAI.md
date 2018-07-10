@@ -37,7 +37,7 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 
 - pip3 [安装](https://pypi.python.org/pypi/pip)
 
-- Tensorflow 1.4.0（及更高版本）  [安装](https://www.tensorflow.org/install/install_windows) 或 通过pip安装
+- Tensorflow 1.4.0（及更高版本）  [安装](https://www.tensorflow.org/install/install_windows) 或 通过pip安装<br/>
     ` pip3 install --upgrade tensorflow `
 
 - Numpy 1.13.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装<br/>
@@ -46,27 +46,27 @@ ImageAI是一个python库，旨在使开发人员能够使用简单的几行代�
 - SciPy 0.19.1（及更高版本） [安装](https://www.scipy.org/install.html)或 通过pip安装<br/>
     ` pip3 install scipy `
 
-- OpenCV [安装](https://pypi.python.org/pypi/opencv-python)或 通过pip安装
+- OpenCV [安装](https://pypi.python.org/pypi/opencv-python)或 通过pip安装<br/>
     ` pip3 install opencv-python `
 
-- pillow  [安装](https://pypi.org/project/Pillow/2.2.1/)或 通过pip安装
+- pillow  [安装](https://pypi.org/project/Pillow/2.2.1/)或 通过pip安装<br/>
     ` pip3 install pillow  `
 
-- Matplotlib [安装](https://matplotlib.org/users/installing.html)或 通过pip安装
+- Matplotlib [安装](https://matplotlib.org/users/installing.html)或 通过pip安装<br/>
     ` pip3 install matplotlib `
 
-- h5py [安装](http://docs.h5py.org/en/latest/build.html)或 通过pip安装
+- h5py [安装](http://docs.h5py.org/en/latest/build.html)或 通过pip安装<br/>
     ` pip3 install h5py `
 
-- Keras 2.x [安装](https://keras.io/#installation)或 通过pip安装
+- Keras 2.x [安装](https://keras.io/#installation)或 通过pip安装<br/>
     ` pip3 install keras `
 
 ## 安装
 
-请在命令行中运行如下命令来安装 **ImageAI**：
+请在命令行中运行如下命令来安装 **ImageAI**：<br/>
     `pip3 install https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl`
 
-或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl) 安装文件并在命令行中指定安装文件的路径来安装**ImageAI**：
+或者下载Python Wheel [**imageai-2.0.1-py3-none-any.whl**](https://github.com/OlafenwaMoses/ImageAI/releases/download/2.0.1/imageai-2.0.1-py3-none-any.whl) 安装文件并在命令行中指定安装文件的路径来安装**ImageAI**：<br/>
     `pip3 install C:\User\MyUser\Downloads\imageai-2.0.1-py3-none-any.whl`
 
 ## 图像预测
@@ -160,13 +160,13 @@ pilot : 2.239348366856575
 
 **ImageAI** 基于 Tensorflow 进行计算机视觉操作。Tensorflow 支持 CPU 和 GPU（特别是NVIDIA GPU），要使用支持 GPU 的 Tensorflow，请点击以下链接进行安装：
 
-- FOR WINDOWS
+- FOR WINDOWS<br/>
     [https://www.tensorflow.org/install/install_windows](https://www.tensorflow.org/install/install_windows)
 
-- FOR macOS
+- FOR macOS<br/>
     [https://www.tensorflow.org/install/install_mac](https://www.tensorflow.org/install/install_mac)
 
-- FOR UBUNTU
+- FOR UBUNTU<br/>
     [https://www.tensorflow.org/install/install_linux](https://www.tensorflow.org/install/install_linux)
 
 ## 样本应用

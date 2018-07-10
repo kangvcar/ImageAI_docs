@@ -316,31 +316,25 @@ predictionThread.start()
 - `predictImage()` 此函数用于通过接收以下参数来预测指定图像：
     - `input_type`（可选），指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。
     - `image_input`，指定图像的 file path/numpy array/image file stream 。
-    - `result_count`（可选），指定要预测出多少种可能的对象（默认预测出5中可能的对象），可接受的值是
+    - `result_count`（可选），指定要预测出多少种可能的对象类（默认预测出5中可能的对象类），可接受的范围是
 1到1000之间的整数。
 
-    此函数返回2个数组，即'prediction_results'和'prediction_probabilities'。'prediction_results'包含按百分比概率降序排列的可能对象类。'prediction_probabilities'包含每个对象类的概率百分比。
-    数组中每个对象类的位置对应于'prediction_probabilities' 数组中百分比可能性。
+    此函数返回2个数组，即`prediction_results`和`prediction_probabilities`。其中`prediction_results`包含可能的对象类；`prediction_probabilities`包含每个对象类的概率。
+    `prediction_results`数组中每个对象类的位置按`prediction_probabilities`数组中概率降序排列。
 
-    _**：param input_type:**_
+    _**：param input_type:**_<br/>
+    _**：param image_input:**_<br/>
+    _**：param result_count:**_<br/>
+    _**：return prediction_results，prediction_probabilities:**_<br/>
 
-    _**：param image_input:**_
+- `predictMultipleImages()`此函数用于通过接收以下参数来预测指定图像：
+    - `input_type`，指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。
+    - `sent_images_array`，指定图像的 file path array / numpy array / image file stream 。
+    - `result_count_per_image`（可选），指定每张图像要预测出多少种可能的对象类（默认每张图像预测出2种可能的对象类），可接受的范围是1到1000之间的整数。
 
-    _**：param result_count:**_
+    此函数返回一个字典数组，每个字典包含2个数组，即`prediction_results`和`prediction_probabilities`。`prediction_results`包含可能的对象类；`prediction_probabilities`包含每个对象类的概率。`prediction_results`数组中每个对象类的位置按`prediction_probabilities`数组中概率降序排列。
 
-    _**：return prediction_results，prediction_probabilities:**_
-
-- `predictMultipleImages()`此函数用于通过接收以下参数来预测多个图像：
-    - input_type，解析数组中包含的输入类型。可接受的值是“file”，“array”和“stream”
-    - sent_images_array，图像文件路径数组，图像numpy数组或图像文件流
-    - result_count_per_image（可选），数量每个图像要发送的预测，必须是1到1000之间的整数。默认值为2。
-
-    此函数返回一个字典数组，每个字典包含2个数组，即'prediction_results'和'prediction_probabilities'。'prediction_results'包含按其百分比概率降序排列的可能对象类。'prediction_probabilities'包含每个对象类的概率百分比。'prediction_results'数组中每个对象类的位置对应于'prediction_probabilities'数组中百分比可能性。
-
-    **_:param input_type:_**
-
-    **_:param sent_images_array:_**
-
-    **_:param result_count_per_image:_**
-
-    **_:return output_array:_**
+    **_:param input_type:_**<br/>
+    **_:param sent_images_array:_**<br/>
+    **_:param result_count_per_image:_**<br/>
+    **_:return output_array:_**<br/>
