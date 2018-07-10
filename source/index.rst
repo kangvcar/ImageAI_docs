@@ -15,10 +15,3 @@ ImageAI 中文文档
    ImageAI_Video_Object_Detection_and_Tracking
    ImageAI_Custom_Prediction_Model_Training
    ImageAI_Custom_Image_Prediction
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
