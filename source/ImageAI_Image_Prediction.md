@@ -337,4 +337,4 @@ predictionThread.start()
     **_:param input_type:_**<br/>
     **_:param sent_images_array:_**<br/>
     **_:param result_count_per_image:_**<br/>
-    **_:return output_array:_**<br/>
+    **_:return output_array:_**
