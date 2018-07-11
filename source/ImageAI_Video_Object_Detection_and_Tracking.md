@@ -118,37 +118,33 @@ video_path = detector.detectCustomObjectsFromVideo(custom_objects=custom_objects
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg)](https://www.youtube.com/embed/YfAycAzkwPM?rel=0)<br/>
 C:\Users\User\PycharmProjects\ImageAITest\traffic_custom_detected.avi
 
-### **视频检测速度**
+### 视频检测速度
 
-**ImageAI**现在为所有视频对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但只需稍微改变但检测结果依然准确。与降低`minimum_percentage_probability`参数相结合，检测可以与正常速度紧密匹配，但却大大缩短了检测时间。可用的检测速度是"normal"(default), "fast", "faster" , "fastest" and "flash". 。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
+**ImageAI** 为对象检测任务添加了速度调节参数`detection_speed`，结合`minimum_percentage_probability`参数使用效果更佳，最多可使检测时间缩短80％且几乎不影响检测结果的精准度。可用的检测速度是 "normal"(default), "fast", "faster" , "fastest" and "flash"。您只要在加载模型时说明您想要的速度模式，如下所示。
 
 ```
 detector.loadModel(detection_speed="fast")
 ```
 
-要观察检测速度的差异，请查看下面的不同速度应用于物体检测的示例，同时调整`minimum_percentage_probability`所需要的检测时间。以下结果来自在NVIDIA K80 GPU上执行的检测。下面提供链接以下载应用的每个检测速度的视频。
+为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间(在NVIDIA K80 GPU)。下面提供每个视频的下载链接：
 
 **_视频长度= 1分钟24秒，检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 29分钟3秒_**
 
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-4.jpg)](https://www.youtube.com/embed/qplVDqOmElI?rel=0) 
 
-**_视频长度= 1分钟24秒，检测速度="fast"，最小百分比概率= 40，检测时间= 11分钟6秒_**
-
+**_视频长度= 1分钟24秒，检测速度="fast"，最小百分比概率= 40，检测时间= 11分钟6秒_**<br/>
 [>>>下载以速度"fast"检测的视频](https://drive.google.com/open?id=118m6UnEG7aFdzxO7uhO_6C-981LJ3Gpf)
 
-**_视频长度= 1分钟24秒，检测速度="faster"，最小百分比概率= 30，检测时间= 7分47秒_**
-
+**_视频长度= 1分钟24秒，检测速度="faster"，最小百分比概率= 30，检测时间= 7分47秒_**<br/>
 [>>>下载以速度"faster"检测的视频](https://drive.google.com/open?id=1s1FQWFsEX1Yf4FvUPVleK7vRxaQ6pgUy)
 
-**_视频长度= 1分钟24秒，检测速度="fastest"，最小百分比概率= 20，检测时间= 6分钟20秒_**
-
+**_视频长度= 1分钟24秒，检测速度="fastest"，最小百分比概率= 20，检测时间= 6分钟20秒_**<br/>
 [>>>下载以速度"fastest"检测的视频](https://drive.google.com/open?id=1Wlt0DTGxl-JX7otd30MH4qhURv0rG9rw)
 
-**_视频长度= 1分钟24秒，检测速度="flash"，最小百分比概率= 10，检测时间= 3分55_**
-
+**_视频长度= 1分钟24秒，检测速度="flash"，最小百分比概率= 10，检测时间= 3分55_**<br/>
 [>>>下载以速度"flash"检测的视频](https://drive.google.com/open?id=1V3irCpP49bEUtpjG7Vuk6vEQQAZI-4PI)
 
-如果您使用功能更强大的NVIDIA GPU ，您肯定会有更快的检测时间比。
+如果您使用功能更强大的NVIDIA GPU，检测时间将更加短。
 
 ### **帧检测间隔**
 

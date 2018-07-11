@@ -216,7 +216,7 @@ detections = detector.detectCustomObjectsFromImage(custom_objects=custom_objects
 detector.loadModel(detection_speed="fast")
 ```
 
-为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间。(实验环境 OS:Windows 8, CPU:Intel Celeron N2820 2.13GHz)：
+为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间(实验环境 OS:Windows 8, CPU:Intel Celeron N2820 2.13GHz)：
 
 **_检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 63.5秒_**
 
