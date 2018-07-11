@@ -326,7 +326,7 @@ predictionThread.start()
     _**：param result_count:**_<br/>
     _**：return prediction_results，prediction_probabilities:**_<br/>
 
-- `predictMultipleImages()`此函数用于通过接收以下参数来预测指定图像：
+- `predictMultipleImages()` 此函数用于通过接收以下参数来预测指定图像：
     - `input_type`，指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。
     - `sent_images_array`，指定图像的 file path array / numpy array / image file stream 。
     - `result_count_per_image`（可选），指定每张图像要预测出多少种可能的对象类（默认每张图像预测出2种可能的对象类），可接受的范围是1到1000之间的整数。

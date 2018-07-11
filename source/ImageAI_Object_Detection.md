@@ -281,10 +281,10 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
 
 此函数返回的值取决于解析的参数。可返回的值如下所示
 - 如果`extract_detected_objects = False`或其默认值和`output_type ='file'`或其
-默认值，则必须将`output_image_path`解析为输出检测结果所在的路径,该函数将返回：
+默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于在图像中检测到的对象。每个字典包含以下属性：
-        - name
-        - percentage_probability
+        + name
+        + percentage_probability
 
 - 如果`extract_detected_objects = False`或其默认值并且`output_type ='array'`，则该函数将返回：
     1. 检测到的图像的numpy数组
@@ -293,18 +293,18 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
         + percentage_probability
 
 - 如果`extract_detected_objects = True`且`output_type ='file'`或
-在默认值，您必须将`output_image_path`解析为您想要保存检测到的图像的路径的字符串。然后该函数将返回：
+在默认值，您必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         + name
         + percentage_probability
-    2. 从图像中提取的每个对象的图像的字符串路径数组    
+    2. 一个字符串数组，包含了从图像中提取的每个对象的图像所保存的路径
 
 - 如果`extract_detected_objects = True`且`output_type ='array'`，则该函数将返回：
-    1. numpy检测到的图像的数组
+    1. 检测到的图像的numpy数组
     2. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         + name
         + percentage_probability
-    3. 图像中检测到的每个对象的numpy数组数组
+    3. 图像中检测到的每个对象的numpy数组
 
 _:param input_image:_<br/>
 _:param output_image_path:_<br/>
@@ -316,14 +316,10 @@ _:return output_objects_array:_<br/>
 _:return detected_copy:_<br/>
 _:return detected_detected_objects_image_array:_<br/>
 
-- `CustomObjecs()`可以选择调用此函数来**手动**选择
-要从图像中检测的对象类型。这些对象在函数变量中预先创建，并预定义为“False”，
-对于任意数量的可用对象，您可以轻松地将其设置为true。此函数
-返回一个字典，必须将其解析用于为`detectCustomObjectsFromImage()`。
-检测自定义对象发生在调用函数`detectCustomObjectsFromImage()`时。
+- `CustomObjecs()` 调用此函数来选择需要在图像中进行检测的对象。这些对象在函数变量中预先创建并定义为 `False`。您可以将任何预创建的对象设置为`true`，最终此函数将返回一个字典被`detectCustomObjectsFromImage()`函数的一个参数`custom_objects`所使用。
 
-- `detectCustomObjectsFromImage`此函数用于检测给定图像路径中可观察的预定义对象：
-    - `custom_objects`，一个CustomObject类的实例，用于过滤要检测的对象
+- `detectCustomObjectsFromImage` 此函数通过接收以下参数在图像中对指定对象进行检测：
+    - `custom_objects`，一个`CustomObject`类的实例，用于指定在图像中需要检测的对象
     - `input_image`，可以将文件转换为path，image numpy array或image file stream
     - `output_image_path`，包含检测框和标签的输出图像的文件路径，如果`output_type ="file"`
     - `input_type`（可选），file path/numpy array/image file stream of the image. 可选值为 "file" and "array" 
