@@ -279,27 +279,27 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
     - `extract_detected_objects`（可选，默认为 false），用于将每个检测到的对象单独保存为图像并返回每个图像路径的数组。
     - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
 
-此函数返回的值取决于解析的参数。可返回的值如下所示
-- 如果`extract_detected_objects = False`或其默认值和`output_type ='file'`或其
+此函数返回的值取决于所设置的参数。可返回的值如下所示
+- 如果`extract_detected_objects = False`或其默认值和`output_type =file`或其
 默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于在图像中检测到的对象。每个字典包含以下属性：
         + name
         + percentage_probability
 
-- 如果`extract_detected_objects = False`或其默认值并且`output_type ='array'`，则该函数将返回：
+- 如果`extract_detected_objects = False`或其默认值并且`output_type =array`，则该函数将返回：
     1. 检测到的图像的numpy数组
     2. 字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：
         + name
         + percentage_probability
 
-- 如果`extract_detected_objects = True`且`output_type ='file'`或
-在默认值，您必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
+- 如果`extract_detected_objects = True`且`output_type =file`或
+默认值，您必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         + name
         + percentage_probability
     2. 一个字符串数组，包含了从图像中提取的每个对象的图像所保存的路径
 
-- 如果`extract_detected_objects = True`且`output_type ='array'`，则该函数将返回：
+- 如果`extract_detected_objects = True`且`output_type =array`，则该函数将返回：
     1. 检测到的图像的numpy数组
     2. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         + name
@@ -320,18 +320,15 @@ _:return detected_detected_objects_image_array:_<br/>
 
 - `detectCustomObjectsFromImage` 此函数通过接收以下参数在图像中对指定对象进行检测：
     - `custom_objects`，一个`CustomObject`类的实例，用于指定在图像中需要检测的对象
-    - `input_image`，可以将文件转换为path，image numpy array或image file stream
-    - `output_image_path`，包含检测框和标签的输出图像的文件路径，如果`output_type ="file"`
-    - `input_type`（可选），file path/numpy array/image file stream of the image. 可选值为 "file" and "array" 
-    - `output_type`（可选）， file path/numpy array/image file stream of the image. 可选值为 "file" and "array" 
-    - `extract_detected_objects`（可选，默认为False），选项可以将每个检测到的对象单独保存为图像，并返回对象图像路径的数组。
-    - `minimum_percentage_probability`（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。
+    - `input_image`，可以是图像文件路径/图像numpy数组/图像文件流
+    - `output_image_path`，如果`output_type=file`，则该参数指定为输出包含检测框和标签的图像文件路径
+    - `input_type`（可选），指定图像输入的类型，可选值为 "file", "array", "stream"  
+    - `output_type`（可选）， 指定图像输入的类型，可选值为 "file", "array" 
+    - `extract_detected_objects`（可选，默认为`False`），该参数用于将每个检测到的对象单独保存为图像，并返回包含图像路径的数组。
+    - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
 
-此函数返回的值取决于解析的参数。可返回的可能值如下所示
-
-- 如果`extract_detected_objects = False`或其默认值并且`output_type ='file'`或
-在默认值下，您必须将`output_image_path`解析为您想要
-保存检测到的图像的路径的字符串。然后该函数将返回：
+此函数返回的值取决于所设置的参数。可返回的可能值如下所示：
+- 如果`extract_detected_objects=False`或其默认值并且`output_type =file`或默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
 
     1. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         - name
