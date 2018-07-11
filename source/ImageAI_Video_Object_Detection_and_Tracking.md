@@ -146,28 +146,24 @@ detector.loadModel(detection_speed="fast")
 
 如果您使用功能更强大的NVIDIA GPU，检测时间将更加短。
 
-### **帧检测间隔**
+### 帧检测间隔
 
-上述视频对象检测任务针对帧实时对象检测进行了优化，以确保检测到视频的每个帧中的对象**.ImageAI**为您提供了调整视频帧检测的选项，可以加快视频检测过程。调用`.detectObjectsFromVideo()` 或 `.detectCustomObjectsFromVideo()`时，可以指定检测的帧间隔。通过将` frame_detection_interval`参数设置为等于5或20，这意味着视频中的对象检测将在5帧或20帧之后更新。如果输出视频`frames_per_second`设置为20，意味着视频中的对象检测将在每四分之一秒或每秒更新一次。如果可检测的对象较模糊且移动对象的速度较低，那此功能非常有用。这可确保您可以将对象检测为每两秒，每半秒或以适合您需求的方式。我们通过应用等于5的**frame_detection_interval**值对我们之前使用的输入视频进行了视频对象检测。下面的结果是从NVIDIA K80 GPU上执行的检测中获得的。点击链接下载对应视频：
+上述视频对象检测任务检测了视频的每一帧。 **ImageAI** 为视频对象检测任务添加了帧检测间隔参数` frame_detection_interval`以加快视频检测过程。在调用`.detectObjectsFromVideo()` 或 `.detectCustomObjectsFromVideo()`函数时，通过指定参数`frame_detection_interval`的值来设置每隔多少帧检测一次对象，该参数的值可设置为5-20之间。
+如果可检测的对象较模糊且对象移动速度较慢时此功能非常有用。我们通过设置参数`frame_detection_interval=5`对上面示例中的视频进行视频对象检测（实验环境：NVIDIA K80 GPU）。点击链接下载对应视频：
 
-**_视频长度= 1分钟24秒，检测速度="normal" ，最小百分比概率= 50（默认值），帧检测间隔= 5，检测时间= 15分49秒_** 
-
+**_视频长度= 1分钟24秒，检测速度="normal" ，最小百分比概率= 50（默认值），帧检测间隔= 5，检测时间= 15分49秒_**<br/>
 [>>>以速度"normal" 和间隔= 5检测对象的视频](https://drive.google.com/open?id=10m6kXlXWGOGc-IPw6TsKxBi-SXXOH9xK)
 
-**_视频长度= 1分钟24秒，检测速度="fast"，最小百分比概率= 40，帧检测间隔= 5，检测时间= 5分钟6秒_**
-
+**_视频长度= 1分钟24秒，检测速度="fast"，最小百分比概率= 40，帧检测间隔= 5，检测时间= 5分钟6秒_**<br/>
 [>>>以速度"fast" 和间隔= 5检测对象的视频](https://drive.google.com/open?id=17934YONVSXvd4uuJE0KwenEFks7fFYe4)
 
-**_视频长度= 1分钟24秒，检测速度="faster"，最小百分比概率= 30，帧检测间隔= 5，检测时间= 3分钟18秒_**
-
+**_视频长度= 1分钟24秒，检测速度="faster"，最小百分比概率= 30，帧检测间隔= 5，检测时间= 3分钟18秒_**<br/>
 [>>>以速度"faster" 和间隔= 5检测对象的视频](https://drive.google.com/open?id=1cs_06CuhXDvZp3fHJWFpam-31eclOhc-)
 
-**_视频长度= 1分钟24秒，检测速度="fastest"，最小百分比概率= 20，帧检测间隔= 5，检测时间= 2分钟18秒_**
-
+**_视频长度= 1分钟24秒，检测速度="fastest"，最小百分比概率= 20，帧检测间隔= 5，检测时间= 2分钟18秒_**<br/>
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg)](https://www.youtube.com/embed/S-jgBTQgbd4?rel=0) 
 
-[**_视频长度= 1分钟24秒，检测速度="flash"，最小百分比概率= 10，帧检测间隔= 5，检测时间= 1分27秒_**](https://www.youtube.com/embed/S-jgBTQgbd4?rel=0) [](https://www.youtube.com/embed/S-jgBTQgbd4?rel=0)
-
+[**_视频长度= 1分钟24秒，检测速度="flash"，最小百分比概率= 10，帧检测间隔= 5，检测时间= 1分27秒_**](https://www.youtube.com/embed/S-jgBTQgbd4?rel=0) [](https://www.youtube.com/embed/S-jgBTQgbd4?rel=0)<br/>
 [>>>以速度"flash" 和间隔= 5检测对象的视频](https://drive.google.com/open?id=1aN2nnVoFjhUWpcz2Und3dsCT9OKrakM0)
 
 ### **文档**
