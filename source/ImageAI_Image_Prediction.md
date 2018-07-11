@@ -145,7 +145,7 @@ white_stork : 1.6472270712256432
 
 ### 预测速度
 
-**ImageAI** 为图像预测任务添加了预测速度调节功能，最多可使预测时间减少60％。可选的速度模式有`normal`(default), `fast`, `faster` , `fastest` 。您只需要在调用`loadModel()`函数是指定参数`prediction_speed`的值为你想要的速度模式即可，如下所示。
+**ImageAI** 为图像预测任务添加了预测速度调节功能，最多可使预测时间缩短60％。可选的速度模式有`normal`(default), `fast`, `faster` , `fastest` 。您只需要在调用`loadModel()`函数是指定参数`prediction_speed`的值为你想要的速度模式即可，如下所示。
 
 ```
 prediction.loadModel(prediction_speed="fast")
@@ -251,9 +251,9 @@ great_grey_owl : 0.0699841941241175
 
 ### 图像输入类型
 
-旧版本 **ImageAI** 图像预测功能仅支持指定图像文件路径的文件输入方式。新版本 **ImageAI** 图像预测功能支持3种输入类型，即 **file path to image file**（默认），**numpy array of image** 和 **image file stream**。这意味着您在进行图像预测是可以使用上述3种类型之一进行文件输入，并以上述3种类型之一进行文件输出。
+旧版本 **ImageAI** 图像预测功能仅支持指定图像文件路径的图像输入方式。新版本 **ImageAI** 图像预测功能支持3种输入类型，即 **file path to image file**（默认），**numpy array of image** 和 **image file stream**。这意味着您在进行图像预测时可以使用上述格式返回文件到系统中。
 
-要使用 **numpy array** 或 **file stream** 类型进行文件输入时，您只需要在`.predictImage()`或`.predictMultipleImages()`函数中声明`input_type`为`array`或`stream`即可，示例如下。
+要使用 **numpy array** 或 **file stream** 类型进行图像输入时，您只需要在`.predictImage()`或`.predictMultipleImages()`函数中声明`input_type`参数为`array`或`stream`即可，示例如下：
 
 ```
 predictions, probabilities = prediction.predictImage(image_array, result_count=5 , input_type="array" ) # For numpy array input type
@@ -303,15 +303,14 @@ predictionThread.start()
 
 * * *
 
-在任何的Python程序中通过实例化`ImagePrediction`类并调用下面的函数即进行图像预测：
+在任何的Python程序中通过实例化`ImagePrediction`类并调用下面的函数即可进行图像预测：
 
 - `setModelTypeAsSqueezeNet()` 如果您选择使用 SqueezeNet 模型文件来预测图像，你只需调用一次该函数。
 - `setModelTypeAsResNet()` 如果您选择使用 ResNet 模型文件来预测图像，你只需调用一次该函数。
 - `setModelTypeAsInceptionV3()` 如果您选择使用 InceptionV3Net 模型文件来预测图像，你只需调用一次该函数。
 - `setModelTypeAsDenseNet()` 如果您选择使用 DenseNet 模型文件来预测图像，你只需调用一次该函数。
 - `setModelPath()` 该函数用于设定模型文件的路径。模型文件必须与您设置的模型类型相对应。
-- `loadModel()` 该函数用于载入模型，在调用`predictImage()`函数之前需要调用此函数一次。
-该函数接收一个`prediction_speed`参数。该参数用于指定图像预测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
+- `loadModel()` 该函数用于载入模型，在调用`predictImage()`函数之前需要调用此函数一次。该函数接收一个`prediction_speed`参数。该参数用于指定图像预测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
     - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster", "fastest" 
 - `predictImage()` 此函数用于通过接收以下参数来预测指定图像：
     - `input_type`（可选），指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。

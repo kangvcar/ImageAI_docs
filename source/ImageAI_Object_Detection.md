@@ -155,7 +155,7 @@ print("--------------------------------")
 
 ### 您需要知道的一个重要功能！
 
-您是否还记得`detectObjectsFromImage()`函数返回的信息中包每个检测到的对象的百分比概率。该函数有一个重要的参数 `minimum_percentage_probability`，该参数用于设定预测概率的阈值，其默认值为**50**（范围在0-100之间）。如果保持默认值，这意味着只有当百分比概率为**大于等于50**时，该函数才会返回检测到的对象。使用默认值可以确保检测结果的完整性，但是在检测过程中可能会跳过许多对象。因此，您可以通过将`minimum_percentage_probability`设置更小的值以检测更多的对象或更高的值来检测更少的对象。
+您是否还记得`detectObjectsFromImage()`函数返回的信息中包每个检测到的对象的百分比概率。该函数有一个重要的参数 `minimum_percentage_probability`，该参数用于设定预测概率的阈值，其默认值为**50**（范围在0-100之间）。如果保持默认值，这意味着只有当百分比概率**大于等于50**时，该函数才会返回检测到的对象。使用默认值可以确保检测结果的完整性，但是在检测过程中可能会跳过许多对象。因此，您可以通过将`minimum_percentage_probability`设置更小的值以检测更多的对象或更高的值来检测更少的对象。
 
 ### 自定义对象检测
 
@@ -210,13 +210,13 @@ detections = detector.detectCustomObjectsFromImage(custom_objects=custom_objects
 
 ### 检测速度
 
-**ImageAI** 现在为所有对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但对检测结果准确性影响不大。结合降低`minimum_percentage_probability`参数，检测可以匹配normal速度，但却大大缩短了检测时间。可用的检测速度是 "normal"(default), "fast", "faster" , "fastest" and "flash"。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
+**ImageAI** 为对象检测任务添加了速度调节参数`detection_speed`，结合`minimum_percentage_probability`参数使用效果更佳，最多可使检测时间缩短60％且几乎不影响检测结果的精准度。可用的检测速度是 "normal"(default), "fast", "faster" , "fastest" and "flash"。您只要在加载模型时说明您想要的速度模式，如下所示。
 
 ```
 detector.loadModel(detection_speed="fast")
 ```
 
-要观察检测速度的差异，请查看下面的不同速度应用于物体检测的结果，同时调整检测时间`minimum_percentage_probability`。下面的结果来自在Intel Celeron N2820 CPU的Windows 8笔记本电脑上执行的检测，处理器速度为2.13GHz
+为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间。(实验环境 OS:Windows 8, CPU:Intel Celeron N2820 2.13GHz)：
 
 **_检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 63.5秒_**
 
@@ -238,48 +238,46 @@ detector.loadModel(detection_speed="fast")
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5flash.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5flash.jpg)
 
-您会注意到，在"flash"检测速度下，检测速度最快但准确度最低。那是因为图片中没有任何标志性的对象。"flash"检测速度下，其中输入图像是代表性的（包含一个标志性图像）模式是最适合的。请查看下面的示例，以便在标志性图像中进行检测。
+您会注意到，在"flash"检测速度下，检测速度最快但准确度最低，那是因为图片中没有任何标志性的对象。在输入图像是代表性的（包含一个标志性图像）的时候，"flash"检测速度是最适合的。请查看下面的示例，以便了解何为标志性（代表性）图像下的检测：
 
 **_检测速度="flash"，最小百分比概率= 30（默认值），检测时间= 3.85秒_** 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/6flash.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/6flash.jpg)
 
-### [](#image-input--output-types)**图像输入和输出类型**
+### 图像输入和输出类型
 
-以前版本的**ImageAI**仅支持文件输入，并接受图像的文件路径以进行图像检测。现在，**ImageAI**支持3种输入类型的输入，它们是**图像文件的文件路径**（默认），**图像numpy数组**和**图像文件流** ，以及2种类型的输出，它们是图像**文件**（默认）和numpy **数组**。这意味着您现在可以在生产应用程序中执行对象检测，例如在Web服务器以上述格式返回文件到系统上。
+旧版本 **ImageAI** 对象检测功能仅支持指定图像文件路径的图像输入方式。新版本 **ImageAI** 对象检测功能支持3种输入类型，即 **file path to image file**（默认），**numpy array of image** 和 **image file stream**；以及2种输出类型，即 **image file**默认） 和 **numpy array of image**  这意味着您在进行对象检测时可以使用上述格式返回文件到系统中。
 
-要使用numpy数组或文件流输入执行对象检测，您只需要在`.detectObjectsFromImage()`或` .detectCustomObjectsFromImage() `函数中声明输入类型函数。见下面的例子。
-
-```
-detections = detector.detectObjectsFromImage(input_type="array", input_image=image_array , output_image_path=os.path.join(execution_path , "image.jpg")) ＃对于numpy数组输入类型
-detections = detector.detectObjectsFromImage(input_type="stream", input_image=image_stream , output_image_path=os.path.join(execution_path , "test2new.jpg")) ＃对于文件流输入类型
-```
-
-要使用numpy数组输出执行对象检测，您只需要在`.detectObjectsFromImage() `或`.detectCustomObjectsFromImage()`函数中声明输出类型。见下面的例子。
+要使用 **numpy array** 或 **file stream** 类型进行图像输入时，您只需要在`.detectObjectsFromImage()`或`.detectCustomObjectsFromImage()`函数中声明`input_type`参数为`array`或`stream`即可，示例如下：
 
 ```
-detected_image_array, detections = detector.detectObjectsFromImage(output_type="array", input_image="image.jpg" )   ＃对于numpy数组输出类型
+detections = detector.detectObjectsFromImage(input_type="array", input_image=image_array , output_image_path=os.path.join(execution_path , "image.jpg")) # For numpy array input type
+detections = detector.detectObjectsFromImage(input_type="stream", input_image=image_stream , output_image_path=os.path.join(execution_path , "test2new.jpg")) # For file stream input type
 ```
 
-### [](#documentation)**文档**
+要使用 **numpy array** 输出格式时，您只需要在`.detectObjectsFromImage()`或`.detectCustomObjectsFromImage()`函数中声明`input_type`参数为`array`即可，示例如下：
+```
+detected_image_array, detections = detector.detectObjectsFromImage(output_type="array", input_image="image.jpg" ) # For numpy array output type
+```
+
+### 文档
 
 `imageai.Detection.ObjectDetection` class
 
 * * *
 
-所述**ObjectDetection**类可用于通过实例化它并调用下面的可用功能来执行图像上，对象提取和多个对象检测：
-- `setModelTypeAsRetinaNet()` 如果您选择使用RetinaNet 模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
-- `setModelPath()` 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。
-- `loadModel()` 此函数是必需的，用于从`setModelPath()`定义的文件路径将模型结构加载到程序中
-。该函数接收一个`detection_speed`的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
-    - `detection_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
+在任何的Python程序中通过实例化`ObjectDetection`类并调用下面的函数即可进行对象检测：
 
-- `detectObjectsFromImage()`此函数用于检测给定图像路径中可观察的对象：
-    - `input_image`，可以是文件路径，图像numpy数组或图像文件流
-    - `output_image_path`（仅当output_type = file），如果output_type = file ，输出图像的文件路径，包含检测框和标签。
-    - `input_type`（可选），文件路径/ 图像numpy数组/图像文件流。可接受的值是“文件”，“数组”和“流”
-    - `output_type`（可选），文件路径/ numpy数组/图像文件流的图像。可接受的值是"file" and "array" 
-    - `extract_detected_objects`（可选），用于将每个检测到的对象单独保存为图像并返回对象图像路径的数组。
-    - `minimum_percentage_probability`（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。
+- `setModelTypeAsRetinaNet()` 如果您选择使用RetinaNet 模型文件来进行对象检测，你只需调用一次该函数。
+- `setModelPath()` 该函数用于设定模型文件的路径。模型文件必须与您设置的模型类型相对应。
+- `loadModel()` 该函数用于载入模型。该函数接收一个`prediction_speed`参数。该参数用于指定对象检测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
+    - `detection_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
+- `detectObjectsFromImage()` 此函数用于通过接收以下参数来进行对象检测：
+    - `input_image` 该参数用于指定输入图像的 file path/numpy array/image file stream 。
+    - `output_image_path` 如果`output_type=file`，该参数用于指定输出（包含检测框和标签）图像的文件路径，。
+    - `input_type`（可选），指定需要解析的输入类型。可接受的值是"file", "array" and "stream" 。
+    - `output_type`（可选），指定需要输出的类型。可接受的值是"file", "array"
+    - `extract_detected_objects`（可选，默认为 false），用于将每个检测到的对象单独保存为图像并返回每个图像路径的数组。
+    - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
 
 此函数返回的值取决于解析的参数。可返回的值如下所示
 
@@ -311,23 +309,15 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
         + percentage_probability
     3. 图像中检测到的每个对象的numpy数组数组
 
-_::param input_image::_
-
-_::param output_image_path::_
-
-_::param input_type::_
-
-_::param output_type::_
-
-_::param extract_detected_objects::_
-
-_::param minimum_percentage_probability::_
-
-_::return output_objects_array::_
-
-_::return detected_copy::_
-
-_::return detected_detected_objects_image_array::_
+_:param input_image:_<br/>
+_:param output_image_path:_<br/>
+_:param input_type:_<br/>
+_:param output_type:_<br/>
+_:param extract_detected_objects:_<br/>
+_:param minimum_percentage_probability:_<br/>
+_:return output_objects_array:_<br/>
+_:return detected_copy:_<br/>
+_:return detected_detected_objects_image_array:_<br/>
 
 - `CustomObjecs()`可以选择调用此函数来**手动**选择
 要从图像中检测的对象类型。这些对象在函数变量中预先创建，并预定义为“False”，
@@ -374,20 +364,12 @@ _::return detected_detected_objects_image_array::_
         + percentage_probability
     3. 图像中检测到的每个对象的numpy数组
 
-_::param input_image::_
-
-_::param output_image_path::_
-
-_::param input_type::_
-
-_::param output_type::_
-
-_::param extract_detected_objects::_
-
-_::param minimum_percentage_probability::_
-
-_::return output_objects_array::_
-
-_::return detected_copy::_
-
-_::return detected_detected_objects_image_array::_
+_:param input_image:_<br/>
+_:param output_image_path:_<br/>
+_:param input_type:_<br/>
+_:param output_type:_<br/>
+_:param extract_detected_objects:_<br/>
+_:param minimum_percentage_probability:_<br/>
+_:return output_objects_array:_<br/>
+_:return detected_copy:_<br/>
+_:return detected_detected_objects_image_array:_<br/>
