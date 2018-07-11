@@ -149,17 +149,17 @@ print(eachObject["name"] + " : " + eachObject["percentage_probability"] )
 print("Object's image saved in " + eachObjectPath)
 print("--------------------------------")
 ```
-在上面的行中，我们调用了`detectObjectsFromImage()`，在输入图像路径，输出图像部分新增了参数`extract_detected_objects=True`。此参数指出该函数应提取从图像中检测到的每个对象，并保存它具有单独的图像。默认情况下该参数为false。设置为**true后**，该函数将创建一个目录，即`输出图像路径+"-objects"`。然后它将所有提取的图像保存到这个新目录中，每个图像的名称是`检测到的对象名称+"-number"`，它对应于**检测到对象**的顺序。
+在上面的代码中，我们在调用`detectObjectsFromImage()`函数时新增了`extract_detected_objects=True`参数；此参数的作用是将每个检测到的对象提取并保存为当单独的图像。默认情况下该参数的值为`false`；设置为`true`后，该函数将创建一个名为`output_image_path+"-objects"`的目录，然后它将所有提取的图像以`detected object name+"-number"`命名保存到这个新目录中。
 
-我们设置的这个新参数将检测到的对象提取并保存为图像，这将使函数返回2个值。第一个是字典数组，每个字典对应一个检测到的对象。第二个是检测和提取的每个对象的保存图像的路径，并且它们按照对象在第一个阵列中的顺序排列。
+我们添加的这个新参数（`extract_detected_objects=True`）将会把检测到的对象提取并保存为单独的图像；这将使函数返回2个值，第一个是字典数组，每个字典对应一个检测到的对象信息（包含对象类名和概率），第二个是所有提取出对象的图像保存路径，并且它们按照对象在第一个数组中的顺序排列。
 
-### [](#and-one-important-feature-you-need-to-know)**您需要知道的一个重要功能！**
+### 您需要知道的一个重要功能！
 
-您会记得`detectObjectsFromImage()`函数返回每个检测到的对象的百分比概率。该函数有一个参数 `minimum_percentage_probability`，其默认值为**50**（值范围介于0 - 100之间）。这意味着只有当百分比概率为**50或更高时，**该函数才会返回检测到的对象。该值保持在该数字以确保检测结果的完整性。但是，在此过程中可能会跳过许多对象。因此，您可以通过将`minimum_percentage_probability`设置为较小的值来检测对象检测，以检测更多的对象或更高的值来检测更少的对象。
+您是否还记得`detectObjectsFromImage()`函数返回的信息中包每个检测到的对象的百分比概率。该函数有一个重要的参数 `minimum_percentage_probability`，该参数用于设定预测概率的阈值，其默认值为**50**（范围在0-100之间）。如果保持默认值，这意味着只有当百分比概率为**大于等于50**时，该函数才会返回检测到的对象。使用默认值可以确保检测结果的完整性，但是在检测过程中可能会跳过许多对象。因此，您可以通过将`minimum_percentage_probability`设置更小的值以检测更多的对象或更高的值来检测更少的对象。
 
-### [](#custom-object-detection)**自定义对象检测**
+### 自定义对象检测
 
-对象检测模型（由**RetinaNet**支持）**ImageAI**可以检测80种不同类型的对象。他们包括：
+对象检测模型（由**RetinaNet**支持）**ImageAI** 可以检测80种不同类型的对象。他们包括：
 
 ```
       person,   bicycle,   car,   motorcycle,   airplane,
@@ -174,7 +174,7 @@ print("--------------------------------")
           toothbrush.
 ```
 
-有趣的是，**ImageAI**允许您对上面的一个或多个项目执行检测。这意味着您可以自定义要在图像中检测到的对象类型。我们来看看下面的代码：
+有趣的是，**ImageAI** 允许您同时对上面的多个对象执行检测。这意味着您可以自定义要在图像中检测的对象。我们来看看下面的代码：
 
 ```
 from imageai.Detection import ObjectDetection
@@ -199,18 +199,18 @@ print("--------------------------------")
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3custom.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3custom.jpg)
 
-让我们看一下使这成为可能的代码
+让我们看一下使这成为可能的代码：
 
 ```
 custom_objects = detector.CustomObjects(car=True, motorcycle=True)
 detections = detector.detectCustomObjectsFromImage(custom_objects=custom_objects, input_image=os.path.join(execution_path , "image3.jpg"), output_image_path=os.path.join(execution_path , "image3custom.jpg"))
 ```
 
-在上面的代码中，在加载模型之后（也可以在加载模型之前完成），我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将其car和motorcycle属性设置为等于**True**。这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromImage()`，这是允许我们执行自定义对象检测的函数。然后我们将`custom_objects`值设置为我们定义的自定义对象变量。
+在上面的代码中，我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将其car和motorcycle属性设置为`True`，这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromImage()`函数并传入了我们定义的变量`custom_objects`来指定我们需要从图像中识别的对象。
 
-### [](#detection-speed)**检测速度**
+### 检测速度
 
-**ImageAI**现在为所有对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但对检测结果准确性影响不大。结合降低`minimum_percentage_probability`参数，检测可以匹配normal速度，但却大大缩短了检测时间。可用的检测速度是 "normal"(default), "fast", "faster" , "fastest" and "flash"。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
+**ImageAI** 现在为所有对象检测任务提供检测速度选项。检测速度允许您以20％-80％的速率减少检测时间，但对检测结果准确性影响不大。结合降低`minimum_percentage_probability`参数，检测可以匹配normal速度，但却大大缩短了检测时间。可用的检测速度是 "normal"(default), "fast", "faster" , "fastest" and "flash"。您需要做的就是在加载模型时说明您想要的速度模式，如下所示。
 
 ```
 detector.loadModel(detection_speed="fast")
