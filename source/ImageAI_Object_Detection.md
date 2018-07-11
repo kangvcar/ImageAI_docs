@@ -328,26 +328,25 @@ _:return detected_detected_objects_image_array:_<br/>
     - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
 
 此函数返回的值取决于所设置的参数。可返回的可能值如下所示：
-- 如果`extract_detected_objects=False`或其默认值并且`output_type =file`或默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
-
+- 如果`extract_detected_objects=False`或其默认值并且`output_type=file`或默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
-        - name
-        - percentage_probability
+        + name
+        + percentage_probability
 
-- 如果`extract_detected_objects = False`或其默认值并且`output_type ='array'`，则该函数将返回：
+- 如果`extract_detected_objects=False`或其默认值并且`output_type=array`，则该函数将返回：
     1. 检测到的图像的numpy数组
     2. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典包含以下属性：
         + name
         + percentage_probability
 
-- 如果`extract_detected_objects = True`且`output_type ='file'`或其
-默认值，则必须将`output_image_path`解析为要保存检测到的图像的路径的字符串。然后该函数将返回：
+- 如果`extract_detected_objects=True`且`output_type=file`或
+默认值，则必须将`output_image_path`解析为输出检测结果的路径，该函数将返回：
     1. 一个字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：
         + name
         + percentage_probability
-    2. 从图像中提取的每个对象的图像的字符串路径数组
+    2. 一个字符串数组，包含了从图像中提取的每个对象的图像所保存的路径
 
-- 如果`extract_detected_objects = True`且`output_type ='array'`，则该函数将返回：
+- 如果`extract_detected_objects=True`且`output_type=array`，则该函数将返回：
     1. 检测到的图像的numpy数组
     2. 字典数组，每个字典对应于图像中检测到的对象。每个字典都包含以下属性：
         + name
