@@ -30,12 +30,10 @@ for eachObject in detections:
 
 示例结果：
 
- **_输入图像_** 
-
+ **_输入图像_** <br/>
  [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image2.jpg)
 
- **_输出图像_** 
-
+ **_输出图像_** <br/>
  [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image2new.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image2new.jpg)
 
 ```
@@ -107,12 +105,10 @@ for eachObject, eachObjectPath in zip(detections, objects_path):
 
 示例结果：
 
- **_输入图像_** 
-
+ **_输入图像_** <br/>
  [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3.jpg)
 
- **_输出图像_** 
-
+ **_输出图像_** <br/>
  [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg)
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-1.jpg)<br/>
@@ -195,8 +191,7 @@ print(eachObject["name"] + " : " + eachObject["percentage_probability"] )
 print("--------------------------------")
 ```
 
-结果：
-
+结果：<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3custom.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3custom.jpg)
 
 让我们看看使这成为可能的代码：
@@ -218,29 +213,24 @@ detector.loadModel(detection_speed="fast")
 
 为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间(实验环境 OS:Windows 8, CPU:Intel Celeron N2820 2.13GHz)：
 
-**_检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 63.5秒_**
-
+**_检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 63.5秒_**<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5normal.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5normal.jpg)
 
-**_检测速度="fast"，最小百分比概率= 40（默认值），检测时间= 20.8秒_**
-
+**_检测速度="fast"，最小百分比概率= 40（默认值），检测时间= 20.8秒_**<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5fast.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5fast.jpg)
 
-**_检测速度="faster"，最小百分比概率= 30（默认值），检测时间= 11.2秒_**
-
+**_检测速度="faster"，最小百分比概率= 30（默认值），检测时间= 11.2秒_**<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5faster.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5faster.jpg)
 
-**_检测速度="fastest"，最小百分比概率= 30（默认值），检测时间= 7.6秒_**
-
+**_检测速度="fastest"，最小百分比概率= 30（默认值），检测时间= 7.6秒_**<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5fastest.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5fastest.jpg)
 
-**_检测速度="flash"，最小百分比概率= 10（默认值），检测时间= 3.67秒_**
-
+**_检测速度="flash"，最小百分比概率= 10（默认值），检测时间= 3.67秒_**<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/5flash.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/5flash.jpg)
 
 您会注意到，在"flash"检测速度下，检测速度最快但准确度最低，那是因为图片中没有任何标志性的对象。在输入图像是代表性的（包含一个标志性图像）的时候，"flash"检测速度是最适合的。请查看下面的示例，以便了解何为标志性（代表性）图像下的检测：
 
-**_检测速度="flash"，最小百分比概率= 30（默认值），检测时间= 3.85秒_** 
+**_检测速度="flash"，最小百分比概率= 30（默认值），检测时间= 3.85秒_** <br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/6flash.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/6flash.jpg)
 
 ### 图像输入和输出类型
