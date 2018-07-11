@@ -306,15 +306,15 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
         + percentage_probability
     3. 图像中检测到的每个对象的numpy数组
 
-_:param input_image:_<br/>
-_:param output_image_path:_<br/>
-_:param input_type:_<br/>
-_:param output_type:_<br/>
-_:param extract_detected_objects:_<br/>
-_:param minimum_percentage_probability:_<br/>
-_:return output_objects_array:_<br/>
-_:return detected_copy:_<br/>
-_:return detected_detected_objects_image_array:_<br/>
+**_:param input_image:_**<br/>
+**_:param output_image_path:_**<br/>
+**_:param input_type:_**<br/>
+**_:param output_type:_**<br/>
+**_:param extract_detected_objects:_**<br/>
+**_:param minimum_percentage_probability:_**<br/>
+**_:return output_objects_array:_**<br/>
+**_:return detected_copy:_**<br/>
+**_:return detected_detected_objects_image_array:_**<br/>
 
 - `CustomObjecs()` 调用此函数来选择需要在图像中进行检测的对象。这些对象在函数变量中预先创建并定义为 `False`。您可以将任何预创建的对象设置为`true`，最终此函数将返回一个字典被`detectCustomObjectsFromImage()`函数的一个参数`custom_objects`所使用。
 
@@ -353,12 +353,12 @@ _:return detected_detected_objects_image_array:_<br/>
         + percentage_probability
     3. 图像中检测到的每个对象的numpy数组
 
-_:param input_image:_<br/>
-_:param output_image_path:_<br/>
-_:param input_type:_<br/>
-_:param output_type:_<br/>
-_:param extract_detected_objects:_<br/>
-_:param minimum_percentage_probability:_<br/>
-_:return output_objects_array:_<br/>
-_:return detected_copy:_<br/>
-_:return detected_detected_objects_image_array:_<br/>
+**_:param input_image:_**<br/>
+**_:param output_image_path:_**<br/>
+**_:param input_type:_**<br/>
+**_:param output_type:_**<br/>
+**_:param extract_detected_objects:_**<br/>
+**_:param minimum_percentage_probability:_**<br/>
+**_:return output_objects_array:_**<br/>
+**_:return detected_copy:_**<br/>
+**_:return detected_detected_objects_image_array:_**<br/>
