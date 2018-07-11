@@ -6,7 +6,7 @@
 
 ImageAI 提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。目前仅支持当前最先进的 RetinaNet 算法进行对象检测，后续版本会加入对其他算法的支持。在开始对象检测任务前，您必须通过以下链接下载 RetinaNet 模型文件：
 
-**- [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5)** **（文件大小= 145 MB）**
+**- [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5)（文件大小= 145 MB）**
 
 下载 RetinaNet 模型文件后，应将模型文件复制到`.py`文件所在的项目文件夹中。然后创建一个python文件并为其命名; 例如 **FirstObjectDetection.py** 。然后将下面的代码写入python文件中：
 

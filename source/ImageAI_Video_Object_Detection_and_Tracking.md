@@ -6,7 +6,7 @@
 
 ImageAI 提供方便，灵活和强大的方法来对视频进行对象检测和跟踪。目前仅支持当前最先进的 RetinaNet 算法进行对象检测和跟踪，后续版本会加入对其他算法的支持。虽然这只是预览版本，但提供了很多令人难以置信的选项。在开始视频对象检测和跟踪任务前，您必须通过以下链接下载 RetinaNet 模型文件：
 
-- [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5) **（文件大小=145MB）**
+**- [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5) （文件大小=145MB）**
 
 由于视频对象检测是非常消耗硬件资源的任务，所以我们建议您使用安装了 NVIDIA GPU 和 GPU 版 Tensorflow 的计算机来完成此实验。使用CPU进行视频对象检测将比使用 NVIDIA GPU 驱动的计算机慢。您也可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。
 
@@ -29,12 +29,10 @@ video_path = detector.detectObjectsFromVideo(input_file_path=os.path.join(execut
 print(video_path)
 ```
 
- **_输入视频（时长1分钟24秒）_**
-
+ **_输入视频（时长1分钟24秒）_**<br/>
  [![](https://github.com/kangvcar/ImageAI/raw/master/images/video--1.jpg)](https://github.com/OlafenwaMoses/ImageAI/blob/master/videos/traffic.mp4)  
 
- **_输出视频_** 
-
+ **_输出视频_** <br/>
  [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-2.jpg)](https://www.youtube.com/embed/qplVDqOmElI?rel=0)<br/>
 C:\Users\User\PycharmProjects\ImageAITest\traffic_detected.avi
 
@@ -113,8 +111,7 @@ video_path = detector.detectCustomObjectsFromVideo(custom_objects=custom_objects
 
 在上面的代码中，我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将person,car和motorcycle属性设置为`True`，这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromVideo()`函数并传入了我们定义的变量`custom_objects`来指定我们需要从图像中识别的对象。
 
-**_输出视频_**
-
+**_输出视频_**<br/>
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg)](https://www.youtube.com/embed/YfAycAzkwPM?rel=0)<br/>
 C:\Users\User\PycharmProjects\ImageAITest\traffic_custom_detected.avi
 
@@ -128,8 +125,7 @@ detector.loadModel(detection_speed="fast")
 
 为了观察不同速度模式间的差异，请查看下面不同速度模式下（结合调整`minimum_percentage_probability`参数）检测相同图像所花费的时间(在NVIDIA K80 GPU)。下面提供每个视频的下载链接：
 
-**_视频长度= 1分钟24秒，检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 29分钟3秒_**
-
+**_视频长度= 1分钟24秒，检测速度="normal"，最小百分比概率= 50（默认值），检测时间= 29分钟3秒_**<br/>
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-4.jpg)](https://www.youtube.com/embed/qplVDqOmElI?rel=0) 
 
 **_视频长度= 1分钟24秒，检测速度="fast"，最小百分比概率= 40，检测时间= 11分钟6秒_**<br/>
