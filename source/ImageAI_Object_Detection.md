@@ -280,11 +280,8 @@ detected_image_array, detections = detector.detectObjectsFromImage(output_type="
     - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
 
 此函数返回的值取决于解析的参数。可返回的值如下所示
-
 - 如果`extract_detected_objects = False`或其默认值和`output_type ='file'`或其
-默认值，则必须将`output_image_path`作为字符串解析为您希望
-检测到的图像的路径然,该函数将返回：
-
+默认值，则必须将`output_image_path`解析为输出检测结果所在的路径,该函数将返回：
     1. 一个字典数组，每个字典对应于在图像中检测到的对象。每个字典包含以下属性：
         - name
         - percentage_probability
