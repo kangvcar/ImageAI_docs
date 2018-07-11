@@ -4,22 +4,13 @@
 
 * * *
 
-### [](#table-of-contents)**目录**
-
-- [第一个物体检测](#firstdetection)
-- [物体检测，提取和微调](#objectextraction)
-- [自定义物体检测](#customdetection)
-- [检测速度](#detectionspeed)
-- [图像输入和输出类型](#inputoutputtype)
-- [文档](#documentation)
-
-ImageAI提供了非常方便和强大的方法来对图像执行物体检测并从图像中提取每个物体。提供的对象检测类仅支持当前最先进的RetinaNet，而在最近的将来将支持其他对象检测网络。要开始执行对象检测，您必须通过以下链接下载RetinaNet模型文件：
+ImageAI 提供了非常方便和强大的方法来对图像执行对象检测并从图像中提取每个对象。目前仅支持当前最先进的 RetinaNet 算法进行对象检测，后续版本会加入对其他算法的支持。在开始对象检测任务前，您必须通过以下链接下载 RetinaNet 模型文件：
 
 **- [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5)** **（文件大小= 145 MB）**
 
-下载RetinaNet模型文件后，应将模型文件复制到.py文件所在的项目文件夹中。然后创建一个python文件并为其命名; 以下是一个例子FirstObjectDetection.py。然后将下面的代码写入python文件：
+下载 RetinaNet 模型文件后，应将模型文件复制到`.py`文件所在的项目文件夹中。然后创建一个python文件并为其命名; 例如 **FirstObjectDetection.py** 。然后将下面的代码写入python文件中：
 
-### [](#firstobjectdetectionpy)**FirstObjectDetection.py**
+### FirstObjectDetection.py
 ```
 from imageai.Detection import ObjectDetection
 import os
@@ -62,7 +53,7 @@ person : 87.10319399833679
 --------------------------------
 ```
 
-让我们对上面使用的对象检测代码进行解读。
+让我们对示例中的对象检测代码进行解读：
 
 ```
 from imageai.Detection import ObjectDetection
@@ -71,14 +62,14 @@ import os
 execution_path = os.getcwd()
 ```
 
-在上面的3行中，我们在第一行导入**ImageAI Object Detection**类，在第二行导入**os**并获得运行python文件的文件夹的路径。 
+在上面的代码中，我们在第一行导入`ImageAI Object Detection`类，在第二行导入**os**库，在第三行获得当前python文件的文件夹的路径。 
 ```
 detector = ObjectDetection()
 detector.setModelTypeAsRetinaNet()
 detector.setModelPath( os.path.join(execution_path , "resnet50_coco_best_v2.0.1.h5"))
 detector.loadModel()
 ```
-在上面的4行中，我们在第一行创建了**ObjectDetection**类的新实例，在第二行中将模型类型设置为RetinaNet，第三行将模型路径设置为我们下载的RetinaNet模型文件并复制到python文件夹中的路径，第四行加载模型。
+在上面的代码中，我们在第一行创建了`ObjectDetection`类的新实例，在第二行中将模型类型设置为RetinaNet，第三行将模型路径设置为我们下载的RetinaNet模型文件所在文件夹的路径，第四行载入模型。
 ```
 detections = detector.detectObjectsFromImage(input_image=os.path.join(execution_path , "image2.jpg"), output_image_path=os.path.join(execution_path , "image2new.jpg"))
 
@@ -87,11 +78,11 @@ for eachObject in detections:
 print("--------------------------------")
 ```
 
-在上面的2行中，我们运行了`detectObjectsFromImage()`函数并解析了我们图像的路径，以及该函数将保存的新图像的路径。然后该函数返回一个字典数组，每个字典对应于图像中检测到的对象。每个字典都有属性**名称**（对象名称）和 **percentage_probability**（检测概率百分比）
+在上面的代码中，我们调用了`detectObjectsFromImage()`函数并传入`input_image`参数和`output_image_path`参数来指定输入文件和输出文件的路径。然后该函数返回一个字典数组，每个字典包含图像中检测到的对象信息，字典中的对象信息有`name`（对象类名）和 `percentage_probability`（概率）
 
-### [](#object-detection-extraction-and-fine-tune)**物体检测，提取和微调**
+### 物体检测，提取和微调
 
-在我们上面使用的示例中，我们在图像上运行对象检测，它将检测到的对象返回到数组中，并保存在每个对象上绘制矩形标记的新图像。在下面的示例中，我们将能够从输入图像中提取每个对象并单独保存。
+在我们上面使用的示例中，它的工作原理是将检测到的对象返回到数组中，然后利用数组中的数据在每个对象上绘制矩形标记来生成新图像。在下面的示例中，我们将从输入图像中提取每个检测到的对象并保存到文件夹中。
 
 在下面的示例代码中，它与先前的对象检测代码非常相似，我们将检测到的每个对象保存为单独的图像。
 
@@ -124,36 +115,28 @@ for eachObject, eachObjectPath in zip(detections, objects_path):
 
  [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg)
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-1.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-1.jpg)<br/>
 _人_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-2.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-2.jpg)<br/>
 _人_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-3.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-3.jpg)<br/>
 _人_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-4.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-4.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-4.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-4.jpg)<br/>
 _人_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/motorcycle-5.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/motorcycle-5.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/motorcycle-5.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/motorcycle-5.jpg)<br/>
 _摩托车_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/dog-6.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/dog-6.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/dog-6.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/dog-6.jpg)<br/>
 _狗_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/car-7.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/car-7.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/car-7.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/car-7.jpg)<br/>
 _汽车_ 
 
-[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-8.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-8.jpg)
-
+[![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3new.jpg-objects/person-8.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3new.jpg-objects/person-8.jpg)<br/>
 _人_
 
 让我们回顾一下执行对象检测并提取图像的代码部分：

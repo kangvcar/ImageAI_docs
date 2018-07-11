@@ -44,7 +44,7 @@ car_wheel : 1.817505806684494
 minivan : 1.7487050965428352
 ```
 
-我们对示例代码进行分析：
+让我们对示例中的图像预测代码进行解读：
 ```
 from imageai.Prediction import ImagePrediction
 import os 
