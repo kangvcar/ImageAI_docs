@@ -172,66 +172,43 @@ detector.loadModel(detection_speed="fast")
 
 * * *
 
-该`VideoObjectDetection`类可以用来对视频目标检测，通过实例化，并调用下面的功能函数：
+在任何的Python程序中通过实例化`VideoObjectDetection`类并调用下面的函数即可进行视频对象检测：
+- `setModelTypeAsRetinaNet()` 如果您选择使用RetinaNet 模型文件来进行对象检测，你只需调用一次该函数。
+- `setModelPath()` 该函数用于设定模型文件的路径。模型文件必须与您设置的模型类型相对应。
+- `loadModel()` 该函数用于载入模型。该函数接收一个`prediction_speed`参数。该参数用于指定对象检测的速度模式，当速度模式设置为'fastest'时预测时间可缩短60%左右，具体取决于图像的质量。
+    - `detection_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
+- `detectObjectsFromVideo()` 此函数用于通过接收以下参数来进行视频对象检测：
+    - `input_file_path`，该参数用于指定输入视频的文件路径
+    - `output_file_path`，该参数用于指定输出视频的文件路径
+    - `frames_per_second` 该参数用于指定输出视频中的每秒帧数fps
+    - `frame_detection_interval`（可选，默认为1）），该参数用于指定视频检测的帧间隔，即间隔多少帧检测一次。
+    - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
+    - `log_progress`（可选），该参数用于指定是否将检测进度输出到控制台
 
-- `setModelTypeAsRetinaNet()` 如果您选择使用RetinaNet模型文件来预测图像，你需要调用这个函数。你只需要调用一次。
+**_:param input_file_path:_**<br/>
+**_:param output_file_path:_**<br/>
+**_:param frames_per_second:_**<br/>
+**_:param frame_detection_interval:_**<br/>
+**_:param minimum_percentage_probability:_**<br/>
+**_:param log_progress:_**<br/>
+**_:return output_video_filepath:_**<br/>
 
-- `setModelPath()` 您只需要调用此函数一次，并将模型文件路径的路径解析为字符串。模型文件类型必须与您设置的模型类型相对应。
+- `CustomObjecs()` 调用此函数来选择需要在视频中进行检测的对象。这些对象在函数变量中预先创建并定义为 `False`。您可以将任何预创建的对象设置为`true`，最终此函数将返回一个字典被`detectCustomObjectsFromVideo()`函数的一个参数`custom_objects`所使用。
 
-- `loadModel()` 此函数是必需的，用于从`setModelPath()`定义的文件路径将模型结构加载到程序中
-。该函数接收一个`prediction_speed`的可选值。该值用于减少预测图像所需的时间，降至正常时间的约60％，只需稍微改变或预测精度下降，具体取决于图像的性质。
-    - ` prediction_speed`（可选）; 可接受的值是"normal", "fast", "faster" and "fastest" 
+- `detectCustomObjectsFromVideo()` 此函数通过接收以下参数在视频中对指定对象进行检测：
+    - `custom_objects`，一个`CustomObject`类的实例，用于指定在视频中需要检测的对象
+    - `input_file_path` 该参数用于指定输入视频的文件路径
+    - `output_file_path` 该参数用于指定输出视频的文件路径
+    - `frames_per_second` 该参数用于指定输出视频中的每秒帧数fps
+    - `frame_detection_interval`（可选，默认为1）），该参数用于指定视频检测的帧间隔，即间隔多少帧检测一次。
+    - `minimum_percentage_probability`（可选，默认为50），用于设定预测概率的阈值，只有当百分比概率大于等于该值时才会返回检测到的对象。 
+    - `log_progress`（可选），该参数用于指定是否将检测进度输出到控制台
 
-
-- `detectObjectsFromVideo()` 此函数用于检测给定视频路径中可观察的对象：
-    + `input_file_path`，它是输入视频的文件路径
-    + `output_file_path`，它是输出视频的路径
-    + `frames_per_second` 它是输出视频中使用的帧数fps
-    + `frame_detection_interval`（可选，默认为1）），这是检测视频的帧间隔，即间隔多少帧检测一次。
-    + `minimum_percentage_probability`（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。
-    + `log_progress`（任选），指出是否要将处理帧的进度输出到控制台
-
-_::param input_file_path::_
-
-_::param output_file_path::_
-
-_::param frames_per_second::_
-
-_::param frame_detection_interval::_
-
-_::param minimum_percentage_probability::_
-
-_::param log_progress::_
-
-_::return output_video_filepath::_
-
-- `CustomObjecs()` 可以选择调用此函数来**手动**指定
-要从视频中检测的对象类型。这些对象在函数变量中预先创建，并预定义为“False”，
-对于任意数量的可用对象，您可以轻松地将其设置为True。此函数
-返回一个字典，必须将其解析用于为`detectCustomObjectsFromVideo()`。检测
-自定义对象仅在调用函数`detectCustomObjectsFromVideo()`时。
-
-- `detectCustomObjectsFromVideo()` 此函数用于检测给定视频路径中可观察的特定对象：
-    + `custom_objects`，指定要检测的对象
-    + `input_file_path` 指定输入视频的文件路径
-    + `output_file_path` 指定输出视频的路径
-    + `frames_per_second` 它是输出视频中使用的帧数fps
-    + `frame_detection_interval`（可选，默认为1）），这是检测视频的帧间隔，即间隔多少帧检测一次。
-    + `minimum_percentage_probability`（可选，默认为50），用于设置指定检测到的输出对象的最小百分比概率的选项。
-    + `log_progress`（任选），指出是否要将处理帧的进度输出到控制台
-
-_::param custom_objects::_
-
-_::param input_file_path::_
-
-_::param output_file_path::_
-
-_::param frames_per_second::_
-
-_::param frame_detection_interval::_
-
-_::param minimum_percentage_probability::_
-
-_::param log_progress::_
-
-_::return output_video_filepath::_
+**_:param custom_objects:_**<br/>
+**_:param input_file_path:_**<br/>
+**_:param output_file_path:_**<br/>
+**_:param frames_per_second:_**<br/>
+**_:param frame_detection_interval:_**<br/>
+**_:param minimum_percentage_probability:_**<br/>
+**_:param log_progress:_**<br/>
+**_:return output_video_filepath:_**<br/>
