@@ -6,13 +6,10 @@
 
 ImageAI 提供4种不同的算法及模型来执行图像预测，通过以下简单几个步骤即可对任何图片执行图像预测。提供用于图像预测的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。这些算法中的每一个都有单独的模型文件，您必须根据所选算法使用相对应的模型文件，请单击以下链接下载所选算法的模型文件：
 
-**- [SqueezeNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/squeezenet_weights_tf_dim_ordering_tf_kernels.h5)（文件大小：4.82 MB，预测时间最短，精准度适中）**
-
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** **[ResNet50](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** by Microsoft Research **（文件大小：98 MB，预测时间较快，精准度高）**
-
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)**  **[InceptionV3](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)** by Google Brain team **（文件大小：91.6 MB，预测时间慢，精度更高）**
-
-**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** **[DenseNet121](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** by Facebook AI Research **（文件大小：31.6 MB，预测时间较慢，精度最高）**
+**- [SqueezeNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/squeezenet_weights_tf_dim_ordering_tf_kernels.h5)（文件大小：4.82 MB，预测时间最短，精准度适中）**<br/>
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** **[ResNet50](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_weights_tf_dim_ordering_tf_kernels.h5)** by Microsoft Research **（文件大小：98 MB，预测时间较快，精准度高）**<br/>
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)**  **[InceptionV3](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/inception_v3_weights_tf_dim_ordering_tf_kernels.h5)** by Google Brain team **（文件大小：91.6 MB，预测时间慢，精度更高）**<br/>
+**-[](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** **[DenseNet121](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/DenseNet-BC-121-32.h5)** by Facebook AI Research **（文件大小：31.6 MB，预测时间较慢，精度最高）**<br/>
 
 很好！下载对应模型文件后，启动一个新的python项目，然后将模型文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的[图像](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)，或者您所拍摄的任何图像并将其复制到python项目的文件夹中。然后创建一个python文件并为其命名; 例如**FirstPrediction.py**。然后将下面的代码写入python文件中：
 
