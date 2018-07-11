@@ -62,7 +62,7 @@ import os
 execution_path = os.getcwd()
 ```
 
-在上面的代码中，我们在第一行导入`ImageAI Object Detection`类，在第二行导入**os**库，在第三行获得当前python文件的文件夹的路径。 
+在上面的代码中，我们在第一行导入`ImageAI Object Detection`类，在第二行导入`os`库，在第三行获得当前python文件的文件夹的路径。 
 ```
 detector = ObjectDetection()
 detector.setModelTypeAsRetinaNet()
@@ -162,7 +162,7 @@ print("--------------------------------")
 对象检测模型（由**RetinaNet**支持）**ImageAI** 可以检测80种不同类型的对象。他们包括：
 
 ```
-      person,   bicycle,   car,   motorcycle,   airplane,
+          person,   bicycle,   car,   motorcycle,   airplane,
           bus,   train,   truck,   boat,   traffic light,   fire hydrant,   stop_sign,
           parking meter,   bench,   bird,   cat,   dog,   horse,   sheep,   cow,   elephant,   bear,   zebra,
           giraffe,   backpack,   umbrella,   handbag,   tie,   suitcase,   frisbee,   skis,   snowboard,
@@ -199,14 +199,14 @@ print("--------------------------------")
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/image3custom.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/image3custom.jpg)
 
-让我们看一下使这成为可能的代码：
+让我们看看使这成为可能的代码：
 
 ```
 custom_objects = detector.CustomObjects(car=True, motorcycle=True)
 detections = detector.detectCustomObjectsFromImage(custom_objects=custom_objects, input_image=os.path.join(execution_path , "image3.jpg"), output_image_path=os.path.join(execution_path , "image3custom.jpg"))
 ```
 
-在上面的代码中，我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将其car和motorcycle属性设置为`True`，这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromImage()`函数并传入了我们定义的变量`custom_objects`来指定我们需要从图像中识别的对象。
+在上面的代码中，我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将car和motorcycle属性设置为`True`，这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromImage()`函数并传入了我们定义的变量`custom_objects`来指定我们需要从图像中识别的对象。
 
 ### 检测速度
 

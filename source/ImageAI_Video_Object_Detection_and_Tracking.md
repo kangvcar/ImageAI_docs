@@ -1,26 +1,18 @@
 # ImageAI：视频对象检测和跟踪（预览版）
 
-**AI 共享**项目 [https://commons.specpal.science](https://commons.specpal.science)
+**AI共享**项目 [https://commons.specpal.science](https://commons.specpal.science)
 
 * * *
 
-### **目录**
-
-- [第一视频对象检测](#videodetection)
-- [自定义视频对象检测（对象跟踪）](#customvideodetection)
-- [检测速度](#videodetectionspeed)
-- [帧检测间隔](#videodetectionintervals)
-- [文档](#documentation)
-
-ImageAI 提供方便，灵活和强大的方法来对视频进行对象检测。提供的视频对象检测类仅支持当前最先进的 RetinaNet，而在最近将支持其他对象检测网络。这是一个预览版本，但有很多令人难以置信的选择。要开始执行对象检测，您必须通过以下链接下载 RetinaNet 对象检测：
+ImageAI 提供方便，灵活和强大的方法来对视频进行对象检测和跟踪。目前仅支持当前最先进的 RetinaNet 算法进行对象检测和跟踪，后续版本会加入对其他算法的支持。虽然这只是预览版本，但提供了很多令人难以置信的选项。在开始视频对象检测和跟踪任务前，您必须通过以下链接下载 RetinaNet 模型文件：
 
 - [RetinaNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0/resnet50_coco_best_v2.0.1.h5) **（文件大小=145MB）**
 
-由于视频对象检测是计算密集型任务，因此我们建议您使用安装了 NVIDIA GPU 和 GPU 版 Tensorflow 的计算机执行此实验。使用CPU进行视频对象检测将比使用 NVIDIA GPU 驱动的计算机慢。您也可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。
+由于视频对象检测是非常消耗硬件资源的任务，所以我们建议您使用安装了 NVIDIA GPU 和 GPU 版 Tensorflow 的计算机来完成此实验。使用CPU进行视频对象检测将比使用 NVIDIA GPU 驱动的计算机慢。您也可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。
 
-下载 RetinaNet 模型文件后，应将模型文件复制到`.py` 文件所在的项目文件夹中。然后创建一个 python 文件并为其命名; 以下是一个例子`FirstVideoObjectDetection.py`。然后将下面的代码写入 python 文件：
+下载 RetinaNet 模型文件后，应将模型文件复制到`.py`文件所在的项目文件夹中。然后创建一个python文件并为其命名; 例如 **FirstVideoObjectDetection.py** 。然后将下面的代码写入python文件中：
 
-### **FirstVideoObjectDetection.py**
+### FirstVideoObjectDetection.py
 
 ```
 from imageai.Detection import VideoObjectDetection
@@ -37,17 +29,16 @@ video_path = detector.detectObjectsFromVideo(input_file_path=os.path.join(execut
 print(video_path)
 ```
 
- **_输入视频（1 分钟 24 秒视频）_**
+ **_输入视频（时长1分钟24秒）_**
 
  [![](https://github.com/kangvcar/ImageAI/raw/master/images/video--1.jpg)](https://github.com/OlafenwaMoses/ImageAI/blob/master/videos/traffic.mp4)  
 
  **_输出视频_** 
 
- [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-2.jpg)](https://www.youtube.com/embed/qplVDqOmElI?rel=0)
-
+ [![](https://github.com/kangvcar/ImageAI/raw/master/images/video-2.jpg)](https://www.youtube.com/embed/qplVDqOmElI?rel=0)<br/>
 C:\Users\User\PycharmProjects\ImageAITest\traffic_detected.avi
 
-让我们对上面使用的对象检测代码进行分析。
+让我们对示例中的视频对象检测代码进行解读：
 
 ```
 from imageai.Detection import VideoObjectDetection
@@ -56,7 +47,7 @@ import os
 execution_path = os.getcwd()
 ```
 
-在上面的 3 行中，我们在第一行导入 **ImageAI video object detection**类，在第二行导入 **os** 并获取运行 python 文件的文件夹的路径。 
+在上面的代码中，我们在第一行导入`ImageAI video object detection`类，在第二行导入`os`库，在第三行获得当前python文件的文件夹的路径。 
 
 ```
 detector = VideoObjectDetection()
@@ -65,7 +56,7 @@ detector.setModelPath( os.path.join(execution_path , "resnet50_coco_best_v2.0.1.
 detector.loadModel()
 ```
 
-在上面的 4 行中，我们在第一行创建了一个 **VideoObjectDetection** 类的新实例，在第二行中将模型类型设置为 RetinaNet，第三行将模型路径设置为我们下载的 RetinaNet 模型文件并复制到 python 文件夹后的路径，第四行加载模型。
+在上面的代码中，我们在第一行创建了`VideoObjectDetection`类的新实例，在第二行中将模型类型设置为RetinaNet，第三行将模型路径设置为我们下载的RetinaNet模型文件所在文件夹的路径，第四行载入模型。
 
 ```
 video_path = detector.detectObjectsFromVideo(input_file_path=os.path.join(execution_path, "traffic.mp4"),
@@ -74,14 +65,14 @@ output_file_path=os.path.join(execution_path, "traffic_detected")
 print(video_path)
 ```
 
-在上面的 2 行中，我们运行了 **detectObjectsFromVideo()**函数并解析了我们视频的路径`input_file_path`，新视频将保存为`output_file_path`所指定的路径（没有扩展名，默认保存. avi 视频），`frames_per_second`的值表示我们希望输出视频具有的每秒帧数（fps），`log_progress`表示在控制台中记录检测进度的选项。然后，该函数返回已保存视频的路径，该视频包含在视频中检测到的对象上呈现的框和百分比概率。
+在上面的代码中，我们调用了`detectObjectsFromVideo()`函数并传入了4个参数，其中`input_file_path`参数用于指定输入视频文件的路径；`output_file_path`参数用于指定输出视频文件的路径（没有扩展名，默认保存.avi格式的视频）；`frames_per_second`参数用于指定输出视频每秒帧数（fps），`log_progress`参数用于指定是否在控制台中输出检测进度。最后，该函数返回检测后所保存的视频路径，该视频包含在每个对象上绘制矩形标记和百分比概率。
 
-### **自定义视频对象检测**
+### 自定义视频对象检测
 
-该视频对象检测模型（由**RetinaNet**支持）**ImageAI** 可以检测 80 种不同类型的对象。他们包括：
+**ImageAI** 视频对象检测模型（由**RetinaNet**支持），并且可以检测 80 种不同类型的对象。他们包括：
 
 ```
-person,   bicycle,   car,   motorcycle,   airplane,
+          person,   bicycle,   car,   motorcycle,   airplane,
           bus,   train,   truck,   boat,   traffic light,   fire hydrant,   stop_sign,
           parking meter,   bench,   bird,   cat,   dog,   horse,   sheep,   cow,   elephant,   bear,   zebra,
           giraffe,   backpack,   umbrella,   handbag,   tie,   suitcase,   frisbee,   skis,   snowboard,
@@ -93,7 +84,7 @@ person,   bicycle,   car,   motorcycle,   airplane,
           toothbrush.
 ```
 
-有趣的是，**ImageAI** 允许您对上面的一个或多个项目执行检测。这意味着您可以自定义要在视频中检测到的对象类型。我们来看看下面的代码：
+有趣的是，**ImageAI** 允许您同时对上面的多个对象执行检测。这意味着您可以自定义要在图像中检测的对象。我们来看看下面的代码：
 
 ```
 from imageai.Detection import VideoObjectDetection
@@ -112,7 +103,7 @@ video_path = detector.detectCustomObjectsFromVideo(custom_objects=custom_objects
 print(video_path)
 ```
 
-让我们看一下使这成为可能的代码部分。
+让我们看看使这成为可能的代码：
 
 ```
 custom_objects = detector.CustomObjects(person=True, bicycle=True, motorcycle=True)
@@ -120,12 +111,11 @@ custom_objects = detector.CustomObjects(person=True, bicycle=True, motorcycle=Tr
 video_path = detector.detectCustomObjectsFromVideo(custom_objects=custom_objects, input_file_path=os.path.join(execution_path, "traffic.mp4"), output_file_path=os.path.join(execution_path, "traffic_custom_detected"), frames_per_second=20, log_progress=True)
 ```
 
-在上面的代码中，在加载模型之后（也可以在加载模型之前完成），我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将person,car,motorcycle属性设置为**True**。这是为了告诉模型只检测我们设置为True的对象。然后我们调用允许我们执行自定义对象检测的函数`detector.detectCustomObjectsFromVideo()`。然后我们将`custom_objects`值设置为我们定义的自定义对象变量。
+在上面的代码中，我们定义了一个新变量`custom_objects = detector.CustomObjects()`，其中我们将person,car和motorcycle属性设置为`True`，这是为了告诉模型只检测我们设置为True的对象。然后我们调用`detector.detectCustomObjectsFromVideo()`函数并传入了我们定义的变量`custom_objects`来指定我们需要从图像中识别的对象。
 
 **_输出视频_**
 
-[![](https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg)](https://www.youtube.com/embed/YfAycAzkwPM?rel=0)
-
+[![](https://github.com/kangvcar/ImageAI/raw/master/images/video-3.jpg)](https://www.youtube.com/embed/YfAycAzkwPM?rel=0)<br/>
 C:\Users\User\PycharmProjects\ImageAITest\traffic_custom_detected.avi
 
 ### **视频检测速度**
