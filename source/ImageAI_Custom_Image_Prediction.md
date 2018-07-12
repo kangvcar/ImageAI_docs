@@ -5,8 +5,9 @@
 * * *
 
 **ImageAI** 提供4种不同的算法和模型，使你可以用您自定义的模型执行图像预测。您将使用 **ImageAI** 已训练的模型和相应的 JSON 文件来预测自定义对象。在这个例子中，我们将使用在**IdenProf**上进行20次实验训练出的模型，**IdenProf**是一个专业人员的数据集，在测试数据集上达到65.17％的准确度（您可以使用自己训练的模型并生成JSON文件。此"CLASS"主要的目的是使你可以使用自己训练的模型。）通过以下链接下载ResNet模型和JSON文件：
-**- [ResNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/resnet_model_ex-020_acc-0.651714.h5)（文件大小= 90.4MB）**
-**- [IdenProf model_class.json file](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/model_class.json)**
+
+**- [ResNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/resnet_model_ex-020_acc-0.651714.h5)（文件大小= 90.4MB）**<br/>
+**- [IdenProf model_class.json file](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/model_class.json)**<br/>
 很好！下载模型文件和JSON文件后，启动一个新的python项目，然后将模型文件和JSON文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的图像，或者在您的计算机上拍摄任何包含以下专业人员（厨师，医生，工程师 ，农民，消防员，法官，机械师，飞行员，警察和服务员）的图像，并将其复制到您的python项目文件夹中。然后创建一个python文件并为其命名; 例如**FirstCustomPrediction.py**。然后将下面的代码写入python文件中：
 
 ### FirstCustomPrediction.py
