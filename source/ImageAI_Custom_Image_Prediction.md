@@ -8,6 +8,7 @@
 
 **- [ResNet](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/resnet_model_ex-020_acc-0.651714.h5)（文件大小= 90.4MB）**<br/>
 **- [IdenProf model_class.json file](https://github.com/OlafenwaMoses/ImageAI/releases/download/1.0.1/model_class.json)**<br/>
+
 很好！下载模型文件和JSON文件后，启动一个新的python项目，然后将模型文件和JSON文件复制到python文件（.py文件）所在的项目文件夹中。下载下面的图像，或者在您的计算机上拍摄任何包含以下专业人员（厨师，医生，工程师 ，农民，消防员，法官，机械师，飞行员，警察和服务员）的图像，并将其复制到您的python项目文件夹中。然后创建一个python文件并为其命名; 例如**FirstCustomPrediction.py**。然后将下面的代码写入python文件中：
 
 ### FirstCustomPrediction.py
