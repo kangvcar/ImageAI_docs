@@ -59,7 +59,7 @@ model_trainer.trainModel(num_objects=4, num_experiments=100, enhance_data=True, 
 - `num_objects`：该参数用于指定图像数据集中对象的数量
 - `num_experiments`：该参数用于指定将对图像训练的次数，也称为epochs 
 - `enhance_data`（可选）：该参数用于指定是否生成训练图像的副本以获得更好的性能。
-- `batch_size`：参数用于指定每批处理的图像数量。图像将分批处理，直到所有批次的图像都处理完成实验才结束。
+- `batch_size`：该参数用于指定批次数量。由于内存限制，需要分批训练，直到所有批次训练集都完成为止。
 - `show_network_summary`：该参数用于指定是否在控制台中显示训练的过程。
 
 当您开始训练时，您应该在控制台中看到类似的内容：
@@ -494,7 +494,7 @@ _来自 IdenProf 数据集的样本用于训练模型以预测专业人员。_
 
 [![](https://github.com/kangvcar/ImageAI/raw/master/images/idenprof.jpg)](/kangvcar/ImageAI/blob/master/images/idenprof.jpg)
 
-下面我们提供一个示例代码来训练**IdenProf**，这是一个包含10名穿制服专业人员图像的数据集。下面的代码将下载数据集并启动培训：
+下面我们提供的示例代码在**IdenProf**数据集中进行包含10名穿制服专业人员图像的训练：
 
 ```
 from io import open
@@ -573,31 +573,20 @@ model_trainer.trainModel(num_objects=10, num_experiments=100, enhance_data=True,
 
 * * *
 
-该 **ModelTraining** 类可用于实例化，并调用下面的函数定制训练模型：
+在任何的Python程序中通过实例化`ModelTraining`类并调用下面的函数即可定制训练模型：
 
-- `setModelTypeAsSqueezeNet` 这是用来设置使用SqueezeNet模型进行训练。
- 
-- `setModelTypeAsResNet` 这是用来设置使用ResNet50模型进行训练。
- 
-- `setModelTypeAsInceptionV3` 这是用来设置使用InceptionV3模型进行训练。
- 
-- `setModelTypeAsDenseNet` 这是用来设置使用DenseNet模型进行训练。
-
-- `setDataDirectory` 这是设置用于训练的数据/数据集的路径所必需的。
-
-- `trainModel` 此函数启动训练。它接受以下值：
-
-    * `num_objects`，这是数据集中用于训练的类的数量
-
-    * `num_experiments` 也称为epochs，它是网络将在所有训练数据集上训练的次数
-
-    * `enhance_data`（可选），这用于修改数据集并创建更多训练集实例以增强训练结果
-
-    * `batch_size`（可选），由于内存限制，网络一次批量训练，直到所有训练集都完成为止。该值默认设置为32，但可以增加或减少，具体取决于 用于训练的计算。 batch_size通常设置为16,32,64,128。
-
-    * `initial_learning_rate`（可选），此值用于调整网络中生成的权重。如果您对此概念没有深刻理解，建议您保持此值。
-
-    * `show_network_summary`（可选），如果你希望将网络的训练过程显示到console，请将该值设置为True。默认为 False
+- `setModelTypeAsSqueezeNet` 如果您选择使用 SqueezeNet 模型文件来预测图像，你只需调用一次该函数。 
+- `setModelTypeAsResNet` 如果您选择使用 ResNet 模型文件来预测图像，你只需调用一次该函数。 
+- `setModelTypeAsInceptionV3` 如果您选择使用 InceptionV3Net 模型文件来预测图像，你只需调用一次该函数。 
+- `setModelTypeAsDenseNet` 如果您选择使用 DenseNet 模型文件来预测图像，你只需调用一次该函数。
+- `setDataDirectory` 该函数设置用于训练的数据/数据集的路径。
+- `trainModel` 该函数用于启动模型训练。它接受以下参数：
+    * `num_objects`，该参数用于指定图像数据集中对象的数量
+    * `num_experiments` 该参数用于指定将对图像训练的次数，也称为epochs
+    * `enhance_data`（可选），该参数用于指定是否生成训练图像的副本以获得更好的性能
+    * `batch_size`（可选，默认为32），该参数用于指定批次数量。由于内存限制，需要分批训练，直到所有批次训练集都完成为止。您可以根据具体训练的数量进行调整该值，`batch_size`通常设置为16,32,64,128。
+    * `initial_learning_rate`（可选），此值用于调整训练模型的权重。如果您对此概念没有深刻理解，建议您保持默认值。
+    * `show_network_summary`（可选，默认为 `False`），该参数用于指定是否在控制台中显示训练的过程。
 
 **_:param num_objects:_**<br/>
 **_:param num_experiments:_**<br/>
