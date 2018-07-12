@@ -488,7 +488,7 @@ Epoch 1/100
 
 [https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMPREDICTION.md](https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMPREDICTION.md)
 
-### 在 IdenProf 数据上训练
+### 在 IdenProf 数据集上训练
 
 _来自 IdenProf 数据集的样本用于训练模型以预测专业人员。_
 
