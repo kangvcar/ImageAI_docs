@@ -605,7 +605,7 @@ model_trainer.trainModel(num_objects=10, num_experiments=100, enhance_data=True,
 **Moses Olafenwa**
 
 _Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)<br/>
-_Website:_ [https](https://moses.specpal.science)<br/>
+_Website:_ [https://moses.specpal.science](https://moses.specpal.science)<br/>
 _Twitter:_[@OlafenwaMoses](https://twitter.com/OlafenwaMoses)<br/>
 _Medium:_ [@guymodscientist](https://medium.com/@guymodscientist)<br/>
 _Facebook:_ [moses.olafenwa](https://facebook.com/moses.olafenwa)<br/>
