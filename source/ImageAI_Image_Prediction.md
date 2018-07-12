@@ -55,9 +55,10 @@ execution_path = os.getcwd()
 prediction = ImagePrediction()
 prediction.setModelTypeAsResNet()
 prediction.setModelPath(os.path.join(execution_path, "resnet50_weights_tf_dim_ordering_tf_kernels.h5"))
+prediction.loadModel()
 ```
 
-在上面的代码中，我们对`ImagePrediction()`类进行了实例化，然后调用了`.setModelTypeAsResNet()`函数将预测对象的模型类型设置为ResNet，并在第三行设置了模型文件（**resnet50_weights_tf_dim_ordering_tf_kernels.h5**）的路径。
+在上面的代码中，我们对`ImagePrediction()`类进行了实例化，第二行调用了`.setModelTypeAsResNet()`函数将预测对象的模型类型设置为ResNet，第三行设置了模型文件（**resnet50_weights_tf_dim_ordering_tf_kernels.h5**）的路径，第四行载入模型。
 
 ```
 predictions, probabilities = prediction.predictImage(os.path.join(execution_path, "1.jpg"), result_count=5 )
