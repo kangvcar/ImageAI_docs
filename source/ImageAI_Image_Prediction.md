@@ -30,7 +30,7 @@ for eachPrediction, eachProbability in zip(predictions, probabilities):
     print(eachPrediction + " : " + eachProbability)
 ```
 
-示例结果：
+示例结果：<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg)
 
 ```
@@ -113,8 +113,7 @@ for each_result in results_array:
 
 在上面的代码中，`.predictMultipleImages()`函数将返回一个由dict组成的array，每个dict包含了每张图像所预测出的可能图像名list和相应的百分比概率list，并把所有可能的对象名和概率打印到终端。
 
-示例结果：
-
+示例结果：<br/>
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/1.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/1.jpg) 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/2.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/2.jpg) 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/3.jpg)](/OlafenwaMoses/ImageAI/blob/master/images/3.jpg)

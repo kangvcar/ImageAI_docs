@@ -1,27 +1,20 @@
-# ImageAI：自定义预测模型培训
+# ImageAI：自定义预测模型训练
 
 * * *
 
-**ImageAI** 使用 SqueezeNet，ResNet50，InceptionV3 和 DenseNet 提供了简单强大的方法训练自定义图像预测，您可以将其加载到`imageai.Prediction.Custom.CustomImagePrediction`类中。这允许您在任何类型对象/人的图像集上训练您自己的模型。训练过程生成一个 JSON 文件，用于映射图像数据集和许多模型中的对象类型。然后，您将以最高精度对模型进行训练，并使用生成的模型和 JSON 文件执行自定义图像预测。
+**ImageAI** 提供4种不同的算法及模型来执行自定义预测模型训练，通过以下简单几个步骤即可实现自定义预测模型训练。提供用于自定义预测模型训练的4种算法包括 **SqueezeNet**，**ResNet**，**InceptionV3** 和 **DenseNet**。您可以将其中一种算法加载到`imageai.Prediction.Custom.CustomImagePrediction`类中，这允许您在任何对象/人的图像集上训练您自己的模型。训练过程生成一个 JSON 文件，用于映射图像数据集和许多模型中的对象类型。然后，您就可以使用生成的 JSON 文进行高精度自定义图像预测。
 
-由于视频模型培训是计算密集型任务，因此我们强烈建议您使用安装了 NVIDIA GPU 并安装了 GPU 版 Tensorflow 的计算机来执行此实验。在 CPU 上执行模型培训将需要数小时或数天。使用 NVIDIA GPU 供电的计算机系统，这将需要几个小时。您可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。
+由于视频模型训练是非常消耗硬件资源的任务，所以我们建议您使用安装了 NVIDIA GPU 和 GPU 版 Tensorflow 的计算机来完成此实验。因为在 CPU 上执行模型培训将需要数小时或数天，但使用安装了 NVIDIA GPU 的计算机可能只需几个小时。您也可以使用 Google Colab 进行此实验，因为它具有可用的 NVIDIA K80 GPU。
 
-要训​​练自定义预测模型，您需要准备要用于训练模型的图像。您将按如下方式准备图像：
+要进行自定义预测模型训​​练，您需要准备要用于训练的图像。您需要按如下方式提供图像：
 
-1. 创建一个 dataset 文件夹，其中包含您希望调用数据集的名称（例如宠物）
-
+1. 创建一个 dataset 文件夹，其中包含您希望调用的数据集名称（例如 pets）
 2. 在 dataset 文件夹中，创建一个名称为 **train** 的子文件夹
-
 3. 在 dataset 文件夹中，创建一个名称为 **test** 的子文件夹
-
 4. 在 dataset 文件夹中，为模型预测的每个对象创建一个文件夹，并为该文件夹指定一个与相应对象名称相对应的名称（例如 dog，cat，squirrel，snake）
-
 5. 在 **test** 文件夹中，为要模拟预测的每个对象创建一个文件夹，并为该文件夹指定与相应对象名称对应的名称（例如，狗，猫，松鼠，蛇）
-
 6. 在 **train** 文件夹中，将每个对象的图像放在其各自的文件夹中。这些图像是用于训练模型的图像，为了生成在实际应用中表现良好的模型，我建议每个对象大约 500 个或更多图像。如果每个对象有 1000 个图像那就非常棒了。
-
 7. 在 **test** 文件夹中的每个子文件夹下放置大约 100 到 200 个每个对象的图像。这些图像是用于在训练时测试模型的图像
-
 8. 完成此操作后，图像数据集文件夹的结构应如下所示：
 
 ```
@@ -45,7 +38,7 @@ test  >> dog >>> dog_test_images
   model_trainer.setDataDirectory("pets")
   model_trainer.trainModel(num_objects=4, num_experiments=100, enhance_data=True, batch_size=32, show_network_summary=True)
   ```
-  没错! 只需 5 行代码，您就可以在自定义数据集上使用所支持的4种深度学习算法来训练自定义模型。现在让我们来看看上面的代码是如何工作的。
+没错! 只需 5 行代码，就可以在您的数据集上使用所支持的4种深度学习算法来训练自定义模型。现在让我们来看看上面的代码是如何工作的：
 
 ```
 from imageai.Prediction.Custom import ModelTraining
@@ -55,23 +48,19 @@ model_trainer.setModelTypeAsResNet()
 model_trainer.setDataDirectory("pets")
 ```
 
-在第一行，我们导入 **ImageAI** 模型训练类，然后我们在第二行定义训练模型类型，我们在第三行设置网络类型，并设置我们想要训练网络的图像数据集的路径。
+在上面的代码中，第一行导入 **ImageAI** 的`ModelTraining`类，第二行创建了`ModelTraining`类的新实例，第三行将模型类型设置为ResNet，第四行设置我们想要训练的数据集的路径。
 
 ```
 model_trainer.trainModel(num_objects=4, num_experiments=100, enhance_data=True, batch_size=32, show_network_summary=True)
 ```
 
-在上面的代码中，我们开始了培训过程。参数如下：
+在上面的代码中，我们开始了模型训练，参数如下：
 
-- `num_objects`：这是表示图像数据集中对象类型的数量
-
-- `num_experiments`：这是说明网络将训练所有训练图像的次数，也称为epochs 
-
-- `enhance_data`（可选）：这用于说明我们是否希望网络生成训练图像的修改副本以获得更好的性能。
-
-- `batch_size`：这是说明网络将在其中处理的图像数量。图像将分批处理，直到每次执行的实验都完成为止。
-
-- `show_network_summary`：这是说明网络是否应该在控制台中显示训练网络的结构。
+- `num_objects`：该参数用于指定图像数据集中对象的数量
+- `num_experiments`：该参数用于指定将对图像训练的次数，也称为epochs 
+- `enhance_data`（可选）：该参数用于指定是否生成训练图像的副本以获得更好的性能。
+- `batch_size`：参数用于指定每批处理的图像数量。图像将分批处理，直到所有批次的图像都处理完成实验才结束。
+- `show_network_summary`：该参数用于指定是否在控制台中显示训练的过程。
 
 当您开始训练时，您应该在控制台中看到类似的内容：
 
