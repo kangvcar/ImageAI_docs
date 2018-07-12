@@ -31,7 +31,7 @@ for eachPrediction, eachProbability in zip(predictions, probabilities):
 
 示例结果：
 
-[![](https://github.com/kangvcar/ImageAI/raw/master/images/4.jpg)](/kangvcar/ImageAI/blob/master/images/4.jpg)
+[![](https://github.com/kangvcar/ImageAI/raw/master/images/4.jpg)](https://github.com/kangvcar/ImageAI/blob/master/images/4.jpg)
 
 ```
 mechanic : 76.82620286941528
