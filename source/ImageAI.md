@@ -83,7 +83,7 @@ car_wheel : 1.817505806684494
 minivan : 1.7487050965428352
 ```
 
-[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Image_Prediction.html)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/zh_CN/latest/ImageAI_Image_Prediction.html)
 
 ## 对象检测
 
@@ -106,7 +106,7 @@ laptop : 95.16398310661316
 person : 87.10319399833679
 ```
 
-[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Object_Detection.html)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/zh_CN/latest/ImageAI_Object_Detection.html)
 
 ## 视频对象检测和跟踪
 
@@ -124,9 +124,9 @@ _以下是仅检测到人，自行车和摩托车的视频快照。_
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/video2.jpg)
 
-[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Video_Object_Detection_and_Tracking.html)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/zh_CN/latest/ImageAI_Video_Object_Detection_and_Tracking.html)
 
-## 定制模型训练
+## 自定义预测模型训练
 
 **ImageAI** 为您提供了一些类和方法，用于训练可以对您自定义对象执行预测的新模型。您可以使用 SqueezeNet，ResNet50，InceptionV3 或 DenseNet 算法在不到12行代码中训练您自定义的模型。单击图像下方的“教程和文档”链接可查看完整视频，示例代码，相关说明，最佳实践指南和文档。
 
@@ -134,7 +134,7 @@ _在 IdenProf 数据集中训练模型用于预测专业人员。_
 
 [![](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)](https://github.com/OlafenwaMoses/ImageAI/raw/master/images/idenprof.jpg)
 
-[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Custom_Prediction_Model_Training.html)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/zh_CN/latest/ImageAI_Custom_Prediction_Model_Training.html)
 
 ## 自定义图像预测
 
@@ -152,7 +152,7 @@ police : 2.6663416996598244
 pilot : 2.239348366856575
 ```
 
-[>>>教程和文档](https://imageai-cn.readthedocs.io/en/latest/ImageAI_Custom_Image_Prediction.html)
+[>>>教程和文档](https://imageai-cn.readthedocs.io/zh_CN/latest/ImageAI_Custom_Image_Prediction.html)
 
 ## 实时和高性能实施
 
