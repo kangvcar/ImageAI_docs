@@ -447,7 +447,7 @@ JSON Mapping for the model classes saved to  C:\Users\User\PycharmProjects\Image
 Number of experiments (Epochs) :  100
 ```
 
-培训进度开始后，您将在控制台中看到如下结果：
+训练过程开始后，您将在控制台中看到如下结果：
 
 ```
 Epoch 1/100
@@ -480,15 +480,15 @@ Epoch 1/100
 ```
 
 让我们解释一下上面显示的细节：
-1. **Epoch 1/100** 这行意味着网络正在训练目标 100 的第一个实验
-2. **1/25 [>.............................] - ETA: 52s - loss: 2.3026 - acc: 0.2500** 表示在当前实验中训练过的批次数
-3. **Epoch 00000: saving model to C:\Users\Moses\Documents\Moses\W7\AI\Custom Datasets\IDENPROF\idenprof-small-test\idenprof\models\model_ex-000_acc-0.100000.h5** 是指本实验后保存的模型。该 **ex_000** 表示在这个阶段的实验，而 **acc_0.100000** 和 **val_acc：0.1000** 表示本实验后测试图像上模型的准确度（精度的最大值为 1.0）。此结果有助于了解可用于自定义图像预测的最佳执行模型。
+1. **Epoch 1/100** 这行表示正在进行第100个目标的第1次训练
+2. **1/25 [>.............................] - ETA: 52s - loss: 2.3026 - acc: 0.2500** 表示本实验中正在训练的批次数
+3. **Epoch 00000: saving model to C:\Users\Moses\Documents\Moses\W7\AI\Custom Datasets\IDENPROF\idenprof-small-test\idenprof\models\model_ex-000_acc-0.100000.h5** 是指本实验后保存的模型文件。该 **ex_000** 表示实验的阶段，而 **acc_0.100000** 和 **val_acc：0.1000** 表示本实验完成后测试图像上模型的精准度（最大精准度为1.0）。此结果有助于了解可用于自定义图像预测的最佳模型。
 
-完成自定义模型的训练后，可以使用`CustomImagePrediction`类对模型执行图像预测。只需点击以下链接即可。
+完成自定义模型的训练后，可以使用`CustomImagePrediction`类对自定义模型执行图像预测。只需点击以下链接即可查看完整示例。
 
 [https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMPREDICTION.md](https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Prediction/CUSTOMPREDICTION.md)
 
-### **培训 IdenProf 数据**
+### 在 IdenProf 数据上训练
 
 _来自 IdenProf 数据集的样本用于训练模型以预测专业人员。_
 
@@ -567,7 +567,7 @@ model_trainer.setDataDirectory(DATASET_DIR)
 model_trainer.trainModel(num_objects=10, num_experiments=100, enhance_data=True, batch_size=32, show_network_summary=True)
 ```
 
-### **文档**
+### 文档
 
 `imageai.Prediction.Custom.ModelTraining` class
 
@@ -599,34 +599,24 @@ model_trainer.trainModel(num_objects=10, num_experiments=100, enhance_data=True,
 
     * `show_network_summary`（可选），如果你希望将网络的训练过程显示到console，请将该值设置为True。默认为 False
 
-_::param num_objects::_
+**_:param num_objects:_**<br/>
+**_:param num_experiments:_**<br/>
+**_:param enhance_data:_**<br/>
+**_:param batch_size:_**<br/>
+**_:param initial_learning_rate:_**<br/>
+**_:param show_network_summary:_**<br/>
+**_:return:_**<br/>
 
-_::param num_experiments::_
+### 提交自定义模型
 
-_::param enhance_data::_
+我们欢迎所有使用此库的人提交您的训练模型及其JSON文件，并将其加入此repository中。通过以下联系方式提交您的训练模型及其JSON文件。
 
-_::param batch_size::_
-
-_::param initial_learning_rate::_
-
-_::param show_network_summary::_
-
-_::return::_
-
-### **提交自定义模型**
-
-我们为任何使用此库的人提供机会来提交您的训练模型以及其JSON文件，并将其列在此存储库中。通过下载的联系方式提交您打算在此存储库中共享的训练模型以及其JSON文件。
-
-### **联系开发人员**
+### 联系开发人员
 
 **Moses Olafenwa**
 
-_Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)
-
-_Website:_ [https](https://moses.specpal.science)
-
-_Twitter:_[@OlafenwaMoses](https://twitter.com/OlafenwaMoses)
-
-_Medium:_ [@guymodscientist](https://medium.com/@guymodscientist)
-
-_Facebook:_ [moses.olafenwa](https://facebook.com/moses.olafenwa)
+_Email:_ [guymodscientist@gmail.com](mailto:guymodscientist@gmail.com)<br/>
+_Website:_ [https](https://moses.specpal.science)<br/>
+_Twitter:_[@OlafenwaMoses](https://twitter.com/OlafenwaMoses)<br/>
+_Medium:_ [@guymodscientist](https://medium.com/@guymodscientist)<br/>
+_Facebook:_ [moses.olafenwa](https://facebook.com/moses.olafenwa)<br/>
